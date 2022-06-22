@@ -15,4 +15,4 @@ Allow: /icon/
 Allow: /privacy-policy
 Disallow: /font/
 
-Sitemap: https://martspec.com/sitemap.xml
+Sitemap: https://letstag.app/sitemap.xml

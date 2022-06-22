@@ -9,7 +9,7 @@
 ### Deploy
 
 * yarn deploy
-* Go to GitHub settings for the martspec and update and set custom domain to martspec.com
+* Go to GitHub settings for the letstag and update and set custom domain to letstag.app
 
 <!-- ### How do I get set up? ### -->
 
