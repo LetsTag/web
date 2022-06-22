@@ -23,7 +23,7 @@
 
 * Writing tests
 * Code review
-* Other guidelines
+* Other guidelinesff
 
 ### Who do I talk to? ###
 

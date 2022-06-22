@@ -3,9 +3,6 @@ import _ from "src/i18n/locale"
 import { Footer } from "src/part/footer";
 import IronImage from "src/part/iron-image";
 import NavigationBar from "src/part/navbar";
-// import logo from "src/img/electrolyte.svg"
-// const logo = require("src/img/electrolyte.svg").default;
-
 
 
 export default function P1NewOil() {
@@ -21,43 +18,29 @@ export default function P1NewOil() {
                         <h1>{_("PRODUCT.P1.HEAD1")}</h1>
                         <h3 className="mt-3">
                             {_("PRODUCT.P1.DESC1")}
-                            <a href="https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional" target="_blank">
-                                <small><i>{_("BTN.SRC1")}.</i></small>
-                            </a>
+
                         </h3>
 
 
                         <h1>{_("PRODUCT.P1.HEAD2")}</h1>
                         <h3 className="mt-3">
                             {_("PRODUCT.P1.DESC2")}
-                            <a href="https://ods.od.nih.gov/factsheets/Calcium-Consumer" target="_blank">
-                                <small><i>{_("BTN.FACT")}.</i></small>
-                            </a>
                         </h3>
 
 
                         <h1>{_("PRODUCT.P1.HEAD3")}</h1>
                         <h3 className="mt-3">
                             {_("PRODUCT.P1.DESC3")}
-                            <a href="https://ods.od.nih.gov/factsheets/Potassium-HealthProfessional" target="_blank">
-                                <small><i>{_("BTN.SRC2")}.</i></small>
-                            </a>
                         </h3>
 
                         <h1>{_("PRODUCT.P1.HEAD4")}</h1>
                         <h3 className="mt-3">
                             {_("PRODUCT.P1.DESC4")}
-                            <a href="https://ods.od.nih.gov/factsheets/Iron-HealthProfessional" target="_blank">
-                                <small><i>{_("BTN.FACT")}.</i></small>
-                            </a>
                         </h3>
 
                         <h1 style={{ color: "#BF4803" }}>{_("PRODUCT.P1.HEAD5")}</h1>
                         <h3 className="mt-3">
                             {_("PRODUCT.P1.DESC5")}
-                            <a href="https://en.wikipedia.org/wiki/Electrolyte_imbalance" target="_blank">
-                                <small><i>{_("BTN.WIKI")}.</i></small>
-                            </a>
                         </h3>
 
 
