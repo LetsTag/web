@@ -7,14 +7,14 @@
     font-size: 1rem;
     font-family: os6; // padding: 3rem 4÷rem;
     text-transform: uppercase;
-    background-color: $rr-color-main;
+    background-color: $ms-c-main4;
     color: white;
 
     &:hover,
     &:focus,
     &:active {
         color: white;
-        background-color: $rr-color-main-dark;
+        background-color: $ms-c-main1;
     }
 }
 
@@ -34,14 +34,6 @@
     padding: 0.8rem 2+rem;
     border-radius: 2rem;
 }
-
-.unstyled-button {
-    border: none !important;
-    padding: 0;
-    background: none;
-}
-
-
 
 .rr-btn-lang {
     @extend .btn;

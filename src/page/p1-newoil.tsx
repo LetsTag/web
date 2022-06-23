@@ -47,7 +47,7 @@ export default function P1NewOil() {
                     </div>
 
                     <div className="col-sm-12 col-md-3 order-sm-1">
-                        <img src="/img/s1_newOil.png" className="mx-auto" alt={_("MAIN.P1.IMG")} />
+                        <img src="/img/s1_newOil.webp" className="mx-auto" alt={_("MAIN.P1.IMG")} />
                     </div>
                 </div>
             </section>

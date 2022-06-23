@@ -5,7 +5,7 @@ export const Footer = () =>
     <footer>
         <div className="row text-center">
             <div className="col-md-2 col-sm-12 p-5">
-                <img src="/img/logo_256.webp" className="img-fluid " alt={_("MAIN.HEAD")} />
+                <img src="/img/logo_256.webp" height={256} width={256} className="img-fluid " alt={_("MAIN.HEAD")} />
                 <p>{_("FOOTER.C")} </p>
             </div>
             <div className="col-sm-12 col-md-10">
@@ -41,7 +41,7 @@ export const Footer = () =>
                             <svg viewBox="0 0 24 24"><path d="M22 4H2C.9 4 0 4.9 0 6v12c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM7.25 14.43l-3.5 2c-.08.05-.17.07-.25.07-.17 0-.34-.1-.43-.25-.14-.24-.06-.55.18-.68l3.5-2c.24-.14.55-.06.68.18.14.24.06.55-.18.68zm4.75.07c-.1 0-.2-.03-.27-.08l-8.5-5.5c-.23-.15-.3-.46-.15-.7.15-.22.46-.3.7-.14L12 13.4l8.23-5.32c.23-.15.54-.08.7.15.14.23.07.54-.16.7l-8.5 5.5c-.08.04-.17.07-.27.07zm8.93 1.75c-.1.16-.26.25-.43.25-.08 0-.17-.02-.25-.07l-3.5-2c-.24-.13-.32-.44-.18-.68s.44-.32.68-.18l3.5 2c.24.13.32.44.18.68z" /></svg>
                         </a>
 
-                        <a className="social-icon" href="https://www.linkedin.com/company/martspec" target="_blank" rel="noopener" aria-label="">
+                        <a className="social-icon" href="https://www.linkedin.com/company/letstag" target="_blank" rel="noopener" aria-label="">
                             <svg viewBox="0 0 24 24"><path d="M6.5 21.5h-5v-13h5v13zM4 6.5C2.5 6.5 1.5 5.3 1.5 4s1-2.4 2.5-2.4c1.6 0 2.5 1 2.6 2.5 0 1.4-1 2.5-2.6 2.5zm11.5 6c-1 0-2 1-2 2v7h-5v-13h5V10s1.6-1.5 4-1.5c3 0 5 2.2 5 6.3v6.7h-5v-7c0-1-1-2-2-2z" /></svg>
                         </a>
                     </div>
