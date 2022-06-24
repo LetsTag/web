@@ -7,11 +7,11 @@ export default function PrivacyPolicy() {
         <NavigationBar title="" />
 
         <div className="ms-base-page pb-5">
-            <h3 className="text-center">Privacy Policy</h3>
+            <h2 className="text-center">Privacy Policy</h2>
             <img src="/img/privacy.svg" alt="Privacy Policy" />
 
             <section>
-                <h6>Last updated: August 20, 2021</h6>
+                <h6>Last updated: June 20, 2022</h6>
 
                 <p>
                     Protecting your private information is our priority. This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of
@@ -26,7 +26,7 @@ export default function PrivacyPolicy() {
 
 
             <section>
-                <h3>Interpretation and Definitions</h3>
+                <h2>Interpretation and Definitions</h2>
                 <h4>Interpretation</h4>
                 <p>The words of which the initial letter is capitalized have meanings defined under the following conditions.
                     The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
@@ -87,7 +87,7 @@ export default function PrivacyPolicy() {
 
 
             <section>
-                <h3>Collecting Your Personal Data</h3>
+                <h2>Collecting Your Personal Data</h2>
                 <h4>Types of Data Collected</h4>
                 <h5>Personal Data</h5>
                 <p>While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:</p>
@@ -156,7 +156,7 @@ export default function PrivacyPolicy() {
 
 
                 <br /><br />
-                <h3>Use of Your Personal Data</h3>
+                <h2>Use of Your Personal Data</h2>
                 <h5>Disclose of your personal information may happen in the following situations:</h5>
                 <ul>
                     <li><strong>Law Enforcement:</strong> We may disclose your information where we are legally required to do so in order to comply with applicable law, governmental requests, a judicial proceeding, court order, or legal process, such as in response to a court order or a subpoena (including in response to public authorities to meet national security or law enforcement requirements).</li>
@@ -217,7 +217,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-                <h3>Children Under Thirteen</h3>
+                <h2>Children Under Thirteen</h2>
                 <p>
                     We do not knowingly collect personally identifiable information from children under the age of thirteen. If you are under the age of thirteen, you must
                     ask your parent or guardian for permission to use this Service or any of our mobile applications.
@@ -225,7 +225,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-                <h3>What are your Privacy Rights ?</h3>
+                <h2>What are your Privacy Rights ?</h2>
                 <p>
                     In some regions (like the EEA and UK), you have certain rights under applicable data protection laws. These may include the right (i) to
                     request access and obtain a copy of your personal information, (ii) to request rectification or erasure; (iii) to restrict the processing
@@ -255,7 +255,7 @@ export default function PrivacyPolicy() {
 
 
             <section>
-                <h3>CCPA Privacy</h3>
+                <h2>CCPA Privacy</h2>
 
                 <h4>Your California Privacy Rights (California's Shine the Light law)</h4>
                 <p>Under California Civil Code Section 1798 (California's Shine the Light law), California residents with an established business relationship with us can request information once a year about sharing their Personal Data with third parties for the third parties' direct marketing purposes.</p>
@@ -345,21 +345,21 @@ export default function PrivacyPolicy() {
 
 
             <section>
-                <h3>Links to Other Websites</h3>
+                <h2>Links to Other Websites</h2>
                 <p>Our Service may contain links to other websites that are not operated by Us. If You click on a third party link, You will be directed to that third party's site. We strongly advise You to review the Privacy Policy of every site You visit.</p>
                 <p>We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services.</p>
             </section>
 
 
             <section>
-                <h3>Changes to this Privacy Policy</h3>
+                <h2>Changes to this Privacy Policy</h2>
                 <p>We may update our Privacy Policy from time to time. The updated version will be indicated by an updated "Last updated" date and the updated version will be effective as soon as it is accessible. </p>
                 <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
             </section>
 
 
             <section>
-                <h3>Contact Us</h3>
+                <h2>Contact Us</h2>
                 If you have any questions about this Privacy Policy, You can contact us:
                 <ul>
                     <li>By visiting this page on our website: <a href="https://letstag.app/privacy-policy" rel="external nofollow noopener" target="_blank">https://letstag.app/privacy-policy</a></li>
