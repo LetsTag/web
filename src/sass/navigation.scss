@@ -1,14 +1,6 @@
-@import "color.scss";
-
 .rr-navbar {
   @extend .navbar;
-  
-  .title {
-    // position: static;
-    left: 40%;
-    transform: translate(-40%, 0);
-  }
-
+ 
   .lButton {
     @extend .btn;
     @extend .btn-link;
@@ -16,12 +8,10 @@
     margin-bottom: -2.7rem;
     margin-top: -2rem;
   }
-
 }
 
 
 //-------------------------------------------------------------------------------------------------
 .ms-navbar-nav {
-  // @extend .navbar-nav;
   font-size: 1.6rem;
 }

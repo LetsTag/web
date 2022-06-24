@@ -4,7 +4,7 @@ import NavigationBar from "src/part/navbar";
 
 export default function PrivacyPolicy() {
     return (<>
-        <NavigationBar title="" />
+        <NavigationBar />
 
         <div className="ms-base-page pb-5">
             <h2 className="text-center">Privacy Policy</h2>
@@ -363,9 +363,9 @@ export default function PrivacyPolicy() {
                 If you have any questions about this Privacy Policy, You can contact us:
                 <ul>
                     <li>By visiting this page on our website: <a href="https://letstag.app/privacy-policy" rel="external nofollow noopener" target="_blank">https://letstag.app/privacy-policy</a></li>
-                    <li>Via our FaceBook messager at <a href="https://www.facebook.com/letstagapp"  target="_blank">LetsTag @ FaceBook</a></li>
-                    <li>Via our Twitter account at <a href="https://twitter.com/letstagapp"  target="_blank">LetsTag @ Twitter</a></li>                    
-                    <li>Via our LinkedIn account at <a href="https://www.linkedin.com/company/letstag"  target="_blank">LetsTag @ LinkedIn</a></li>                    
+                    <li>Via our FaceBook messager at <a href="https://www.facebook.com/letstagapp" target="_blank">LetsTag @ FaceBook</a></li>
+                    <li>Via our Twitter account at <a href="https://twitter.com/letstagapp" target="_blank">LetsTag @ Twitter</a></li>
+                    <li>Via our LinkedIn account at <a href="https://www.linkedin.com/company/letstag" target="_blank">LetsTag @ LinkedIn</a></li>
                 </ul>
             </section>
 

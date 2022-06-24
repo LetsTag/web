@@ -5,68 +5,36 @@ import NavigationBar from "src/part/navbar";
 
 
 export default function P1NewOil() {
-    return (
-        <div>
-            <NavigationBar title={_("MAIN.P1.HEAD")} />
+    return <>
+        <NavigationBar />
+        <div className="ms-base-page pb-5">
+            <img src="/img/s1_newOil.webp" height={512} width={512} className="mx-auto img-fluid" alt={_("MAIN.P2.IMG")} />
+            <h1 className="text-center pt-3">{_("MAIN.P1.HEAD")}</h1>
 
-            <section className="rr-s-about ms-s-offset">
-                <div className="row" >
-                    <div className="col-sm-12 col-md-9 order-last order-md-1">
-                        <h3 className="mt-3">{_("PRODUCT.P1.ABOUT")}</h3>
-
-                        <h1>{_("PRODUCT.P1.HEAD1")}</h1>
-                        <h3 className="mt-3">
-                            {_("PRODUCT.P1.DESC1")}
-
-                        </h3>
-
-
-                        <h1>{_("PRODUCT.P1.HEAD2")}</h1>
-                        <h3 className="mt-3">
-                            {_("PRODUCT.P1.DESC2")}
-                        </h3>
-
-
-                        <h1>{_("PRODUCT.P1.HEAD3")}</h1>
-                        <h3 className="mt-3">
-                            {_("PRODUCT.P1.DESC3")}
-                        </h3>
-
-                        <h1>{_("PRODUCT.P1.HEAD4")}</h1>
-                        <h3 className="mt-3">
-                            {_("PRODUCT.P1.DESC4")}
-                        </h3>
-
-                        <h1 style={{ color: "#BF4803" }}>{_("PRODUCT.P1.HEAD5")}</h1>
-                        <h3 className="mt-3">
-                            {_("PRODUCT.P1.DESC5")}
-                        </h3>
-
-
-                    </div>
-
-                    <div className="col-sm-12 col-md-3 order-sm-1">
-                        <img src="/img/s1_newOil.webp" className="mx-auto" alt={_("MAIN.P1.IMG")} />
-                    </div>
-                </div>
+            <section>
+                <h4 className="mt-4">{_("NEWOIL.ABOUT")}</h4>
+                <a href="https://letstag.app/trynow" target="_blank">
+                    <small><i>{_("BTN.SRC2")}.</i></small>
+                </a>
+            </section>
+            <section>
+                <h2>{_("NEWOIL.HEAD1")}</h2>
+                <p className="mt-3">{_("NEWOIL.DESC1")}</p>
             </section>
 
+            <section >
+                <h2>{_("NEWOIL.HEAD2")}</h2>
+                <p className="mt-3">{_("NEWOIL.DESC2_1")}</p>
+                <p className="mt-3">{_("NEWOIL.DESC2_2")}</p>
+            </section>
 
-            <div className="container mb-5 pb-5">
-                <div className="row align-items-center justify-content-sm-center" >
-                    {/* <div className="col-md-7 col-12 pb-5">
-                        <IronImage imgLo="/img/s1_newOil.png" imgHi="/img/s1_newOil.png" text={_("MAIN.P1.IMG")} />
-                    </div> */}
-                    <div className="col-md-5 col-12 text-center pb-5">
-                        <a href={`https://apps.apple.com/${_("APPSTORE")}/app/id1507719251`}
-                            target="_blank" title={_("MAIN.P1.DWN")}>
-                            <span className="ms-btn-apple my-5 float-md-right text-center" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <Footer />
+            <section >
+                <h2>{_("NEWOIL.HEAD3")}</h2>
+                <p className="mt-3">{_("NEWOIL.DESC3_1")}</p>
+                <p className="mt-3">{_("NEWOIL.DESC3_2")}</p>
+                <p className="mt-3">{_("NEWOIL.DESC3_3")}</p>
+            </section>
         </div>
-    )
+        <Footer />
+    </>
 }
