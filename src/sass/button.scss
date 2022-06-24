@@ -28,13 +28,6 @@
     color: white !important;
 }
 
-.pw-btn-product {
-    @extend .pw-button;
-    font-weight: 600; // letter-spacing: 1px;
-    padding: 0.8rem 2+rem;
-    border-radius: 2rem;
-}
-
 .rr-btn-lang {
     @extend .btn;
     @extend .btn-link;

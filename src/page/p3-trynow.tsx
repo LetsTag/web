@@ -2,7 +2,6 @@ import * as React from "react";
 import _ from "src/i18n/locale"
 import { Footer } from "src/part/footer";
 import NavigationBar from "src/part/navbar";
-import IronImage from "src/part/iron-image";
 
 
 export default function P3TryNow() {
@@ -90,7 +89,7 @@ export default function P3TryNow() {
             <div className="container mb-5 pb-5">
                 <div className="row align-items-center justify-content-sm-center" >
                     <div className="col-md-7 col-12 pb-5">
-                        <IronImage imgLo="/img/xxx.webp" imgHi="/img/xxx.webp" text={_("MAIN.P3.IMG")} />
+                        <img src="/img/cs.webp" height={512} width={512} className="mx-auto img-fluid" alt={_("MAIN.P3.IMG")} />
                     </div>
                     <div className="col-md-5 col-12 text-center pb-5">
                         <a href={`https://apps.apple.com/${_("APPSTORE")}/app/id1519596234`}

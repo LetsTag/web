@@ -11,10 +11,7 @@ export class Locale {
         let code = localStorage.getItem('locale');
 
         if (code == null) {
-            if (window.location.host == 'martspec.ru')
-                code = 'ru';
-            else
-                code = navigator.language.split(/-|_/)[0];
+            code = navigator.language.split(/-|_/)[0];
             if (!Locale.SUPPORTED_LANG.includes(code))
                 code = "en";
         }

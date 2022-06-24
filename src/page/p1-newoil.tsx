@@ -1,7 +1,6 @@
 import * as React from "react";
 import _ from "src/i18n/locale"
 import { Footer } from "src/part/footer";
-import IronImage from "src/part/iron-image";
 import NavigationBar from "src/part/navbar";
 
 

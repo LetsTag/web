@@ -1,7 +1,6 @@
 import * as React from "react";
 import _ from "src/i18n/locale"
 import { Footer } from "src/part/footer";
-import IronImage from "src/part/iron-image";
 import NavigationBar from "src/part/navbar";
 
 export default function P4WaistLine() {
@@ -67,7 +66,7 @@ export default function P4WaistLine() {
         <div className="container mb-5 pb-5">
             <div className="row align-items-center justify-content-sm-center" >
                 <div className="col-md-7 col-12 pb-5">
-                    <IronImage imgLo="/img/p_waist_screens_sm.webp" imgHi="/img/p_waist_screens.webp" text={_("MAIN.P4.IMG")} />
+                    {/* <IronImage imgLo="/img/p_waist_screens_sm.webp" imgHi="/img/p_waist_screens.webp" text={_("MAIN.P4.IMG")} /> */}
                 </div>
                 <div className="col-md-5 col-12 text-center pb-5">
                     <a href={`https://apps.apple.com/${_("APPSTORE")}/app/id1506250420`}
