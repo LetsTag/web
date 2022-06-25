@@ -13,7 +13,7 @@ export default function P2Features() {
             <section>
                 <h4 className="mt-4">{_("FEATURES.ABOUT")}</h4>
                 <a href="https://letstag.app/trynow" target="_blank">
-                    <small><i>{_("BTN.SRC2")}.</i></small>
+                    <small><i>{_("BTN.SRC2")}</i></small>
                 </a>
             </section>
             <section>

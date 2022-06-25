@@ -1,7 +1,7 @@
 const
     path = require('path'),
     webpack = require('webpack'),
-    BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
+    // BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
     CopyPlugin = require('copy-webpack-plugin'),
     HtmlWebpackInjectPreload = require('@principalstudio/html-webpack-inject-preload'),
     HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -99,7 +99,7 @@ module.exports = {
             cacheGroups: {
                 vendor: {
                     chunks: 'initial',
-                    test: /[\\/]node_modules[\\/](react|react-dom|bootstrap|scheduler|node-polyglot|history*)[\\/]/,
+                    test: /[\\/]node_modules[\\/](react|react-dom|bootstrap|scheduler|node-polyglot|@popperjs|get-intrinsic|es-abstract|object-keys|object-inspect)[\\/]/,
                     name: "vendor"
                 }
             },

@@ -14,25 +14,22 @@
             "HEAD": "Data is new oil",
             "SUBHEAD": "organized & insightful",
             "TEXT": "Data is the oil of our century. Data tagging is the pipeline to route the new oil. It brings structure, cohesion, and accessibility to a big sea of data by mapping it to specific keywords using the most advanced machine learning algorithms.",
-            "BTN": "Learn more",
-            "IMG": "Record electrolytes and minerals with your Apple Watch",
-            "DWN": "Download Free Electrolyte tracker app from the Apple AppStore"
+            "BTN": "What’s in it for you?",
+            "IMG": "Check out use cases of data tagging. See why it is so important in the modern world."
         },
         "P2": {
             "HEAD": "How It Works",
             "SUBHEAD": "the ultimate tagging machine",
             "TEXT": "For each document you give us, we return a list of tags that match it the best.",
             "BTN": "All features",
-            "IMG": "Save body mass directly from your Apple Watch into Apple Health Storage",
-            "DWN": "Download Free Body Mass app from the Apple AppStore"
+            "IMG": "Use your own categories or create new ones with our native app. We never store your data."
         },
         "P3": {
             "HEAD": "Try Now",
             "SUBHEAD": "figure out your data insights",
             "TEXT": "You do not have to be a scientist to experiment with your data. Just paste your data and see results. ",
             "BTN": "See for yourself",
-            "IMG": "Scientific tool to analyze, classify and tag any text content.",
-            "DWN": "Run experiments on your data, uplodad content for tagging, classfification and taxonomy"
+            "IMG": "Scientific tool to analyze, classify and tag any text content. Run experiments on your data, uplodad content for tagging, classfification and taxonomy."
         }
     },
     "FOOTER": {
