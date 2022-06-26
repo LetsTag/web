@@ -7,7 +7,7 @@ module.exports = merge(common, {
     mode: 'development',
     plugins: [
         new webpack.DefinePlugin({
-            __API_BASE_URL__: JSON.stringify("http://letstag.app/"),
+            __API_BASE_URL__: JSON.stringify("http://api.letstag.app/"),
             __MAINTENANCE_MODE__: false,
             __IN_DEBUG__: JSON.stringify("Alex"),
         }),
