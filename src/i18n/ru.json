@@ -8,40 +8,40 @@
         "MORE": "Learn more"
     },
     "MAIN": {
-        "HEAD": "Have data - will travel",
-        "IMG": "Text data classifier for any text",
+        "HEAD": "Есть данные - поехали!",
+        "IMG": "Классификатор текстовых данных для любого текста",
         "P1": {
-            "HEAD": "Data is new oil",
-            "SUBHEAD": "organized & insightful",
-            "TEXT": "Data is the oil of our century. Data tagging is the pipeline to route the new oil. It brings structure, cohesion, and accessibility to a big sea of data by mapping it to specific keywords using the most advanced machine learning algorithms.",
-            "BTN": "What’s in it for you?",
-            "IMG": "Check out use cases of data tagging. See why it is so important in the modern world."
+            "HEAD": "Данные - это новая нефть",
+            "SUBHEAD": "организованный и проницательный",
+            "TEXT": "Данные - это нефть нашего века. Маркировка данных - это трубопровод для направления новой нефти. Он обеспечивает структуру, связь и доступность для большого объема данных, сопоставляя их с определенными ключевыми словами с использованием самого передового машинного обучения. алгоритмы.",
+            "BTN": "Что в этом для вас?",
+            "IMG": "Посмотрите на примеры использования тегов данных. Узнайте, почему это так важно в современном мире."
         },
         "P2": {
-            "HEAD": "How It Works",
-            "SUBHEAD": "the ultimate tagging machine",
-            "TEXT": "For each document you give us, we return a list of tags that match it the best.",
-            "BTN": "All features",
-            "IMG": "Use your own categories or create new ones with our native app. We never store your data."
+            "HEAD": "Как это работает",
+            "SUBHEAD": "идеальная машина для маркировки",
+            "TEXT": "Для каждого документа, который вы нам предоставляете, мы формируем список тегов, которые соответствуют ему наилучшим образом.",
+            "BTN": "Все функции",
+            "IMG": "Используйте свои собственные категории или создавайте новые с помощью нашего собственного приложения. Мы никогда не храним ваши данные."
         },
         "P3": {
-            "HEAD": "Try Now",
-            "SUBHEAD": "figure out your data insights",
-            "TEXT": "You do not have to be a scientist to experiment with your data. Just paste your data and see results. ",
-            "BTN": "See for yourself",
-            "IMG": "Scientific tool to analyze, classify and tag any text content. Run experiments on your data, uplodad content for tagging, classfification and taxonomy."
+            "HEAD": "Попробуй Сейчас",
+            "SUBHEAD": "проанализируйте свои данные.",
+            "TEXT": "Вам не обязательно быть ученым, чтобы экспериментировать с вашими данными. Просто вставьте свои данные и посмотрите результаты.",
+            "BTN": "Убедитесь сами",
+            "IMG": "Научный инструмент для анализа, классификации и маркировки любого текстового контента. Проводите эксперименты с вашими данными, загружайте контент для пометки, классификации и таксономии."
         }
     },
     "FOOTER": {
-        "C": "© 2022 Let'sTag LLC. All rights reserved.",
-        "PP": "Privacy Policy",
-        "ABOUT": "About Us",
-        "MISSION": "Mission"
+        "C": "© Martspec LLC, 2022 г. Все права защищены.",
+        "PP": "Политика конфиденциальности",
+        "ABOUT": "О Компании",
+        "MISSION": "Миссия"
     },
     "ERROR": {
-        "404_HEAD": "Page Not Found",
-        "404_TEXT": "This page does not exist. Please make sure you used the correct URL.",
-        "404_BTN": "Home"
+        "404_HEAD": "Страница не найдена",
+        "404_TEXT": "Страница с таким адресом не существует на сайте. Проверьте адрес и попробуйте снова.",
+        "404_BTN": "Домой"
     },
     "NEWOIL": {
         "ABOUT": "",
@@ -57,17 +57,17 @@
         "DESC5": ""
     },
     "FEATURES": {
-        "TITLE": "How It Works",
-        "ABOUT": "Paste your text into analyzer text area and push tagIt button. Response would show a list of tags and how each tag is applicable to your content.",
-        "HEAD1": "Real results",
-        "DESC1": "We have predefined categories you can experiment with, for example, job postings. In the future, more categories (aka models) will be available. If we do not have a category that is the most relevant to your application, you can create one. Each category needs to have knowledge on it subject, in other words, it needs to be trained on the subject. We are currently working on an app that anyone can use on your computer or even a phone to create categories and educate them on the subject of interest.",
-        "HEAD2": "Innovate. Collaborate. Build. Create.",
-        "DESC2_1": "We decided to create free app for that because of the several reasons. First and the most important, privacy is not something you are merely entitled to; it is an absolute prerequisite, a fundamental human right. At Let'sTag, data privacy is also one of our core values. We should not store your content, even for short perioud of time. You content might too sensitive to even leave your computer. That is why we strongly believe a native app, running and storing data on your computer/site only, is the best way to go here. This gurantees your data never leaves your device. Also, using native app to create and teach categories, is simply more convinient than using a website.",
-        "DESC2_2": "Once you are happy with new category you can upload it. Note, the category (aka model) does not have your content, it is knowledge accomulation, mathematical soup, binary order to chaos that can be used as predictor for future content, to find patterns, to tag and classify it. ",
-        "HEAD3": "Why Upload",
-        "DESC3_1": "First, that lets you use our API to process tons of new documents in a matter of seconds. Something you can easliy integrate into your mobile app or a website. ",
-        "DESC3_2": "Second, you can make your category available to other people and thereby help them, positively affect someone's cause. For example, lets say you have an outstanding data from medical sources on cancer research. By making such category available, you are empowering others to apply it to cancer related articles in medical journals, websites, and other sources. This might lead to new discoveries in this area.",
-        "DESC3_3": "Similar to apps sales on Apple AppStore or Goole PlayStore, you can make profit from your work by providing others, for a fee, to use your categories.  Please note, yet this is not available, we are actively working to make the feature available. However, for now you can distribute for free and be the first to provide the best categories(models) for speicifc subject. As we know, quite often it matters more to be the first and not the best because those who were first do not have to prove they are the best. For example, BitCoin was the first on crypto currency arena, they did not have to show they are better than Etherium. However, is BitCoin really better ?"
+        "TITLE": "Как это работает",
+        "ABOUT": "Скопируйте текст в поле анализатора и нажмите кнопку TagIt. В ответе будет показан список тегов и то, как каждый тег применим к вашему контенту.",
+        "HEAD1": "Реальные результаты",
+        "DESC1": "У нас есть предопределенные категории, с которыми вы можете поэкспериментировать, например, объявления о вакансиях. В будущем будет доступно больше категорий (они же модели). Если у нас нет категории, наиболее подходящей для вашего приложения, вы можете создать ее. Каждая категория должна обладать знаниями по этому предмету, другими словами, она должна быть обучена этому предмету. В настоящее время мы работаем над приложением, которое любой желающий может использовать на своем компьютере или даже телефоне для создания категорий и обучения их интересующему предмету.",
+        "HEAD2": "Инновации. Сотрудничать. Строить. Твори.",
+        "DESC2_1": "Мы решили создать бесплатное приложение для этого по нескольким причинам. Первое и самое важное: неприкосновенность частной жизни - это не то, на что вы просто имеете право; это абсолютная предпосылка, фундаментальное право человека. В Let'Stag конфиденциальность данных также является одной из наших основных ценностей. Мы не должны хранить ваш контент даже в течение короткого промежутка времени. Ваш контент может быть слишком чувствительным, чтобы даже покидать ваш компьютер. Вот почему мы твердо убеждены, что нативное приложение, запускаемое и хранящее данные только на вашем компьютере / сайте, - это лучший способ попасть сюда. Это гарантирует, что ваши данные никогда не покинут ваше устройство. Кроме того, использование собственного приложения для создания и обучения категориям просто удобнее, чем использование веб-сайта.",
+        "DESC2_2": "Как только вы будете довольны новой категорией, вы можете загрузить ее. Обратите внимание, что категория (она же модель) не содержит вашего контента, это накопление знаний, математический суп, бинарный порядок в хаосе, который можно использовать в качестве предиктора для будущего контента, для поиска шаблонов, для пометки и классификации. ",
+        "HEAD3": "Зачем загружать",
+        "DESC3_1": "Во-первых, это позволяет вам использовать наш API для обработки тонны новых документов за считанные секунды. Что-то, что вы можете легко интегрировать в свое мобильное приложение или веб-сайт. ",
+        "DESC3_2": "Во-вторых, вы можете сделать свою категорию доступной для других людей и тем самым помочь им, положительно повлиять на чье-то дело. Например, допустим, у вас есть выдающиеся данные из медицинских источников об исследованиях рака. Делая такую категорию доступной, вы даете другим возможность применять ее к статьям, связанным с раком, в медицинских журналах, на веб-сайтах и в других источниках. Это может привести к новым открытиям в этой области.",
+        "DESC3_3": "Подобно продажам приложений в Apple AppStore или Goole PlayStore, вы можете получать прибыль от своей работы, предоставляя другим пользователям за определенную плату использовать ваши категории.  Пожалуйста, обратите внимание, что пока это недоступно, мы активно работаем над тем, чтобы сделать эту функцию доступной. Тем не менее, на данный момент вы можете распространять бесплатно и быть первым, кто предоставит лучшие категории (модели) по тематике speicifc. Как мы знаем, довольно часто важнее быть первым, а не лучшим, потому что тем, кто был первым, не нужно доказывать, что они лучшие. Например, биткоин был первым на криптовалютной арене, им не нужно было показывать, что они лучше Эфириума. Однако действительно ли биткойн лучше?"
     },
     "TRYNOW": {
         "ABOUT": "",
@@ -93,21 +93,20 @@
         "DESC0": ""
     },
     "MISSION": {
-        "HEAD": "Mission",
-        "M": "We make it quick and easy for everyone to tag their data.",
-        "P1": "Our mission pushes us to do everything possible to expand data analyzing and tagging. We do that by following basic 3 concepts:",
-        "P1_1": "Create groundbreaking technology innovations",
-        "P1_2": "Keep interface easy and simple to use",
-        "P1_3": "Listen to our communities' feedback",
-        "P2": "To achieve our ambition, we are starting with science. Published scientific research and analytics play an important part in the development of our tools. We use cutting ege algorithms and discoveries to create the best possible match. Feedback is an important tool for unlocking future innovations, including creation new algorithms, tools and even apps for mobile devices."
+        "HEAD": "Миссия",
+        "M": "Мы делаем так, чтобы каждый мог быстро и легко категоризовать свои данные.",
+        "P1": "Наша миссия подталкивает нас к тому, чтобы делать все возможное для расширения анализа и маркировки данных. Мы делаем это, следуя 3 основным концепциям: ",
+        "P1_1": "Создавайте новаторские технологические инновации.",
+        "P1_2": "Сохраняйте интерфейс простым и понятным в использовании.",
+        "P1_3": "Прислушивайтесь к отзывам наших сообществ.",
+        "P2": "Чтобы достичь наших целей, мы начинаем с науки. Опубликованные научные исследования и аналитика играют важную роль в разработке наших инструментов. Мы используем передовые алгоритмы и открытия для создания наилучшего возможного соответствия. Обратная связь - важный инструмент для раскрытия будущих инноваций, включая создание новых алгоритмов, инструментов и даже приложений для мобильных устройств."
     },
     "ABOUT": {
-        "HEAD": "About us",
-        "P1": "Several of us used to work for large media publishing international corporations that were processing gigabytes of articles daily. All that content needed to be analysed, sorted into proper industries and classified for our customers. Multiple 3rd party tools, such as FirstRain, were used to tag and classify content. However, article classification by 3rd party firms was not so great.",
-        "P2": "We always wanted to improve that situation and create a tool that produces better results and better taxonomy for news content. With our machine learning background we were able to acheave that goal and show that ours ideas and algorithms work better, produce better results.",
-        "P3": "While we are a bit late into the Machine Learning game, we passionately believe in our approach and algorithms. Data science, machine learning and data tagging can be done better, and easier to use. Most of the current solutions, currently available on the market, are not so easy to use,very expencive and, most importanly, do not produce super acurate results.",
-        "P4": "Let'sTag was founded in Summer of 2022. At first, we developed a simply beautiful tool to tag content in several categories, such as job postings, emotional sentiment analyzer, etc. At the later stage, a native app for anyone to classify content on mobile devices and personal computers was introduced. That is why our company uses APP domain instead of COM.",
-        "P5": "Privacy is not something you are merely entitled to, it’s an absolute prerequisite, a fundamental human right. At Let'sTag, it’s also one of our core values. That is why Let'sTag native app, running on your device, exists. This gurantees your data never leaves your device.",
-        "P6": ""
+        "HEAD": "О компании",
+        "P1": "Некоторые из нас раньше работали в крупных международных корпорациях, издающих медиа, которые ежедневно обрабатывали гигабайты статей. Весь этот контент необходимо было проанализировать, отсортировать по соответствующим отраслям и классифицировать для наших клиентов. Для пометки и классификации контента использовались многочисленные сторонние инструменты, такие как FirstRain. Однако классификация статей сторонними фирмами была не столь велика.",
+        "P2": "Мы всегда хотели улучшить эту ситуацию и создать инструмент, который дает лучшие результаты и лучшую систематизацию новостного контента. Благодаря нашему опыту машинного обучения мы смогли достичь этой цели и показать, что наши идеи и алгоритмы работают лучше, дают лучшие результаты.",
+        "P3": "Хотя мы немного запоздали с внедрением машинного обучения, мы страстно верим в наш подход и алгоритмы. Наука о данных, машинное обучение и маркировка данных могут быть выполнены лучше и проще в использовании. Большинство современных решений, доступных в настоящее время на рынке, не так просты в использовании, очень дороги и, что самое главное, не дают сверхточных результатов.",
+        "P4": "Let'Stag был основан летом 2022 года. Сначала мы разработали просто красивый инструмент для пометки контента в нескольких категориях, таких как объявления о вакансиях, анализатор эмоциональных настроений и т.д. На более позднем этапе было представлено собственное приложение, позволяющее любому пользователю классифицировать контент на мобильных устройствах и персональных компьютерах. Вот почему наша компания использует домен приложений вместо COM.",
+        "P5": "Неприкосновенность частной жизни - это не то, на что вы просто имеете право, это абсолютная предпосылка, фундаментальное право человека. В Let'Stag это также одна из наших основных ценностей. Вот почему существует собственное приложение Let'Stag, работающее на вашем устройстве. Это гарантирует, что ваши данные никогда не покинут ваше устройство."
     }
 }

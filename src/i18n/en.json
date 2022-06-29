@@ -29,7 +29,7 @@
             "SUBHEAD": "figure out your data insights",
             "TEXT": "You do not have to be a scientist to experiment with your data. Just paste your data and see results. ",
             "BTN": "See for yourself",
-            "IMG": "Scientific tool to analyze, classify and tag any text content. Run experiments on your data, uplodad content for tagging, classfification and taxonomy."
+            "IMG": "Scientific tool to analyze, classify and tag any text content. Run experiments on your data, upload content for tagging, classification and taxonomy."
         }
     },
     "FOOTER": {
@@ -65,7 +65,7 @@
         "DESC2_1": "We decided to create free app for that because of the several reasons. First and the most important, privacy is not something you are merely entitled to; it is an absolute prerequisite, a fundamental human right. At Let'sTag, data privacy is also one of our core values. We should not store your content, even for short perioud of time. You content might too sensitive to even leave your computer. That is why we strongly believe a native app, running and storing data on your computer/site only, is the best way to go here. This gurantees your data never leaves your device. Also, using native app to create and teach categories, is simply more convinient than using a website.",
         "DESC2_2": "Once you are happy with new category you can upload it. Note, the category (aka model) does not have your content, it is knowledge accomulation, mathematical soup, binary order to chaos that can be used as predictor for future content, to find patterns, to tag and classify it. ",
         "HEAD3": "Why Upload",
-        "DESC3_1": "First, that lets you use our API to process tons of new documents in a matter of seconds. Something you can easliy integrate into your mobile app or a website. ",
+        "DESC3_1": "First, that lets you use our API to process tons of new documents in a matter of seconds. Something you can easily integrate into your mobile app or a website.",
         "DESC3_2": "Second, you can make your category available to other people and thereby help them, positively affect someone's cause. For example, lets say you have an outstanding data from medical sources on cancer research. By making such category available, you are empowering others to apply it to cancer related articles in medical journals, websites, and other sources. This might lead to new discoveries in this area.",
         "DESC3_3": "Similar to apps sales on Apple AppStore or Goole PlayStore, you can make profit from your work by providing others, for a fee, to use your categories.  Please note, yet this is not available, we are actively working to make the feature available. However, for now you can distribute for free and be the first to provide the best categories(models) for speicifc subject. As we know, quite often it matters more to be the first and not the best because those who were first do not have to prove they are the best. For example, BitCoin was the first on crypto currency arena, they did not have to show they are better than Etherium. However, is BitCoin really better ?"
     },
@@ -107,7 +107,6 @@
         "P2": "We always wanted to improve that situation and create a tool that produces better results and better taxonomy for news content. With our machine learning background we were able to acheave that goal and show that ours ideas and algorithms work better, produce better results.",
         "P3": "While we are a bit late into the Machine Learning game, we passionately believe in our approach and algorithms. Data science, machine learning and data tagging can be done better, and easier to use. Most of the current solutions, currently available on the market, are not so easy to use,very expencive and, most importanly, do not produce super acurate results.",
         "P4": "Let'sTag was founded in Summer of 2022. At first, we developed a simply beautiful tool to tag content in several categories, such as job postings, emotional sentiment analyzer, etc. At the later stage, a native app for anyone to classify content on mobile devices and personal computers was introduced. That is why our company uses APP domain instead of COM.",
-        "P5": "Privacy is not something you are merely entitled to, it’s an absolute prerequisite, a fundamental human right. At Let'sTag, it’s also one of our core values. That is why Let'sTag native app, running on your device, exists. This gurantees your data never leaves your device.",
-        "P6": ""
+        "P5": "Privacy is not something you are merely entitled to, it’s an absolute prerequisite, a fundamental human right. At Let'sTag, it’s also one of our core values. That is why Let'sTag native app, running on your device, exists. This gurantees your data never leaves your device."
     }
 }

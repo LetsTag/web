@@ -8,40 +8,40 @@
         "MORE": "Learn more"
     },
     "MAIN": {
-        "HEAD": "Have data - will travel",
-        "IMG": "Text data classifier for any text",
+        "HEAD": "डेटा है - यात्रा करेंगे",
+        "IMG": "किसी भी टेक्स्ट के लिए टेक्स्ट डेटा क्लासिफायरियर",
         "P1": {
-            "HEAD": "Data is new oil",
-            "SUBHEAD": "organized & insightful",
-            "TEXT": "Data is the oil of our century. Data tagging is the pipeline to route the new oil. It brings structure, cohesion, and accessibility to a big sea of data by mapping it to specific keywords using the most advanced machine learning algorithms.",
-            "BTN": "What’s in it for you?",
-            "IMG": "Check out use cases of data tagging. See why it is so important in the modern world."
+            "HEAD": "डेटा नया तेल है",
+            "SUBHEAD": "संगठित और व्यावहारिक",
+            "TEXT": "डेटा हमारी सदी का तेल है। डेटा टैगिंग नए तेल को रूट करने के लिए पाइपलाइन है। यह डेटा के एक बड़े समुद्र में संरचना, सामंजस्य और पहुंच को सबसे उन्नत मशीन लर्निंग का उपयोग करके विशिष्ट कीवर्ड के लिए मैप करके लाता है। एल्गोरिदम।",
+            "BTN": "इसमें आपके लिए क्या है?",
+            "IMG": "डेटा टैगिंग के उपयोग के मामले देखें। देखें कि आधुनिक दुनिया में यह इतना महत्वपूर्ण क्यों है।"
         },
         "P2": {
-            "HEAD": "How It Works",
-            "SUBHEAD": "the ultimate tagging machine",
-            "TEXT": "For each document you give us, we return a list of tags that match it the best.",
-            "BTN": "All features",
-            "IMG": "Use your own categories or create new ones with our native app. We never store your data."
+            "HEAD": "यह कैसे काम करता है",
+            "SUBHEAD": "अंतिम टैगिंग मशीन",
+            "TEXT": "आपके द्वारा हमें दिए गए प्रत्येक दस्तावेज़ के लिए, हम उन टैगों की एक सूची लौटाते हैं जो उससे सबसे अच्छे मेल खाते हैं।",
+            "BTN": "सभी सुविधाएँ",
+            "IMG": "अपनी खुद की श्रेणियों का उपयोग करें या हमारे मूल ऐप के साथ नई श्रेणियां बनाएं। हम आपका डेटा कभी भी संग्रहीत नहीं करते हैं।"
         },
         "P3": {
-            "HEAD": "Try Now",
-            "SUBHEAD": "figure out your data insights",
-            "TEXT": "You do not have to be a scientist to experiment with your data. Just paste your data and see results. ",
-            "BTN": "See for yourself",
-            "IMG": "Scientific tool to analyze, classify and tag any text content. Run experiments on your data, uplodad content for tagging, classfification and taxonomy."
+            "HEAD": "अभी प्रयास करें",
+            "SUBHEAD": "अपनी डेटा अंतर्दृष्टि का पता लगाएं",
+            "TEXT": "आपको अपने डेटा के साथ प्रयोग करने के लिए वैज्ञानिक होने की आवश्यकता नहीं है। बस अपना डेटा पेस्ट करें और परिणाम देखें।",
+            "BTN": "अपने लिए देखें",
+            "IMG": "किसी भी टेक्स्ट सामग्री का विश्लेषण, वर्गीकरण और टैग करने के लिए वैज्ञानिक उपकरण। अपने डेटा पर प्रयोग चलाएं, टैगिंग, वर्गीकरण और वर्गीकरण के लिए सामग्री अपलोड करें।"
         }
     },
     "FOOTER": {
-        "C": "© 2022 Let'sTag LLC. All rights reserved.",
-        "PP": "Privacy Policy",
-        "ABOUT": "About Us",
-        "MISSION": "Mission"
+        "C": "कॉपीराइट © 2022 Let's Tag LLC, मार्टस्पेक एलएलसी। सर्वाधिकार सुरक्षित।",
+        "PP": "गोपनीयता नीति",
+        "ABOUT": "हमारे बारे में",
+        "MISSION": "मिशन"
     },
     "ERROR": {
-        "404_HEAD": "Page Not Found",
-        "404_TEXT": "This page does not exist. Please make sure you used the correct URL.",
-        "404_BTN": "Home"
+        "404_HEAD": "पृष्ठ नहीं मिला",
+        "404_TEXT": "यह पृष्ठ मौजूद नहीं है। कृपया सुनिश्चित करें कि आपने सही URL का उपयोग किया है।",
+        "404_BTN": "घर"
     },
     "NEWOIL": {
         "ABOUT": "",
@@ -57,17 +57,17 @@
         "DESC5": ""
     },
     "FEATURES": {
-        "TITLE": "How It Works",
-        "ABOUT": "Paste your text into analyzer text area and push tagIt button. Response would show a list of tags and how each tag is applicable to your content.",
-        "HEAD1": "Real results",
-        "DESC1": "We have predefined categories you can experiment with, for example, job postings. In the future, more categories (aka models) will be available. If we do not have a category that is the most relevant to your application, you can create one. Each category needs to have knowledge on it subject, in other words, it needs to be trained on the subject. We are currently working on an app that anyone can use on your computer or even a phone to create categories and educate them on the subject of interest.",
-        "HEAD2": "Innovate. Collaborate. Build. Create.",
-        "DESC2_1": "We decided to create free app for that because of the several reasons. First and the most important, privacy is not something you are merely entitled to; it is an absolute prerequisite, a fundamental human right. At Let'sTag, data privacy is also one of our core values. We should not store your content, even for short perioud of time. You content might too sensitive to even leave your computer. That is why we strongly believe a native app, running and storing data on your computer/site only, is the best way to go here. This gurantees your data never leaves your device. Also, using native app to create and teach categories, is simply more convinient than using a website.",
-        "DESC2_2": "Once you are happy with new category you can upload it. Note, the category (aka model) does not have your content, it is knowledge accomulation, mathematical soup, binary order to chaos that can be used as predictor for future content, to find patterns, to tag and classify it. ",
-        "HEAD3": "Why Upload",
-        "DESC3_1": "First, that lets you use our API to process tons of new documents in a matter of seconds. Something you can easliy integrate into your mobile app or a website. ",
-        "DESC3_2": "Second, you can make your category available to other people and thereby help them, positively affect someone's cause. For example, lets say you have an outstanding data from medical sources on cancer research. By making such category available, you are empowering others to apply it to cancer related articles in medical journals, websites, and other sources. This might lead to new discoveries in this area.",
-        "DESC3_3": "Similar to apps sales on Apple AppStore or Goole PlayStore, you can make profit from your work by providing others, for a fee, to use your categories.  Please note, yet this is not available, we are actively working to make the feature available. However, for now you can distribute for free and be the first to provide the best categories(models) for speicifc subject. As we know, quite often it matters more to be the first and not the best because those who were first do not have to prove they are the best. For example, BitCoin was the first on crypto currency arena, they did not have to show they are better than Etherium. However, is BitCoin really better ?"
+        "TITLE": "यह कैसे काम करता है",
+        "ABOUT": "अपना टेक्स्ट एनालाइज़र टेक्स्ट एरिया में पेस्ट करें और टैग इट बटन को पुश करें। प्रतिक्रिया टैग की एक सूची दिखाएगी और प्रत्येक टैग आपकी सामग्री पर कैसे लागू होगा।",
+        "HEAD1": "वास्तविक परिणाम",
+        "DESC1": "हमारे पास पूर्वनिर्धारित श्रेणियां हैं जिनके साथ आप प्रयोग कर सकते हैं, उदाहरण के लिए, नौकरी की पोस्टिंग। भविष्य में, अधिक श्रेणियां (उर्फ मॉडल) उपलब्ध होंगी। यदि हमारे पास कोई श्रेणी नहीं है जो आपके आवेदन के लिए सबसे अधिक प्रासंगिक है, आप एक बना सकते हैं। प्रत्येक श्रेणी को इस विषय पर ज्ञान की आवश्यकता होती है, दूसरे शब्दों में, इसे इस विषय पर प्रशिक्षित करने की आवश्यकता होती है। वर्तमान में हम एक ऐसे ऐप पर काम कर रहे हैं, जिसका उपयोग कोई भी आपके कंप्यूटर या फोन पर श्रेणियों को बनाने के लिए कर सकता है और उन्हें रुचि के विषय पर शिक्षित करें।",
+        "HEAD2": "नवाचार करें। सहयोग करें। निर्माण करें। बनाएं।",
+        "DESC2_1": "हमने कई कारणों से इसके लिए मुफ्त ऐप बनाने का फैसला किया है। पहला और सबसे महत्वपूर्ण, गोपनीयता ऐसी चीज नहीं है जिसके आप केवल हकदार हैं; यह एक पूर्ण शर्त है, एक मौलिक मानव अधिकार है। Let'sTag पर , डेटा गोपनीयता भी हमारे मूल मूल्यों में से एक है। हमें आपकी सामग्री को थोड़े समय के लिए भी संग्रहीत नहीं करना चाहिए। आप सामग्री को अपने कंप्यूटर को छोड़ने के लिए भी संवेदनशील हो सकते हैं। यही कारण है कि हम एक देशी ऐप पर दृढ़ता से विश्वास करते हैं, डेटा चलाते और संग्रहीत करते हैं केवल आपके कंप्यूटर/साइट पर, यहां जाने का सबसे अच्छा तरीका है। यह गारंटी देता है कि आपका डेटा आपके डिवाइस को कभी नहीं छोड़ता है। साथ ही, श्रेणियां बनाने और सिखाने के लिए देशी ऐप का उपयोग करना, वेबसाइट का उपयोग करने की तुलना में बस अधिक सुविधाजनक है।",
+        "DESC2_2": "एक बार जब आप नई श्रेणी से खुश हो जाते हैं तो आप इसे अपलोड कर सकते हैं। ध्यान दें, श्रेणी (उर्फ मॉडल) में आपकी सामग्री नहीं है, यह ज्ञान संचय, गणितीय सूप, अराजकता के लिए द्विआधारी क्रम है जिसे भविष्यवक्ता के रूप में इस्तेमाल किया जा सकता है भविष्य की सामग्री, पैटर्न खोजने के लिए, इसे टैग करने और वर्गीकृत करने के लिए।",
+        "HEAD3": "क्यों अपलोड करें",
+        "DESC3_1": "सबसे पहले, जो आपको कुछ ही सेकंड में ढेर सारे नए दस्तावेज़ों को संसाधित करने के लिए हमारे API का उपयोग करने देता है। कुछ ऐसा जिसे आप आसानी से अपने मोबाइल ऐप या वेबसाइट में एकीकृत कर सकते हैं। ",
+        "DESC3_2": "दूसरा, आप अपनी श्रेणी को अन्य लोगों के लिए उपलब्ध करा सकते हैं और इस तरह उनकी मदद कर सकते हैं, किसी के कारण को सकारात्मक रूप से प्रभावित कर सकते हैं। उदाहरण के लिए, मान लें कि आपके पास कैंसर अनुसंधान पर चिकित्सा स्रोतों से एक उत्कृष्ट डेटा है। ऐसी श्रेणी उपलब्ध कराकर, आप चिकित्सा पत्रिकाओं, वेबसाइटों और अन्य स्रोतों में कैंसर से संबंधित लेखों पर इसे लागू करने के लिए दूसरों को सशक्त बना रहे हैं। इससे इस क्षेत्र में नई खोज हो सकती है।",
+        "DESC3_3": "Apple AppStore या Goole PlayStore पर ऐप्स की बिक्री के समान, आप अपनी श्रेणियों का उपयोग करने के लिए दूसरों को शुल्क देकर अपने काम से लाभ कमा सकते हैं। कृपया ध्यान दें, फिर भी यह उपलब्ध नहीं है, हम इसके लिए सक्रिय रूप से काम कर रहे हैं। सुविधा उपलब्ध कराएं। हालाँकि, अभी के लिए आप मुफ्त में वितरित कर सकते हैं और विशिष्ट विषय के लिए सर्वोत्तम श्रेणियां (मॉडल) प्रदान करने वाले पहले व्यक्ति बन सकते हैं। जैसा कि हम जानते हैं, अक्सर यह सबसे पहले होना अधिक मायने रखता है न कि सबसे अच्छा क्योंकि जो लोग सबसे पहले यह साबित करने की ज़रूरत नहीं थी कि वे सबसे अच्छे हैं। उदाहरण के लिए, बिटकॉइन क्रिप्टो मुद्रा क्षेत्र में पहला था, उन्हें यह दिखाने की ज़रूरत नहीं थी कि वे एथेरियम से बेहतर हैं। हालांकि, क्या बिटकॉइन वास्तव में बेहतर है?"
     },
     "TRYNOW": {
         "ABOUT": "",
@@ -93,21 +93,20 @@
         "DESC0": ""
     },
     "MISSION": {
-        "HEAD": "Mission",
-        "M": "We make it quick and easy for everyone to tag their data.",
-        "P1": "Our mission pushes us to do everything possible to expand data analyzing and tagging. We do that by following basic 3 concepts:",
-        "P1_1": "Create groundbreaking technology innovations",
-        "P1_2": "Keep interface easy and simple to use",
-        "P1_3": "Listen to our communities' feedback",
-        "P2": "To achieve our ambition, we are starting with science. Published scientific research and analytics play an important part in the development of our tools. We use cutting ege algorithms and discoveries to create the best possible match. Feedback is an important tool for unlocking future innovations, including creation new algorithms, tools and even apps for mobile devices."
+        "HEAD": "मिशन",
+        "M": "हम सभी के लिए अपने डेटा को टैग करना त्वरित और आसान बनाते हैं।",
+        "P1": "हमारा मिशन हमें डेटा विश्लेषण और टैगिंग का विस्तार करने के लिए हर संभव प्रयास करने के लिए प्रेरित करता है। हम बुनियादी 3 अवधारणाओं का पालन करके ऐसा करते हैं:",
+        "P1_1": "अभूतपूर्व प्रौद्योगिकी नवाचार बनाएं",
+        "P1_2": "इंटरफ़ेस को उपयोग में आसान और सरल रखें",
+        "P1_3": "हमारे समुदायों की प्रतिक्रिया सुनें",
+        "P2": "हमारी महत्वाकांक्षा को प्राप्त करने के लिए, हम विज्ञान के साथ शुरुआत कर रहे हैं। प्रकाशित वैज्ञानिक अनुसंधान और विश्लेषण हमारे टूल के विकास में एक महत्वपूर्ण भूमिका निभाते हैं। हम सर्वोत्तम संभव मिलान बनाने के लिए अत्याधुनिक एल्गोरिदम और खोजों का उपयोग करते हैं। प्रतिक्रिया एक महत्वपूर्ण है भविष्य के नवाचारों को अनलॉक करने के लिए उपकरण, जिसमें नए एल्गोरिदम, उपकरण और यहां तक ​​कि मोबाइल उपकरणों के लिए ऐप भी शामिल हैं।"
     },
     "ABOUT": {
-        "HEAD": "About us",
-        "P1": "Several of us used to work for large media publishing international corporations that were processing gigabytes of articles daily. All that content needed to be analysed, sorted into proper industries and classified for our customers. Multiple 3rd party tools, such as FirstRain, were used to tag and classify content. However, article classification by 3rd party firms was not so great.",
-        "P2": "We always wanted to improve that situation and create a tool that produces better results and better taxonomy for news content. With our machine learning background we were able to acheave that goal and show that ours ideas and algorithms work better, produce better results.",
-        "P3": "While we are a bit late into the Machine Learning game, we passionately believe in our approach and algorithms. Data science, machine learning and data tagging can be done better, and easier to use. Most of the current solutions, currently available on the market, are not so easy to use,very expencive and, most importanly, do not produce super acurate results.",
-        "P4": "Let'sTag was founded in Summer of 2022. At first, we developed a simply beautiful tool to tag content in several categories, such as job postings, emotional sentiment analyzer, etc. At the later stage, a native app for anyone to classify content on mobile devices and personal computers was introduced. That is why our company uses APP domain instead of COM.",
-        "P5": "Privacy is not something you are merely entitled to, it’s an absolute prerequisite, a fundamental human right. At Let'sTag, it’s also one of our core values. That is why Let'sTag native app, running on your device, exists. This gurantees your data never leaves your device.",
-        "P6": ""
+        "HEAD": "हमारे बारे में",
+        "P1": "हम में से कई बड़े मीडिया प्रकाशन अंतरराष्ट्रीय निगमों के लिए काम करते थे जो प्रतिदिन गीगाबाइट लेखों को संसाधित कर रहे थे। उस सभी सामग्री का विश्लेषण करने, उचित उद्योगों में क्रमबद्ध करने और हमारे ग्राहकों के लिए वर्गीकृत करने की आवश्यकता थी। एकाधिक तृतीय पक्ष टूल, जैसे कि FirstRain, का उपयोग सामग्री को टैग और वर्गीकृत करने के लिए किया गया था। हालांकि, तृतीय पक्ष फर्मों द्वारा लेख वर्गीकरण इतना अच्छा नहीं था।",
+        "P2": "हम हमेशा उस स्थिति में सुधार करना चाहते थे और एक ऐसा उपकरण बनाना चाहते थे जो समाचार सामग्री के लिए बेहतर परिणाम और बेहतर वर्गीकरण उत्पन्न करे। हमारी मशीन सीखने की पृष्ठभूमि के साथ हम उस लक्ष्य को प्राप्त करने में सक्षम थे और यह दिखाते थे कि हमारे विचार और एल्गोरिदम बेहतर काम करते हैं, उत्पादन करते हैं बेहतर परिणाम।",
+        "P3": "जबकि हम मशीन लर्निंग गेम में थोड़ी देर कर चुके हैं, हम अपने दृष्टिकोण और एल्गोरिदम में पूरी लगन से विश्वास करते हैं। डेटा साइंस, मशीन लर्निंग और डेटा टैगिंग को बेहतर और उपयोग में आसान किया जा सकता है। अधिकांश मौजूदा समाधान, वर्तमान में बाजार में उपलब्ध हैं, उपयोग में आसान नहीं हैं, बहुत महंगे हैं और सबसे महत्वपूर्ण बात यह है कि सुपर सटीक परिणाम नहीं देते हैं।",
+        "P4": "लेट्सटैग की स्थापना 2022 की गर्मियों में हुई थी। सबसे पहले, हमने कई श्रेणियों में सामग्री को टैग करने के लिए एक सरल सुंदर टूल विकसित किया, जैसे कि जॉब पोस्टिंग, भावनात्मक भावना विश्लेषक, आदि। बाद के चरण में, एक देशी ऐप मोबाइल उपकरणों और व्यक्तिगत कंप्यूटरों पर सामग्री को वर्गीकृत करने के लिए किसी के लिए पेश किया गया था। यही कारण है कि हमारी कंपनी COM के बजाय एपीपी डोमेन का उपयोग करती है।",
+        "P5": "गोपनीयता कोई ऐसी चीज नहीं है जिसके आप केवल हकदार हैं, यह एक पूर्ण पूर्वापेक्षा है, एक मौलिक मानव अधिकार है। Let'sTag पर, यह हमारे मूल मूल्यों में से एक है। यही कारण है कि LetsTag नेटिव ऐप, आपके मोबाइल पर चल रहा है। डिवाइस मौजूद है। यह गारंटी देता है कि आपका डेटा आपके डिवाइस को कभी नहीं छोड़ता है।"
     }
 }
