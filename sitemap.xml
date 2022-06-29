@@ -22,18 +22,14 @@
       <loc>https://letstag.app/about</loc>
       <changefreq>monthly</changefreq>
    </url>
-       <url>
+   <url>
       <loc>https://letstag.app/mission</loc>
       <changefreq>monthly</changefreq>
-   </url>
-       <url>
-      <loc>https://letstag.app/bodyzinc</loc>
-      <changefreq>monthly</changefreq>
-   </url>
    <url>
-      <loc>https://letstag.app/emotion</loc>
+      <loc>https://martspec.com/privacy-policy</loc>
       <changefreq>monthly</changefreq>
-   </url>
+   </url> 
+
 
 <!-- English  -->
    <url>
@@ -41,33 +37,28 @@
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/en/bodymass</loc>
+      <loc>https://letstag.app/en/newoil</loc>
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/en/logvitamin</loc>
+      <loc>https://letstag.app/en/features</loc>
       <changefreq>monthly</changefreq>
    </url>
-    <url>
+   <url>
       <loc>https://letstag.app/en/trynow</loc>
       <changefreq>monthly</changefreq>
    </url>
-    <url>
+   <url>
       <loc>https://letstag.app/en/about</loc>
       <changefreq>monthly</changefreq>
    </url>
-       <url>
+   <url>
       <loc>https://letstag.app/en/mission</loc>
       <changefreq>monthly</changefreq>
-   </url>
-       <url>
-      <loc>https://letstag.app/en/bodyzinc</loc>
-      <changefreq>monthly</changefreq>
-   </url>
    <url>
-      <loc>https://letstag.app/en/emotion</loc>
+      <loc>https://martspec.com/en/privacy-policy</loc>
       <changefreq>monthly</changefreq>
-   </url>
+   </url> 
 
 <!-- Arabic  -->
    <url>
@@ -75,31 +66,23 @@
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/ar/bodymass</loc>
+      <loc>https://letstag.app/ar/newoil</loc>
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/ar/logvitamin</loc>
+      <loc>https://letstag.app/ar/features</loc>
       <changefreq>monthly</changefreq>
    </url>
     <url>
       <loc>https://letstag.app/ar/trynow</loc>
       <changefreq>monthly</changefreq>
    </url>
-    <url>
+   <url>
       <loc>https://letstag.app/ar/about</loc>
       <changefreq>monthly</changefreq>
    </url>
-       <url>
-      <loc>https://letstag.app/ar/mission</loc>
-      <changefreq>monthly</changefreq>
-   </url>
-       <url>
-      <loc>https://letstag.app/ar/bodyzinc</loc>
-      <changefreq>monthly</changefreq>
-   </url>
    <url>
-      <loc>https://letstag.app/ar/emotion</loc>
+      <loc>https://letstag.app/ar/mission</loc>
       <changefreq>monthly</changefreq>
    </url>
 
@@ -109,11 +92,11 @@
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/zh/bodymass</loc>
+      <loc>https://letstag.app/zh/newoil</loc>
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/zh/logvitamin</loc>
+      <loc>https://letstag.app/zh/features</loc>
       <changefreq>monthly</changefreq>
    </url>
    <url>
@@ -128,14 +111,6 @@
       <loc>https://letstag.app/zh/mission</loc>
       <changefreq>monthly</changefreq>
    </url>
-   <url>
-      <loc>https://letstag.app/zh/bodyzinc</loc>
-      <changefreq>monthly</changefreq>
-   </url>
-   <url>
-      <loc>https://letstag.app/zh/emotion</loc>
-      <changefreq>monthly</changefreq>
-   </url>
 
 <!-- French FR  -->
    <url>
@@ -143,31 +118,23 @@
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/fr/bodymass</loc>
+      <loc>https://letstag.app/fr/newoil</loc>
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/fr/logvitamin</loc>
+      <loc>https://letstag.app/fr/features</loc>
       <changefreq>monthly</changefreq>
    </url>
-    <url>
+   <url>
       <loc>https://letstag.app/fr/trynow</loc>
       <changefreq>monthly</changefreq>
    </url>
-    <url>
+   <url>
       <loc>https://letstag.app/fr/about</loc>
       <changefreq>monthly</changefreq>
    </url>
-       <url>
-      <loc>https://letstag.app/fr/mission</loc>
-      <changefreq>monthly</changefreq>
-   </url>
    <url>
-      <loc>https://letstag.app/fr/bodyzinc</loc>
-      <changefreq>monthly</changefreq>
-   </url>
-       <url>
-      <loc>https://letstag.app/fr/emotion</loc>
+      <loc>https://letstag.app/fr/mission</loc>
       <changefreq>monthly</changefreq>
    </url>
 
@@ -177,11 +144,11 @@
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/de/bodymass</loc>
+      <loc>https://letstag.app/de/newoil</loc>
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/de/logvitamin</loc>
+      <loc>https://letstag.app/de/features</loc>
       <changefreq>monthly</changefreq>
    </url>
    <url>
@@ -196,14 +163,6 @@
       <loc>https://letstag.app/de/mission</loc>
       <changefreq>monthly</changefreq>
    </url>
-      <url>
-      <loc>https://letstag.app/de/bodyzinc</loc>
-      <changefreq>monthly</changefreq>
-   </url>
-   <url>
-      <loc>https://letstag.app/de/emotion</loc>
-      <changefreq>monthly</changefreq>
-   </url>
 
 <!-- Hindi HI  -->
    <url>
@@ -211,31 +170,23 @@
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/hi/bodymass</loc>
+      <loc>https://letstag.app/hi/newoil</loc>
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/hi/logvitamin</loc>
+      <loc>https://letstag.app/hi/features</loc>
       <changefreq>monthly</changefreq>
    </url>
     <url>
       <loc>https://letstag.app/hi/trynow</loc>
       <changefreq>monthly</changefreq>
    </url>
-    <url>
+   <url>
       <loc>https://letstag.app/hi/about</loc>
       <changefreq>monthly</changefreq>
    </url>
    <url>
       <loc>https://letstag.app/hi/mission</loc>
-      <changefreq>monthly</changefreq>
-   </url>
-       <url>
-      <loc>https://letstag.app/hi/bodyzinc</loc>
-      <changefreq>monthly</changefreq>
-   </url>
-   <url>
-      <loc>https://letstag.app/hi/emotion</loc>
       <changefreq>monthly</changefreq>
    </url>
 
@@ -245,11 +196,11 @@
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/ja/bodymass</loc>
+      <loc>https://letstag.app/ja/newoil</loc>
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/ja/logvitamin</loc>
+      <loc>https://letstag.app/ja/features</loc>
       <changefreq>monthly</changefreq>
    </url>
    <url>
@@ -264,14 +215,6 @@
       <loc>https://letstag.app/ja/mission</loc>
       <changefreq>monthly</changefreq>
    </url>
-   <url>
-      <loc>https://letstag.app/ja/bodyzinc</loc>
-      <changefreq>monthly</changefreq>
-   </url>
-   <url>
-      <loc>https://letstag.app/ja/emotion</loc>
-      <changefreq>monthly</changefreq>
-   </url>
 
 <!-- Portuguese PT  -->
    <url>
@@ -279,11 +222,11 @@
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/pt/bodymass</loc>
+      <loc>https://letstag.app/pt/newoil</loc>
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/pt/logvitamin</loc>
+      <loc>https://letstag.app/pt/features</loc>
       <changefreq>monthly</changefreq>
    </url>
     <url>
@@ -298,14 +241,6 @@
       <loc>https://letstag.app/pt/mission</loc>
       <changefreq>monthly</changefreq>
    </url>
-   <url>
-      <loc>https://letstag.app/pt/bodyzinc</loc>
-      <changefreq>monthly</changefreq>
-   </url>
-   <url>
-      <loc>https://letstag.app/pt/emotion</loc>
-      <changefreq>monthly</changefreq>
-   </url>
 
 <!-- Russian RU  -->
    <url>
@@ -313,11 +248,11 @@
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/ru/bodymass</loc>
+      <loc>https://letstag.app/ru/newoil</loc>
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/ru/logvitamin</loc>
+      <loc>https://letstag.app/ru/features</loc>
       <changefreq>monthly</changefreq>
    </url>
    <url>
@@ -332,10 +267,7 @@
       <loc>https://letstag.app/ru/mission</loc>
       <changefreq>monthly</changefreq>
    </url>
-   <url>
-      <loc>https://letstag.app/ru/bodyzinc</loc>
-      <changefreq>monthly</changefreq>
-   </url>
+
 
 <!-- Spanish ES  -->
    <url>
@@ -343,11 +275,11 @@
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/es/bodymass</loc>
+      <loc>https://letstag.app/es/newoil</loc>
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://letstag.app/es/logvitamin</loc>
+      <loc>https://letstag.app/es/features</loc>
       <changefreq>monthly</changefreq>
    </url>
    <url>
@@ -360,14 +292,6 @@
    </url>
    <url>
       <loc>https://letstag.app/es/mission</loc>
-      <changefreq>monthly</changefreq>
-   </url>
-   <url>
-      <loc>https://letstag.app/es/bodyzinc</loc>
-      <changefreq>monthly</changefreq>
-   </url>
-   <url>
-      <loc>https://letstag.app/es/emotion</loc>
       <changefreq>monthly</changefreq>
    </url>
 </urlset> 

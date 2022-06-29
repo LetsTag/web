@@ -33,15 +33,15 @@
         }
     },
     "FOOTER": {
-        "C": "© 2022 Let'sTag LLC. All rights reserved.",
-        "PP": "Privacy Policy",
-        "ABOUT": "About Us",
-        "MISSION": "Mission"
+        "C": "حقوق النشر © 2022 Let's Tag LLC. كل الحقوق محفوظة.",
+        "PP": "سياسة خاصة",
+        "ABOUT": "معلومات عنا",
+        "MISSION": "بعثة"
     },
     "ERROR": {
-        "404_HEAD": "Page Not Found",
-        "404_TEXT": "This page does not exist. Please make sure you used the correct URL.",
-        "404_BTN": "Home"
+        "404_HEAD": "الصفحة غير موجودة",
+        "404_TEXT": "هذه الصفحة غير موجودة. يرجى التأكد من أنك استخدمت الرابط الصحيح.",
+        "404_BTN": "الصفحة الرئيسية"
     },
     "NEWOIL": {
         "ABOUT": "",
@@ -93,21 +93,20 @@
         "DESC0": ""
     },
     "MISSION": {
-        "HEAD": "Mission",
-        "M": "We make it quick and easy for everyone to tag their data.",
-        "P1": "Our mission pushes us to do everything possible to expand data analyzing and tagging. We do that by following basic 3 concepts:",
-        "P1_1": "Create groundbreaking technology innovations",
-        "P1_2": "Keep interface easy and simple to use",
-        "P1_3": "Listen to our communities' feedback",
-        "P2": "To achieve our ambition, we are starting with science. Published scientific research and analytics play an important part in the development of our tools. We use cutting ege algorithms and discoveries to create the best possible match. Feedback is an important tool for unlocking future innovations, including creation new algorithms, tools and even apps for mobile devices."
+        "HEAD": "بعثة",
+        "M": "نجعل الأمر سريعًا وسهلاً للجميع لوضع علامات على بياناتهم.",
+        "P1": "مهمتنا تدفعنا إلى بذل كل ما في وسعنا لتوسيع نطاق تحليل البيانات ووضع العلامات. ونحن نفعل ذلك باتباع 3 مفاهيم أساسية:",
+        "P1_1": "ابتكار ابتكارات تقنية رائدة",
+        "P1_2": "حافظ على الواجهة سهلة الاستخدام وبسيطة",
+        "P1_3": "استمع إلى ملاحظات مجتمعاتنا",
+        "P2": "لتحقيق طموحنا ، نبدأ بالعلم. تلعب الأبحاث العلمية المنشورة والتحليلات دورًا مهمًا في تطوير أدواتنا. نستخدم خوارزميات واكتشافات مثل القطع لإنشاء أفضل تطابق ممكن. التعليقات مهمة أداة لإطلاق العنان للابتكارات المستقبلية ، بما في ذلك إنشاء خوارزميات وأدوات وحتى تطبيقات جديدة للأجهزة المحمولة. "
     },
     "ABOUT": {
-        "HEAD": "About us",
-        "P1": "Several of us used to work for large media publishing international corporations that were processing gigabytes of articles daily. All that content needed to be analysed, sorted into proper industries and classified for our customers. Multiple 3rd party tools, such as FirstRain, were used to tag and classify content. However, article classification by 3rd party firms was not so great.",
-        "P2": "We always wanted to improve that situation and create a tool that produces better results and better taxonomy for news content. With our machine learning background we were able to acheave that goal and show that ours ideas and algorithms work better, produce better results.",
-        "P3": "While we are a bit late into the Machine Learning game, we passionately believe in our approach and algorithms. Data science, machine learning and data tagging can be done better, and easier to use. Most of the current solutions, currently available on the market, are not so easy to use,very expencive and, most importanly, do not produce super acurate results.",
-        "P4": "Let'sTag was founded in Summer of 2022. At first, we developed a simply beautiful tool to tag content in several categories, such as job postings, emotional sentiment analyzer, etc. At the later stage, a native app for anyone to classify content on mobile devices and personal computers was introduced. That is why our company uses APP domain instead of COM.",
-        "P5": "Privacy is not something you are merely entitled to, it’s an absolute prerequisite, a fundamental human right. At Let'sTag, it’s also one of our core values. That is why Let'sTag native app, running on your device, exists. This gurantees your data never leaves your device.",
-        "P6": ""
+        "HEAD": "معلومات عنا",
+        "P1": "اعتاد العديد منا على العمل في وسائل الإعلام الكبيرة التي تنشر الشركات الدولية التي كانت تعالج غيغابايت من المقالات يوميًا. كل هذا المحتوى يحتاج إلى تحليل ، وتصنيفه إلى صناعات مناسبة وتصنيفه لعملائنا. أدوات متعددة لأطراف ثالثة ، مثل تم استخدام FirstRain لوضع علامات على المحتوى وتصنيفه. ومع ذلك ، لم يكن تصنيف المقالات من قِبل شركات الجهات الخارجية كبيرًا جدًا. ",
+        "P2": "أردنا دائمًا تحسين هذا الموقف وإنشاء أداة تنتج نتائج أفضل وتصنيفًا أفضل لمحتوى الأخبار. بفضل خلفية التعلم الآلي لدينا ، تمكنا من تحقيق هذا الهدف وإظهار أن أفكارنا وخوارزمياتنا تعمل بشكل أفضل ، نتائج افضل.",
+        "P3": "على الرغم من تأخرنا قليلاً في لعبة التعلم الآلي ، فإننا نؤمن بشدة بنهجنا وخوارزمياتنا. يمكن تحسين علوم البيانات والتعلم الآلي ووضع علامات البيانات بشكل أفضل وأسهل في الاستخدام. معظم الحلول الحالية ، المتوفرة حاليًا في السوق ، وليست سهلة الاستخدام ، ومكلفة للغاية ، والأهم من ذلك ، أنها لا تؤدي إلى نتائج فائقة الدقة. ",
+        "P4": "تم إنشاء Let'sTag في صيف عام 2022. في البداية ، قمنا بتطوير أداة جميلة ببساطة لوضع علامة على المحتوى في عدة فئات ، مثل وظائف شاغرة ، ومحلل المشاعر ، وما إلى ذلك. تم تقديم أي شخص لتصنيف المحتوى على الأجهزة المحمولة وأجهزة الكمبيوتر الشخصية. ولهذا السبب تستخدم شركتنا مجال APP بدلاً من COM. ",
+        "P5": "الخصوصية ليست شيئًا يحق لك الحصول عليه فقط ، إنها مطلب أساسي مطلق ، حق أساسي من حقوق الإنسان. في Let'sTag ، إنها أيضًا إحدى قيمنا الأساسية. ولهذا السبب ، يعمل تطبيق Let'sTag الأصلي على جهاز موجود. هذا يضمن أن بياناتك لا تترك جهازك أبدًا. "
     }
 }

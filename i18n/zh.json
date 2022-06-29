@@ -8,40 +8,40 @@
         "MORE": "Learn more"
     },
     "MAIN": {
-        "HEAD": "Have data - will travel",
-        "IMG": "Text data classifier for any text",
+        "HEAD": "有数据-将旅行",
+        "IMG": "任何文本的文本数据分类器",
         "P1": {
-            "HEAD": "Data is new oil",
-            "SUBHEAD": "organized & insightful",
-            "TEXT": "Data is the oil of our century. Data tagging is the pipeline to route the new oil. It brings structure, cohesion, and accessibility to a big sea of data by mapping it to specific keywords using the most advanced machine learning algorithms.",
-            "BTN": "What’s in it for you?",
-            "IMG": "Check out use cases of data tagging. See why it is so important in the modern world."
+            "HEAD": "数据是新油",
+            "SUBHEAD": "有组织和有见地",
+            "TEXT": "数据是我们这个世纪的石油。 数据标记是输送新油的管道. 它通过使用最先进的机器学习算法将数据映射到特定关键字，从而为大量数据带来结构、内聚性和可访问性。",
+            "BTN": "你有什么好处？",
+            "IMG": "查看数据标记的用例。 看看为什么它在现代世界如此重要。"
         },
         "P2": {
-            "HEAD": "How It Works",
-            "SUBHEAD": "the ultimate tagging machine",
-            "TEXT": "For each document you give us, we return a list of tags that match it the best.",
-            "BTN": "All features",
-            "IMG": "Use your own categories or create new ones with our native app. We never store your data."
+            "HEAD": "它是如何工作的",
+            "SUBHEAD": "终极标签机",
+            "TEXT": "对于您提供给我们的每个文档，我们都会返回一个与之最匹配的标签列表。",
+            "BTN": "所有功能",
+            "IMG": "使用您自己的类别或创建新的与我们的本机应用程序。 我们从不存储您的数据。"
         },
         "P3": {
-            "HEAD": "Try Now",
-            "SUBHEAD": "figure out your data insights",
-            "TEXT": "You do not have to be a scientist to experiment with your data. Just paste your data and see results. ",
-            "BTN": "See for yourself",
-            "IMG": "Scientific tool to analyze, classify and tag any text content. Run experiments on your data, uplodad content for tagging, classfification and taxonomy."
+            "HEAD": "现在就试试",
+            "SUBHEAD": "找出你的数据见解",
+            "TEXT": "您不必成为科学家就可以对数据进行实验。 只需粘贴您的数据并查看结果。 ",
+            "BTN": "自己看",
+            "IMG": "分析，分类和标记任何文本内容的科学工具。 在您的数据上运行实验，上传的内容进行标记，分类和分类。"
         }
     },
     "FOOTER": {
-        "C": "© 2022 Let'sTag LLC. All rights reserved.",
-        "PP": "Privacy Policy",
-        "ABOUT": "About Us",
-        "MISSION": "Mission"
+        "C": "版权所有 © 2022 Let's Tag LLC。 版权所有。",
+        "PP": "隐私政策",
+        "ABOUT": "关于我们",
+        "MISSION": "使命"
     },
     "ERROR": {
-        "404_HEAD": "Page Not Found",
-        "404_TEXT": "This page does not exist. Please make sure you used the correct URL.",
-        "404_BTN": "Home"
+        "404_HEAD": "网页未找到",
+        "404_TEXT": "本页面不存在。 请确保您使用了正确的URL。",
+        "404_BTN": "家"
     },
     "NEWOIL": {
         "ABOUT": "",
@@ -57,17 +57,17 @@
         "DESC5": ""
     },
     "FEATURES": {
-        "TITLE": "How It Works",
-        "ABOUT": "Paste your text into analyzer text area and push tagIt button. Response would show a list of tags and how each tag is applicable to your content.",
-        "HEAD1": "Real results",
-        "DESC1": "We have predefined categories you can experiment with, for example, job postings. In the future, more categories (aka models) will be available. If we do not have a category that is the most relevant to your application, you can create one. Each category needs to have knowledge on it subject, in other words, it needs to be trained on the subject. We are currently working on an app that anyone can use on your computer or even a phone to create categories and educate them on the subject of interest.",
-        "HEAD2": "Innovate. Collaborate. Build. Create.",
-        "DESC2_1": "We decided to create free app for that because of the several reasons. First and the most important, privacy is not something you are merely entitled to; it is an absolute prerequisite, a fundamental human right. At Let'sTag, data privacy is also one of our core values. We should not store your content, even for short perioud of time. You content might too sensitive to even leave your computer. That is why we strongly believe a native app, running and storing data on your computer/site only, is the best way to go here. This gurantees your data never leaves your device. Also, using native app to create and teach categories, is simply more convinient than using a website.",
-        "DESC2_2": "Once you are happy with new category you can upload it. Note, the category (aka model) does not have your content, it is knowledge accomulation, mathematical soup, binary order to chaos that can be used as predictor for future content, to find patterns, to tag and classify it. ",
-        "HEAD3": "Why Upload",
-        "DESC3_1": "First, that lets you use our API to process tons of new documents in a matter of seconds. Something you can easliy integrate into your mobile app or a website. ",
-        "DESC3_2": "Second, you can make your category available to other people and thereby help them, positively affect someone's cause. For example, lets say you have an outstanding data from medical sources on cancer research. By making such category available, you are empowering others to apply it to cancer related articles in medical journals, websites, and other sources. This might lead to new discoveries in this area.",
-        "DESC3_3": "Similar to apps sales on Apple AppStore or Goole PlayStore, you can make profit from your work by providing others, for a fee, to use your categories.  Please note, yet this is not available, we are actively working to make the feature available. However, for now you can distribute for free and be the first to provide the best categories(models) for speicifc subject. As we know, quite often it matters more to be the first and not the best because those who were first do not have to prove they are the best. For example, BitCoin was the first on crypto currency arena, they did not have to show they are better than Etherium. However, is BitCoin really better ?"
+        "TITLE": "它是如何工作的",
+        "ABOUT": "将文本粘贴到分析器文本区域，然后按tagIt按钮。 响应将显示标签列表以及每个标签如何适用于您的内容。",
+        "HEAD1": "真正的结果",
+        "DESC1": "我们有预定义的类别，您可以尝试，例如，职位发布。 在未来，更多的类别（又名模型）将可用。 如果我们没有与您的应用程序最相关的类别，您可以创建一个。 每个类别都需要有关于it主题的知识，换句话说，它需要对该主题进行培训。 我们目前正在开发一个应用程序，任何人都可以在您的计算机甚至手机上使用它来创建类别并教育他们感兴趣的主题。",
+        "HEAD2": "创新。 合作。 建造。 创造。",
+        "DESC2_1": "我们决定创建免费的应用程序，因为几个原因。 首先，也是最重要的，隐私不是你仅仅有权享有的；它是一个绝对的先决条件，是一项基本人权。 在Let'stag，数据隐私也是我们的核心价值观之一。 我们不应该存储您的内容，即使是很短的时间。 你的内容可能太敏感，甚至不能离开你的电脑。 这就是为什么我们坚信一个本地应用程序，只在您的计算机/网站上运行和存储数据，是最好的方法。 这保证了你的数据永远不会离开你的设备。 此外，使用本机应用程序创建和教授类别，比使用网站更方便。",
+        "DESC2_2": "一旦你对新类别感到满意，你就可以上传它。 请注意，类别（又名模型）没有您的内容，它是知识accomulation，数学汤，二进制顺序混乱，可以用作未来内容的预测器，查找模式，标记和分类。 ",
+        "HEAD3": "为什么上传",
+        "DESC3_1": "首先，您可以使用我们的API在几秒钟内处理大量新文档。 你可以很容易地集成到你的移动应用程序或网站上。 ",
+        "DESC3_2": "第二，你可以让你的类别提供给其他人，从而帮助他们，积极影响某人的事业。 例如，假设您有来自医学来源的关于癌症研究的杰出数据。 通过提供此类类别，您可以授权其他人将其应用于医学期刊，网站和其他来源的癌症相关文章。 这可能会导致这一领域的新发现。",
+        "DESC3_3": "类似于Apple AppStore或Goole PlayStore上的应用程序销售，您可以通过向其他人提供付费使用您的类别来从您的工作中获利。  请注意，但这是不可用的，我们正在积极努力使该功能可用。 但是，现在您可以免费分发，并成为第一个为speicifc主题提供最佳类别（模型）的人。 正如我们所知道的，往往更重要的是成为第一个而不是最好的，因为那些第一个的人不必证明他们是最好的。 例如，比特币是加密货币领域的第一个，他们不必表明他们比Etherium更好。 然而，比特币真的更好吗？"
     },
     "TRYNOW": {
         "ABOUT": "",
@@ -93,21 +93,20 @@
         "DESC0": ""
     },
     "MISSION": {
-        "HEAD": "Mission",
-        "M": "We make it quick and easy for everyone to tag their data.",
-        "P1": "Our mission pushes us to do everything possible to expand data analyzing and tagging. We do that by following basic 3 concepts:",
-        "P1_1": "Create groundbreaking technology innovations",
-        "P1_2": "Keep interface easy and simple to use",
-        "P1_3": "Listen to our communities' feedback",
-        "P2": "To achieve our ambition, we are starting with science. Published scientific research and analytics play an important part in the development of our tools. We use cutting ege algorithms and discoveries to create the best possible match. Feedback is an important tool for unlocking future innovations, including creation new algorithms, tools and even apps for mobile devices."
+        "HEAD": "使命",
+        "M": "我们使每个人都可以快速轻松地标记他们的数据。",
+        "P1": "我们的使命促使我们尽一切可能扩展数据分析和标记。 我们通过遵循基本的3个概念来做到这一点:",
+        "P1_1": "创造突破性技术创新",
+        "P1_2": "保持界面简单易用",
+        "P1_3": "倾听社区反馈",
+        "P2": "为了实现我们的雄心壮志，我们从科学开始。 发表的科学研究和分析在我们工具的开发中起着重要的作用。 我们使用最先进的算法和发现来创造最好的匹配. 反馈是解锁未来创新的重要工具，包括为移动设备创建新算法，工具甚至应用程序。"
     },
     "ABOUT": {
-        "HEAD": "About us",
-        "P1": "Several of us used to work for large media publishing international corporations that were processing gigabytes of articles daily. All that content needed to be analysed, sorted into proper industries and classified for our customers. Multiple 3rd party tools, such as FirstRain, were used to tag and classify content. However, article classification by 3rd party firms was not so great.",
-        "P2": "We always wanted to improve that situation and create a tool that produces better results and better taxonomy for news content. With our machine learning background we were able to acheave that goal and show that ours ideas and algorithms work better, produce better results.",
-        "P3": "While we are a bit late into the Machine Learning game, we passionately believe in our approach and algorithms. Data science, machine learning and data tagging can be done better, and easier to use. Most of the current solutions, currently available on the market, are not so easy to use,very expencive and, most importanly, do not produce super acurate results.",
-        "P4": "Let'sTag was founded in Summer of 2022. At first, we developed a simply beautiful tool to tag content in several categories, such as job postings, emotional sentiment analyzer, etc. At the later stage, a native app for anyone to classify content on mobile devices and personal computers was introduced. That is why our company uses APP domain instead of COM.",
-        "P5": "Privacy is not something you are merely entitled to, it’s an absolute prerequisite, a fundamental human right. At Let'sTag, it’s also one of our core values. That is why Let'sTag native app, running on your device, exists. This gurantees your data never leaves your device.",
-        "P6": ""
+        "HEAD": "关于我们",
+        "P1": "我们中的一些人曾经为大型媒体出版国际公司工作，这些公司每天都在处理千兆字节的文章。 所有这些内容都需要分析，分类到适当的行业，并为我们的客户分类。 多个第三方工具，如FirstRain，用于标记和分类内容。 然而，第三方公司的文章分类并不是那么大。",
+        "P2": "我们一直希望改善这种情况，并创建一个工具，为新闻内容产生更好的结果和更好的分类。 凭借我们的机器学习背景，我们能够实现这一目标，并表明我们的想法和算法更好地工作，产生更好的结果。",
+        "P3": "虽然我们进入机器学习游戏有点晚，但我们热情地相信我们的方法和算法。 数据科学、机器学习和数据标记可以做得更好，更容易使用。 目前市场上现有的大多数解决方案都不是那么容易使用，非常昂贵，最重要的是，不会产生超级酸酯结果。",
+        "P4": "Let'stag成立于2022年夏天。 起初，我们开发了一个简单漂亮的工具来标记几个类别的内容，如职位发布，情绪情绪分析仪等。 在后期阶段，引入了一个本机应用程序，供任何人对移动设备和个人电脑上的内容进行分类。 这就是为什么我们公司使用应用域而不是COM.",
+        "P5": "隐私不是你仅仅有权享有的，它是一个绝对的先决条件，是一项基本人权。 在Let'stag，这也是我们的核心价值观之一。 这就是为什么让我们的原生应用程序，在您的设备上运行，存在。 这保证了你的数据永远不会离开你的设备。"
     }
 }
