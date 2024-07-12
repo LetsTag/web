@@ -34,6 +34,7 @@ export default function P1NewOil() {
                 <p className="mt-3">{_("NEWOIL.DESC3_2")}</p>
                 <p className="mt-3">{_("NEWOIL.DESC3_3")}</p>
             </section>
+            <img src="/img/logo.svg"></img>
         </div>
         <Footer />
     </>
