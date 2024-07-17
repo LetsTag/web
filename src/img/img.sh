@@ -3,7 +3,12 @@
 FILES=*.png
 for f in $FILES
 do
-  cwebp -lossless -z 9 -m 6 -mt -hint picture -metadata none $f -o $f.webp
+	sips -Z 256  $f --out $f.size512
+	pngcrush -brute $f.size512 $f.256.png		
+#   	cwebp -lossless -z 9 -m 6 -mt -hint picture -metadata none $f.size512.new -o "${f:4:${#f}-8}".512.webp 	
 done
 
-ls *webp | sed 's/^\(.*\)\.png.webp$/mv "\1.png.webp" "\1.webp"/' | sh
+rm *size512
+#rm org/*.new
+
+
