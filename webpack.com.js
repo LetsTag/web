@@ -58,6 +58,7 @@ module.exports = {
                 { context: 'src/img/emotion_watch/', from: '*.png', to: "img" },
                 { context: 'src/img/size/', from: '*.webp', to: "img" },
                 { context: 'src/img/size/somato/male', from: '*.webp', to: "img/somato/male" },
+                { context: 'src/img/size/somato/female', from: '*.webp', to: "img/somato/female" },
                 { context: 'src/img/size_watch/', from: '*.png', to: "img" },
                 { context: 'src/img/icon/', from: '*', to: "icon" },
             ],
