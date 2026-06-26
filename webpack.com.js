@@ -54,6 +54,7 @@ module.exports = {
                 { context: 'src/img/', from: '*.svg', to: "img" },
                 { context: 'src/img/', from: '*.png', to: "img" },
                 { context: 'src/img/', from: '*.webp', to: "img" },                
+                { context: 'src/img/exercise/', from: '*.avif', to: "img" },
                 { context: 'src/img/emotion/', from: '*.webp', to: "img" },
                 { context: 'src/img/emotion_watch/', from: '*.png', to: "img" },
                 { context: 'src/img/size/shape', from: '*.webp', to: "img/shape" },
