@@ -53,7 +53,7 @@ module.exports = {
                 { from: 'CNAME' },
                 { context: 'src/img/', from: '*.svg', to: "img" },
                 { context: 'src/img/', from: '*.png', to: "img" },
-                { context: 'src/img/', from: '*.webp', to: "img" },                
+                { context: 'src/img/', from: '*.webp', to: "img" },
                 { context: 'src/img/exercise/', from: '*.avif', to: "img" },
                 { context: 'src/img/emotion/', from: '*.webp', to: "img" },
                 { context: 'src/img/emotion_watch/', from: '*.png', to: "img" },
@@ -63,6 +63,7 @@ module.exports = {
                 { context: 'src/img/size/somato/female', from: '*.webp', to: "img/somato/female" },
                 { context: 'src/img/size_watch/', from: '*.png', to: "img" },
                 { context: 'src/img/icon/', from: '*', to: "icon" },
+                { context: 'src/audio/', from: '*.mp3', to: 'audio' },
             ],
             options: {
                 concurrency: 100,
