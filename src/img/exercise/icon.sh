@@ -1,1 +1,0 @@
-for f in *.PNG; do magick "$f" -strip -quality 50 "${f%.*}.avif"; done
