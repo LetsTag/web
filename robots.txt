@@ -1,14 +1,4 @@
-# Group 1 -- All Crawlers
 User-agent: *
 Allow: /
-Allow: /newoil
-Allow: /features
-Allow: /trynow
-Allow: /about
-Allow: /mission
-Allow: /img/
-Allow: /icon/
-Allow: /privacy-policy
-Disallow: /font/
-
-#Sitemap: https://letstag.app/sitemap.xml
+Disallow: /checkout
+Sitemap: https://letstag.app/sitemap.xml
