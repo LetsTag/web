@@ -1,28 +1,14 @@
 {
   "compilerOptions": {
-    "outDir": "./build/",
-    "sourceMap": true,
-    "noImplicitAny": true,
-    // "module": "commonjs",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    //Allow default imports from modules with no default export. This does not affect code emit, just typechecking.
-    "preserveConstEnums": true,
-    "removeComments": true,
-    "resolveJsonModule": true,
-    "strictNullChecks": false,
-    "target": "es2019",
-    "jsx": "react",
-    "baseUrl": "./",
-    "allowJs": true,
-    "paths": {
-      "src/*": [
-        "./src/*"
-      ]
-    }
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "outDir": "./build/"
   },
-  "include": [
-    "./src/**/*"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

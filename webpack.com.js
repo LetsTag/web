@@ -1,134 +1,67 @@
-const
-    path = require('path'),
-    webpack = require('webpack'),
-    // BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
-    CopyPlugin = require('copy-webpack-plugin'),
-    HtmlWebpackInjectPreload = require('@principalstudio/html-webpack-inject-preload'),
-    HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('node:path');
+const fs = require('node:fs');
+const webpack = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// Public client-side settings only. Never put a Paddle API key in this file.
+const envFile = path.resolve(__dirname, '.env.local');
+if (fs.existsSync(envFile)) process.loadEnvFile(envFile);
+const paddleToken = process.env.PADDLE_CLIENT_TOKEN || '';
+const paddleEnvironment = process.env.PADDLE_ENVIRONMENT || 'production';
+if (!['production', 'sandbox'].includes(paddleEnvironment)) {
+    throw new Error('PADDLE_ENVIRONMENT must be production or sandbox.');
+}
+if (paddleToken && !paddleToken.startsWith(paddleEnvironment === 'sandbox' ? 'test_' : 'live_')) {
+    throw new Error('PADDLE_CLIENT_TOKEN must be a public client-side token matching PADDLE_ENVIRONMENT.');
+}
 
 module.exports = {
-    entry: {
-        app: './src/index.tsx'
-    },
+    entry: { app: './src/index.tsx' },
     output: {
-        filename: '[name].[chunkhash:3].js',
+        filename: '[name].[contenthash:8].js',
         path: path.resolve(__dirname, 'build'),
-        publicPath: "/"
+        publicPath: '/',
+        clean: true,
     },
     plugins: [
-        // --------------- Static Content EN --------------- 
-        new HtmlWebpackPlugin({ template: './src/template/en/main.ejs', filename: 'index.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: './src/template/en/newoil.ejs', filename: 'newoil/index.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: './src/template/en/features.ejs', filename: 'features/index.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: './src/template/en/trynow.ejs', filename: 'trynow/index.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: './src/template/en/about.ejs', filename: 'about/index.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: './src/template/en/mission.ejs', filename: 'mission/index.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: './src/template/en/about.ejs', filename: 'about/index.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: './src/template/en/mission.ejs', filename: 'mission/index.html', inject: 'body' }),
-
-        // --------------- Static Content EN Without Slash--------------- 
-        new HtmlWebpackPlugin({ template: './src/template/en/newoil.ejs', filename: 'newoil.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: './src/template/en/features.ejs', filename: 'features.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: './src/template/en/trynow.ejs', filename: 'trynow.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: './src/template/en/about.ejs', filename: 'about.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: './src/template/en/mission.ejs', filename: 'mission.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: './src/template/en/about.ejs', filename: 'about.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: './src/template/en/mission.ejs', filename: 'mission.html', inject: 'body' }),
-
-        new HtmlWebpackInjectPreload({
-            files: [{
-                match: /.*\.woff2$/,
-                attributes: { as: 'font', type: 'font/woff2', crossorigin: true }
-            }]
+        new webpack.DefinePlugin({
+            __PADDLE_CLIENT_TOKEN__: JSON.stringify(paddleToken),
+            __PADDLE_ENVIRONMENT__: JSON.stringify(paddleEnvironment),
+            __PADDLE_PRICES__: JSON.stringify(Object.fromEntries(['FREE_MONTHLY', 'FREE_ANNUAL', 'LITE_MONTHLY', 'LITE_ANNUAL', 'PLUS_MONTHLY', 'PLUS_ANNUAL', 'MAX_MONTHLY', 'MAX_ANNUAL'].map(key => [key, process.env[`PADDLE_PRICE_${key}`] || '']))),
         }),
-
-        new CopyPlugin({
-            patterns: [
-                { context: 'src/i18n/', from: '*.json', to: 'i18n' },
-                { from: 'src/../robots.txt' },
-                { from: 'src/../sitemap.xml' },
-                { from: 'src/html/404.html' },
-                { from: 'src/html/pmail_22c30242162cf766f0b95cf7fe1e790e.html' },
-                { from: 'CNAME' },
-                { context: 'src/img/', from: '*.svg', to: "img" },
-                { context: 'src/img/', from: '*.png', to: "img" },
-                { context: 'src/img/', from: '*.webp', to: "img" },
-                { context: 'src/img/exercise/', from: '*.avif', to: "img" },
-                { context: 'src/img/exercise/', from: '*.heic', to: "img" },
-                { context: 'src/img/emotion/', from: '*.webp', to: "img" },
-                { context: 'src/img/emotion_watch/', from: '*.png', to: "img" },
-                { context: 'src/img/size/shape', from: '*.webp', to: "img/shape" },
-                { context: 'src/img/size/howToMeasure', from: '*.webp', to: "img/howToMeasure" },
-                { context: 'src/img/size/somato/male', from: '*.webp', to: "img/somato/male" },
-                { context: 'src/img/size/somato/female', from: '*.webp', to: "img/somato/female" },
-                { context: 'src/img/size_watch/', from: '*.png', to: "img" },
-                { context: 'src/img/icon/', from: '*', to: "icon" },
-                { context: 'src/audio/', from: '*.mp3', to: 'audio' },
-            ],
-            options: {
-                concurrency: 100,
-            },
-        })
-        // , new BundleAnalyzerPlugin()
-    ].concat(...[...['ar', 'de', 'en', 'es', 'fr', 'hi', 'ja', 'pt', 'ru', 'zh'].map(x => [
-        new HtmlWebpackPlugin({ template: `./src/template/${x}/main.ejs`, filename: x + '/index.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: `./src/template/${x}/newoil.ejs`, filename: x + '/newoil/index.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: `./src/template/${x}/features.ejs`, filename: x + '/features/index.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: `./src/template/${x}/trynow.ejs`, filename: x + '/trynow/index.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: `./src/template/${x}/about.ejs`, filename: x + '/about/index.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: `./src/template/${x}/mission.ejs`, filename: x + '/mission/index.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: `./src/template/${x}/about.ejs`, filename: x + '/about/index.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: `./src/template/${x}/mission.ejs`, filename: x + '/mission/index.html', inject: 'body' }),
-        // Without slash at the end
-        new HtmlWebpackPlugin({ template: `./src/template/${x}/main.ejs`, filename: x + '.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: `./src/template/${x}/newoil.ejs`, filename: x + '/newoil.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: `./src/template/${x}/features.ejs`, filename: x + '/features.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: `./src/template/${x}/trynow.ejs`, filename: x + '/trynow.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: `./src/template/${x}/about.ejs`, filename: x + '/about.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: `./src/template/${x}/mission.ejs`, filename: x + '/mission.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: `./src/template/${x}/about.ejs`, filename: x + '/about.html', inject: 'body' }),
-        new HtmlWebpackPlugin({ template: `./src/template/${x}/mission.ejs`, filename: x + '/mission.html', inject: 'body' }),
-    ])]),
-    //--------------------------------------------------------------------------------------------------------------------------------------------
-    resolve: {
-        extensions: [".ts", ".tsx", ".js", ".json", ".scss", ".jsx"],
-        alias: {
-            src: path.resolve('./src')
-        }
-    },
-    optimization: {
-        runtimeChunk: 'single',
-        splitChunks: {
-            chunks: 'all',
-            minSize: 0,
-            maxAsyncRequests: 100,
-            maxInitialRequests: 80,
-            enforceSizeThreshold: 50000,
-            cacheGroups: {
-                vendor: {
-                    chunks: 'initial',
-                    test: /[\\/]node_modules[\\/](react|react-dom|bootstrap|scheduler|node-polyglot|@popperjs|get-intrinsic|es-abstract|object-keys|object-inspect)[\\/]/,
-                    name: "vendor"
-                }
-            },
+        ...[
+            ['index.html', "Let's Tag — Exercise API pricing", '/', false],
+            ['checkout/index.html', "Payment details — Let's Tag", '/checkout', true],
+            ['404.html', "Page not found — Let's Tag", '/404', true],
+        ].map(([filename, title, canonicalPath, noindex]) => new HtmlWebpackPlugin({
+            template: './src/template/main.ejs', filename, title,
+            templateParameters: { canonicalPath, noindex },
+        })),
+        new CopyPlugin({ patterns: [
+            { from: 'robots.txt' }, { from: 'sitemap.xml' }, { from: 'CNAME' },
+            { from: 'src/html/pmail_22c30242162cf766f0b95cf7fe1e790e.html' },
+            // Preserve every image at its source-relative URL, including previously omitted formats.
+            { context: 'src/img', from: '**/*', to: 'img', globOptions: { ignore: ['**/.DS_Store', '**/*.sh', '**/Icon'] } },
+            // Preserve legacy public URLs used by existing apps and external consumers.
+            ...['exercise', 'emotion', 'emotion_watch', 'size_watch'].map(directory => ({
+                context: `src/img/${directory}`, from: '*.{avif,heic,webp,png,jpg,jpeg,svg,gif}', to: 'img', noErrorOnMissing: true,
+            })),
+            { context: 'src/img/size', from: '**/*', to: 'img', globOptions: { ignore: ['**/.DS_Store'] } },
+            { context: 'src/img/icon', from: '**/*', to: 'icon', globOptions: { ignore: ['**/.DS_Store'] } },
+            { context: 'src/audio', from: '*.mp3', to: 'audio' },
+        ] }),
+    ],
+    resolve: { extensions: ['.tsx', '.ts', '.js'] },
+    optimization: { runtimeChunk: 'single', splitChunks: { chunks: 'all' } },
+    module: { rules: [
+        {
+            test: /\.tsx?$/, exclude: /node_modules/,
+            use: { loader: 'swc-loader', options: {
+                jsc: { parser: { syntax: 'typescript', tsx: true }, target: 'es2022', transform: { react: { runtime: 'automatic' } } },
+            } },
         },
-    },
-    module: {
-        rules: [
-            {
-                test: /\.(png|svg|jpg|gif)$/,
-                type: 'asset/resource',
-            },
-            {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
-                type: 'asset/resource',
-            },
-            {
-                test: /\.(t|j)sx?$/,
-                loader: "ts-loader",
-                exclude: /node_modules/
-            },
-        ]
-    }
+        { test: /\.(woff2?|png|svg|webp|jpg|gif)$/, type: 'asset/resource' },
+    ] },
+    stats: 'errors-warnings',
 };

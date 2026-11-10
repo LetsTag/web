@@ -25,3 +25,7 @@ yarn-error.log*
 # Temporary env files
 /public/env-config.js
 env-config.js
+
+# Browser verification artifacts
+/test-results/
+/playwright-report/

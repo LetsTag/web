@@ -1,13 +1,14 @@
-import "bootstrap";
-import "src/sass/main.scss"
-import * as React from "react";
 import { createRoot } from 'react-dom/client';
 import { App } from './router';
-import { Locale } from "src/i18n/locale";
-import eb from 'src/event-bus';
 
-
-eb.addEvent("LANG_CHANGED", (lang: string) =>
-    createRoot(document.getElementById('root')).render(<App />)
-);
-Locale.init();
+const host = document.getElementById('root');
+if (!host) throw new Error('Missing application root.');
+const shadow = host.shadowRoot ?? host.attachShadow({ mode: 'open' });
+// CSS Modules prevent component collisions; Shadow DOM prevents outside styles leaking in.
+// Production CSS is also loaded in the document by webpack, so clone its links into the shadow.
+for (const stylesheet of document.querySelectorAll('link[rel="stylesheet"]')) {
+    shadow.appendChild(stylesheet.cloneNode(true));
+}
+const mount = document.createElement('div');
+shadow.appendChild(mount);
+createRoot(mount).render(<App />);

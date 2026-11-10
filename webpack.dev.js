@@ -1,45 +1,21 @@
-const
-    { merge } = require('webpack-merge'),
-    webpack = require('webpack'),
-    common = require('./webpack.com.js');
-
+const { merge } = require('webpack-merge');
+const common = require('./webpack.com');
 module.exports = merge(common, {
     mode: 'development',
-    plugins: [
-        new webpack.DefinePlugin({
-            __API_BASE_URL__: JSON.stringify("http://api.letstag.app/"),
-            __MAINTENANCE_MODE__: false,
-            __IN_DEBUG__: JSON.stringify("Alex"),
-        }),
-    ],
-    devtool: 'inline-source-map',
+    devtool: 'eval-cheap-module-source-map',
     devServer: {
         port: 3000,
-        allowedHosts: 'all',
-        open: {
-            app: {
-                name: 'google-chrome',
-            },
-        },
-        historyApiFallback: true
+        historyApiFallback: true,
+        open: false,
     },
-
-    module: {
-        rules: [
-            {
-                test: /\.s[ac]ss$/i,
-                use: [
-                    "style-loader",
-                    "css-loader",
-                    {
-                        loader: "sass-loader",
-                        options: {
-                            // Prefer `dart-sass`
-                            implementation: require("sass"),
-                        },
-                    },
-                ],
+    module: { rules: [{
+        test: /\.module\.css$/,
+        use: [{
+            loader: 'style-loader',
+            options: {
+                // Insert development styles into the same isolation boundary as production.
+                insert: require.resolve('./scripts/insert-styles.cjs'),
             },
-        ],
-    }
+        }, { loader: 'css-loader', options: { modules: { namedExport: false } } }],
+    }] },
 });

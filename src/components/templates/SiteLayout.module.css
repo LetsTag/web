@@ -1,0 +1,5 @@
+.page { all: initial; display: block; min-height: 100vh; background: #faf9f6; color: #233c36; font: 400 16px/1.5 Inter, ui-sans-serif, system-ui, sans-serif; color-scheme: light; }
+.container { box-sizing: border-box; width: min(1248px, 100%); min-height: 100vh; padding: 0 40px; margin: 0 auto; display: flex; flex-direction: column; }
+.main { display: block; flex: 1; min-width: 0; }
+.compact { display: flex; flex: 1; flex-direction: column; gap: 20px; padding: 100px 0; align-items: flex-start; }
+@media (max-width: 600px) { .container { padding: 0 20px; } .compact { padding: 70px 0; } }

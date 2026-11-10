@@ -1,0 +1,4 @@
+.label { position: sticky; left: 0; z-index: 1; box-sizing: border-box; padding: 19px 20px; border: 0; border-bottom: 1px solid #e8eae2; vertical-align: middle; text-align: left; background: #fff; }
+.name { display: block; color: #233c36; font: 500 13px/1.6 Inter, ui-sans-serif, system-ui, sans-serif; margin-bottom: 3px; }
+.cell { box-sizing: border-box; padding: 19px 16px; border: 0; border-bottom: 1px solid #e8eae2; vertical-align: middle; text-align: center; background: #fff; }
+.featured { background: #f5f8f0; }
