@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { pendingCheckout, openCheckout } from '../../lib/checkout';
+import { getCatalog, previewPrices, type Catalog, type LocalizedPrices } from '../../lib/pricing';
 import { getUser, type User } from '../../lib/auth';
 import { features, plans, type BillingPeriod } from '../../data/pricing';
 import { Text } from '../atoms/Text';
@@ -10,6 +11,17 @@ import styles from './Pricing.module.css';
 export function Pricing() {
     const [period, setPeriod] = useState<BillingPeriod>(() => pendingCheckout()?.period === 'annual' ? 'annual' : 'monthly');
     const [checkoutError, setCheckoutError] = useState('');
+    const [catalog, setCatalog] = useState<Catalog>({});
+    const [prices, setPrices] = useState<LocalizedPrices>({});
+    const [pricingError, setPricingError] = useState('');
+    useEffect(() => {
+        let active = true;
+        (async () => {
+            try { const next = await getCatalog(); const preview = await previewPrices(next); if (active) { setCatalog(next); setPrices(preview); } }
+            catch { if (active) setPricingError('Pricing is temporarily unavailable. Please try again later.'); }
+        })();
+        return () => { active = false; };
+    }, []);
     const [user, setUser] = useState<User | null>(null);
     const [checkingSession, setCheckingSession] = useState(true);
     useEffect(() => {
@@ -45,20 +57,24 @@ export function Pricing() {
             <div className={styles.description}><Text align="center">From your first prototype to your next million users.<br />Choose the exercise data your app needs, with room to grow.</Text></div>
             <div className={styles.toggle}><BillingToggle value={period} onChange={setPeriod} /></div>
         </section>
-        {checkoutError && <p role="alert">{checkoutError}</p>}
+        {(checkoutError || pricingError) && <p role="alert">{checkoutError || pricingError}</p>}
         <section className={styles.cards} aria-label="Pricing plans">
-            {plans.map(plan => <PlanCard plan={plan} period={period} user={user} checkingSession={checkingSession} key={plan.id} />)}
+            {plans.map(plan => <PlanCard plan={plan} period={period} user={user} checkingSession={checkingSession} catalog={catalog} prices={prices} key={plan.id} />)}
         </section>
         <section className={styles.comparison} aria-labelledby="comparison-title">
             <div className={styles.comparisonHeading}><div className={styles.headingText}>
                 <Text as="h2" variant="heading" id="comparison-title">Every detail, side by side.</Text>
                 <Text variant="muted">Know exactly what’s included in your plan.</Text>
-            </div><Text variant="muted">All prices in USD</Text></div>
+            </div><Text variant="muted">Localized prices before tax</Text></div>
             <div className={styles.tableScroll} role="region" aria-label="Plan feature comparison; scroll horizontally on smaller screens" tabIndex={0}>
                 <table className={styles.table}>
                     <caption className={styles.caption}>Compare all Free, Lite, Plus, and Max features</caption>
                     <thead><tr><th scope="col" className={styles.featureHeading}>Features</th>{plans.map(plan => <th scope="col" className={`${styles.columnHeading} ${plan.id === 'plus' ? styles.featured : ''}`} key={plan.id}>{plan.name}</th>)}</tr></thead>
-                    <tbody>{features.map(feature => <FeatureRow feature={feature} key={feature.name} />)}</tbody>
+                    <tbody>{features.map(feature => {
+                        const interval = feature.name === 'Monthly price' ? 'monthly' : feature.name === 'Annual price' ? 'annual' : null;
+                        const localized = interval ? { ...feature, values: plans.map(plan => prices[`${plan.id}_${interval}`] ? `${prices[`${plan.id}_${interval}`]} / ${interval === 'monthly' ? 'mo' : 'year'}` : 'Unavailable') as [string, string, string, string] } : feature;
+                        return <FeatureRow feature={localized} key={feature.name} />;
+                    })}</tbody>
                 </table>
             </div>
             <div className={styles.notes}>

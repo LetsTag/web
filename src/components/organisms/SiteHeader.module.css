@@ -6,4 +6,4 @@
 .menu a, .menu button { display: block; box-sizing: border-box; width: 100%; padding: 10px 12px; border: 0; background: transparent; text-align: left; text-decoration: none; color: #233c36; font: 14px system-ui, sans-serif; cursor: pointer; border-radius: 6px; }
 .menu a:hover, .menu button:hover { background: #f0f4ed; }
 
-.googleButton { width: 200px; min-height: 32px; }
+.googleButton { width: 160px; min-height: 32px; }

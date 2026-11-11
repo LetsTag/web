@@ -4,19 +4,16 @@ export type FeatureValue = string | false;
 export interface Plan {
     id: PlanId;
     name: string;
-    productId: string;
     audience: string;
-    monthly: number;
-    annual: number;
     calls: string;
     cap: string;
     summary: string;
 }
 export const plans: readonly Plan[] = [
-    { id: 'free', productId: 'pro_01m6z7eyhm0h2cnv14392nwkb2', name: 'Free', audience: 'Hackathon devs & evaluation', monthly: 0, annual: 0, calls: '500', cap: 'Hard cap', summary: 'Explore the essentials.' },
-    { id: 'lite', productId: 'pro_01m6z7eyza6gmvj61a42rdd47m', name: 'Lite', audience: 'Indie apps & solo developers', monthly: 12.99, annual: 125, calls: '10,000', cap: 'Hard cap', summary: 'Bring your first app to life.' },
-    { id: 'plus', productId: 'pro_01m6z7ezc6qd2vm1wjxgh8w4ap', name: 'Plus', audience: 'Growing apps & platforms', monthly: 29.99, annual: 285, calls: '100,000', cap: 'Soft cap', summary: 'More detail. More possibilities.' },
-    { id: 'max', productId: 'pro_01m6z7ezr4waqjb6ghg12mzqx5', name: 'Max', audience: 'High-traffic & enterprise apps', monthly: 99.99, annual: 950, calls: '500,000', cap: 'Soft cap', summary: 'Built for your next big chapter.' },
+    { id: 'free', name: 'Free', audience: 'Hackathon devs & evaluation', calls: '500', cap: 'Hard cap', summary: 'Explore the essentials.' },
+    { id: 'lite', name: 'Lite', audience: 'Indie apps & solo developers', calls: '10,000', cap: 'Hard cap', summary: 'Bring your first app to life.' },
+    { id: 'plus', name: 'Plus', audience: 'Growing apps & platforms', calls: '100,000', cap: 'Soft cap', summary: 'More detail. More possibilities.' },
+    { id: 'max', name: 'Max', audience: 'High-traffic & enterprise apps', calls: '500,000', cap: 'Soft cap', summary: 'Built for your next big chapter.' },
 ];
 export interface Feature {
     name: string;
@@ -25,8 +22,8 @@ export interface Feature {
 }
 export const features: readonly Feature[] = [
     { name: 'Target audience', values: plans.map(plan => plan.audience) as [string, string, string, string] },
-    { name: 'Monthly price', values: ['$0', '$12.99 / mo', '$29.99 / mo', '$99.99 / mo'] },
-    { name: 'Annual price (20% off)', values: ['$0', '$125 / year', '$285 / year', '$950 / year'] },
+    { name: 'Monthly price', values: ['Unavailable', 'Unavailable', 'Unavailable', 'Unavailable'] },
+    { name: 'Annual price', values: ['Unavailable', 'Unavailable', 'Unavailable', 'Unavailable'] },
     { name: 'Monthly call limit', values: ['500 calls (Hard Cap)', '10,000 calls (Hard Cap)', '100,000 calls (Soft Cap)', '500,000 calls (Soft Cap)'] },
     { name: 'Male images', values: ['Watermarked', 'Clean (High-Res)', 'Clean (High-Res)', 'Clean (High-Res)'] },
     { name: 'Female images', values: [false, false, 'Clean (High-Res)', 'Clean (High-Res)'] },

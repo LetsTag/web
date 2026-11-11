@@ -30,7 +30,6 @@ module.exports = (mode) => ({
             __AUTH_API_BASE_URL__: JSON.stringify((process.env.AUTH_API_BASE_URL || (mode === 'development' ? 'http://localhost:8000' : 'https://api.letstag.app')).replace(/\/$/, '')),
             __PADDLE_CLIENT_TOKEN__: JSON.stringify(paddleToken),
             __PADDLE_ENVIRONMENT__: JSON.stringify(paddleEnvironment),
-            __PADDLE_PRICES__: JSON.stringify(Object.fromEntries(['FREE_MONTHLY', 'FREE_ANNUAL', 'LITE_MONTHLY', 'LITE_ANNUAL', 'PLUS_MONTHLY', 'PLUS_ANNUAL', 'MAX_MONTHLY', 'MAX_ANNUAL'].map(key => [key, process.env[`PADDLE_PRICE_${key}`] || '']))),
         }),
         ...[
             ['index.html', "Let's Tag — Exercise API pricing", '/', false],

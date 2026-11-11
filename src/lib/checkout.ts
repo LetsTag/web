@@ -1,5 +1,6 @@
 import { token, clearSession } from './auth';
 import { loadPaddle } from './paddle';
+import { getCatalog } from './pricing';
 import type { BillingPeriod, PlanId } from '../data/pricing';
 
 declare const __AUTH_API_BASE_URL__: string;
@@ -11,7 +12,7 @@ export function pendingCheckout(): Selection | null {
 export function saveCheckout(selection: Selection) { sessionStorage.setItem(key, JSON.stringify(selection)); }
 export function clearCheckout() { sessionStorage.removeItem(key); }
 export async function openCheckout(selection: Selection, email?: string | null): Promise<'signin' | 'opened'> {
-    const priceId = __PADDLE_PRICES__[`${selection.plan}_${selection.period}`.toUpperCase()];
+    const priceId = (await getCatalog())[`${selection.plan}_${selection.period}`];
     if (!/^pri_[a-z0-9]{26}$/.test(priceId || '')) throw new Error('This plan is not available.');
     saveCheckout(selection);
     if (!token()) return 'signin';

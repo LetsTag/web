@@ -4,3 +4,16 @@
 .card img { width: 72px; height: 72px; border-radius: 50%; }
 .card h2 { margin: 0 0 8px; font-size: 21px; }
 .card p { margin: 6px 0; }
+.billing { box-sizing: border-box; max-width: 560px; margin-top: 20px; padding: 24px; background: #f1f6ec; border: 1px solid #d5e0d0; border-radius: 16px; }
+.billing h2 { font-size: 20px; margin: 0 0 8px; }
+.billing p { line-height: 1.5; color: #66746e; margin: 0 0 18px; }
+.billing p[role="alert"] { margin: 14px 0 0; color: #9b3d2e; }
+.portalButton { display: inline-flex; gap: 12px; align-items: center; padding: 12px 18px; border: 1px solid #245c42; border-radius: 8px; background: #245c42; color: white; font: 600 14px/1.4 system-ui, sans-serif; cursor: pointer; }
+.portalButton:hover:not(:disabled) { background: #173d2c; }
+.portalButton:focus-visible { outline: 2px solid #245c42; outline-offset: 3px; }
+.portalButton:disabled { opacity: .7; cursor: wait; }
+
+.keyList { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.keyList li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding: 12px 14px; border: 1px solid #d5e0d0; border-radius: 8px; background: white; }
+.keyList code { font-size: 14px; color: #233c36; }
+.keyList span { color: #66746e; font-size: 13px; }

@@ -46,7 +46,7 @@ export function SiteHeader({ signIn = true }: { signIn?: boolean }) {
                     if (active) { setUser(result.user); setStatus(''); window.dispatchEvent(new Event('signed-in')); }
                 } catch { if (active) setStatus('Sign-in failed. Please try again.'); }
             } });
-            window.google.accounts.id.renderButton(button.current, { theme: 'outline', size: 'medium', shape: 'pill', text: 'signin_with', width: 200 });
+            window.google.accounts.id.renderButton(button.current, { theme: 'outline', size: 'medium', shape: 'pill', text: 'signin_with', width: 160 });
         };
         script.onerror = () => { if (active) setStatus('Google sign-in could not load.'); };
         document.head.appendChild(script);

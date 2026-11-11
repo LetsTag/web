@@ -27,7 +27,7 @@ These are build-time settings; rebuild when changing them. The provided developm
 
 The official `@paddle/paddle-js` loader loads `https://cdn.paddle.com/paddle/v2/paddle.js` on checkout only and initializes overlay mode. The app preserves the complete URL and lets Paddle process payment and payment-method-update tokens automatically; it does not call `Checkout.open()` or create a transaction. Set `https://letstag.app/checkout` as the default payment link in the matching Paddle environment. Production requires the domain to be approved by Paddle. See [Paddle's default payment link guide](https://developer.paddle.com/build/transactions/default-payment-link/).
 
-A public client token configures the SDK; a valid transaction or Paddle email link is still needed to complete an end-to-end payment update. Set the `PADDLE_PRICE_*` variables shown in `.env.example` to the matching Paddle price IDs for each plan and billing period. The card buttons remain unavailable until their price IDs are configured. The provided product IDs are recorded in `src/data/pricing.ts`; Paddle checkout requires price IDs. The Free card also needs a price ID to use Paddle checkout. This repository does not provide account creation or entitlement provisioning.
+A public Paddle client token configures the SDK. The workout backend discovers allowed price IDs from its configured Paddle product IDs; Paddle.js previews localized prices in the browser. The backend and frontend must use the same Paddle environment. Checkout remains unavailable if pricing cannot be loaded.
 
 ## Components and styling
 
@@ -41,7 +41,7 @@ Atomic design lives in `src/components`:
 
 Each component imports its own CSS Module and owns its appearance. Parents arrange components through layout containers; they do not target child components or pass styling classes. The application renders inside a Shadow DOM boundary so outside styles cannot override component internals. Both webpack development styles and extracted production styles are inserted into that boundary. Paddle's own overlay renders outside it.
 
-`src/data/pricing.ts` contains the supplied pricing matrix. Annual prices use the exact supplied dollar amounts rather than recalculating the advertised 20% discount. Videos remain explicitly marked upcoming. The feature table scrolls horizontally on narrow screens; plan cards stack.
+`src/data/pricing.ts` contains the plan features. Paddle.js supplies localized price previews before tax. Videos remain explicitly marked upcoming. The feature table scrolls horizontally on narrow screens; plan cards stack.
 
 ## Validation and production
 

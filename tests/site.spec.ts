@@ -1,9 +1,21 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
+
+async function mockPricing(page: Page) {
+    const names = ['free_monthly', 'free_annual', 'lite_monthly', 'lite_annual', 'plus_monthly', 'plus_annual', 'max_monthly', 'max_annual'];
+    const values = ['$0', '$0', '$12.99', '$125', '$29.99', '$285', '$99.99', '$950'];
+    const prices = Object.fromEntries(names.map((name, i) => [name, 'pri_' + String.fromCharCode(97 + i).repeat(26)]));
+    const formatted = Object.fromEntries(names.map((name, i) => [prices[name], values[i]]));
+    await page.route('**/v1/pricing/catalog', route => route.fulfill({ json: { prices } }));
+    await page.route('https://cdn.paddle.com/paddle/v2/paddle.js', route => route.fulfill({
+        contentType: 'application/javascript',
+        body: `window.PaddleBillingV1 = { Environment: { set() {} }, Initialize() { this.Initialized = true; }, PricePreview({ items }) { const amounts = ${JSON.stringify(formatted)}; return Promise.resolve({ data: { details: { lineItems: items.map(item => ({ price: { id: item.priceId }, formattedTotals: { subtotal: amounts[item.priceId] } })) } } }); }, Checkout: { open(options) { window.checkoutOptions = options; } } };`,
+    }));
+}
 
 const expectedFeatures = [
     ['Target audience', 'Hackathon devs & evaluation', 'Indie apps & solo developers', 'Growing apps & platforms', 'High-traffic & enterprise apps'],
-    ['Monthly price', '$0', '$12.99 / mo', '$29.99 / mo', '$99.99 / mo'],
-    ['Annual price (20% off)', '$0', '$125 / year', '$285 / year', '$950 / year'],
+    ['Monthly price', '$0 / mo', '$12.99 / mo', '$29.99 / mo', '$99.99 / mo'],
+    ['Annual price', '$0 / year', '$125 / year', '$285 / year', '$950 / year'],
     ['Monthly call limit', '500 calls (Hard Cap)', '10,000 calls (Hard Cap)', '100,000 calls (Soft Cap)', '500,000 calls (Soft Cap)'],
     ['Male images', 'Watermarked', 'Clean (High-Res)', 'Clean (High-Res)', 'Clean (High-Res)'],
     ['Female images', '—', '—', 'Clean (High-Res)', 'Clean (High-Res)'],
@@ -17,6 +29,7 @@ const expectedFeatures = [
 ];
 
 test('shows the exact pricing matrix and switches billing without changing call limits', async ({ page }) => {
+    await mockPricing(page);
     const errors: string[] = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.goto('/');
@@ -36,7 +49,7 @@ test('shows the exact pricing matrix and switches billing without changing call 
     await page.getByRole('button', { name: 'Monthly', exact: true }).click();
     await expect(page.getByRole('article', { name: 'Max plan' })).toContainText('$99.99');
     expect(errors).toEqual([]);
-    expect(await page.locator('script[src*="cdn.paddle.com"]').count()).toBe(0);
+    expect(await page.locator('script[src*="cdn.paddle.com"]').count()).toBe(1);
 });
 
 test('external CSS cannot restyle atomic components', async ({ page }) => {
@@ -134,10 +147,7 @@ test('plan actions follow the session and pass the verified email to checkout', 
         : route.fulfill({ status: 401, json: {} }));
     await page.route('**/auth/signout', route => { signedIn = false; return route.fulfill({ status: 204 }); });
     await page.route('**/v1/checkout', route => route.fulfill({ json: { transaction_id: 'txn_test' } }));
-    await page.route('https://cdn.paddle.com/paddle/v2/paddle.js', route => route.fulfill({
-        contentType: 'application/javascript',
-        body: `window.PaddleBillingV1 = { Environment: { set() {} }, Initialize() { this.Initialized = true; }, Checkout: { open(options) { window.checkoutOptions = options; } } };`,
-    }));
+    await mockPricing(page);
     await page.goto('/');
     await expect(page.getByText('Sign-in to checkout')).toHaveCount(4);
     await expect(page.getByRole('button', { name: 'Choose Lite' })).toHaveCount(0);
@@ -150,4 +160,14 @@ test('plan actions follow the session and pass the verified email to checkout', 
     await page.getByRole('button', { name: /Test User/ }).click();
     await page.getByRole('menuitem', { name: 'Sign out' }).click();
     await expect(page.getByText('Sign-in to checkout')).toHaveCount(4);
+});
+
+test('account lists only API key identifiers returned for the signed-in user', async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem('session_token', 'session-test'));
+    await page.route('**/auth/me', route => route.fulfill({ json: { name: 'Test User', email: 'test@example.com', picture: null } }));
+    await page.route('**/v1/account/api-keys', route => route.fulfill({ json: { keys: [{ prefix: 'wk_123456789', created_at: '2026-01-01T00:00:00Z', last_used_at: null }] } }));
+    await page.goto('/account/');
+    await expect(page.getByRole('heading', { name: 'API keys' })).toBeVisible();
+    await expect(page.getByText('wk_123456789…')).toBeVisible();
+    await expect(page.getByText('Full keys cannot be displayed again.', { exact: false })).toBeVisible();
 });

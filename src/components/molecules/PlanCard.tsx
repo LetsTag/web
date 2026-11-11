@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { openCheckout } from '../../lib/checkout';
+import type { Catalog, LocalizedPrices } from '../../lib/pricing';
 import type { User } from '../../lib/auth';
 import type { Plan, BillingPeriod } from '../../data/pricing';
 import { Text } from '../atoms/Text';
 import { Price } from '../atoms/Price';
 import { Badge } from '../atoms/Badge';
 import styles from './PlanCard.module.css';
-export function PlanCard({ plan, period, user, checkingSession }: { plan: Plan; period: BillingPeriod; user: User | null; checkingSession: boolean }) {
+export function PlanCard({ plan, period, user, checkingSession, catalog, prices }: { plan: Plan; period: BillingPeriod; user: User | null; checkingSession: boolean; catalog: Catalog; prices: LocalizedPrices }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const priceId = __PADDLE_PRICES__[`${plan.id}_${period}`.toUpperCase()];
+    const priceId = catalog[`${plan.id}_${period}`];
+    const amount = prices[`${plan.id}_${period}`];
     const available = /^pri_[a-z0-9]{26}$/.test(priceId || '');
     async function purchase() {
         if (!available || loading) return;
@@ -31,8 +33,8 @@ export function PlanCard({ plan, period, user, checkingSession }: { plan: Plan; 
         <div className={styles.title}><Text as="h2" variant="subheading">{plan.name}</Text>{plan.id === 'plus' && <Badge>Room to grow</Badge>}</div>
         <div className={styles.audience}><Text variant="muted">{plan.audience}</Text></div>
         <div className={styles.cost} aria-live="polite" aria-atomic="true">
-            <Price amount={period === 'monthly' ? plan.monthly : plan.annual} period={period} />
-            <Text variant="muted">{plan.id === 'free' ? 'Free to explore.' : period === 'monthly' ? `$${plan.annual} billed annually` : 'Billed annually'}</Text>
+            {amount ? <Price amount={amount} period={period} /> : <Text variant="muted">Price unavailable</Text>}
+            <Text variant="muted">{period === 'monthly' ? 'Billed monthly' : 'Billed annually'}</Text>
         </div>
         <div className={styles.allowance}>
             <span className={styles.calls}>{plan.calls}<span className={styles.unit}> calls / month</span></span>

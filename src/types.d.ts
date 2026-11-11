@@ -5,4 +5,3 @@ declare module '*.module.css' {
 declare const __PADDLE_CLIENT_TOKEN__: string;
 declare const __PADDLE_ENVIRONMENT__: 'production' | 'sandbox';
 
-declare const __PADDLE_PRICES__: Record<string, string>;
