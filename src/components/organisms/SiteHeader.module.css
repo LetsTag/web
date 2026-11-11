@@ -1,1 +1,9 @@
 .header { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 23px 0; border-bottom: 1px solid #e1e5db; box-sizing: border-box; }
+.signIn { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; font-size: 12px; }
+.account { position: relative; }
+.accountButton { display: flex; align-items: center; gap: 9px; border: 1px solid #cbd6c9; border-radius: 24px; padding: 10px 14px; background: #fff; color: #233c36; font: 600 14px/1.3 system-ui, sans-serif; cursor: pointer; }
+.menu { position: absolute; z-index: 10; right: 0; top: calc(100% + 8px); min-width: 160px; padding: 6px; background: white; border: 1px solid #e1e5db; border-radius: 10px; box-shadow: 0 8px 24px #233c3626; }
+.menu a, .menu button { display: block; box-sizing: border-box; width: 100%; padding: 10px 12px; border: 0; background: transparent; text-align: left; text-decoration: none; color: #233c36; font: 14px system-ui, sans-serif; cursor: pointer; border-radius: 6px; }
+.menu a:hover, .menu button:hover { background: #f0f4ed; }
+
+.googleButton { width: 200px; min-height: 32px; }

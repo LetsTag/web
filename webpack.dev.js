@@ -1,5 +1,5 @@
 const { merge } = require('webpack-merge');
-const common = require('./webpack.com');
+const common = require('./webpack.com')('development');
 module.exports = merge(common, {
     mode: 'development',
     devtool: 'eval-cheap-module-source-map',

@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { loadPaddle } from '../../lib/paddle';
+import { openCheckout } from '../../lib/checkout';
+import type { User } from '../../lib/auth';
 import type { Plan, BillingPeriod } from '../../data/pricing';
 import { Text } from '../atoms/Text';
 import { Price } from '../atoms/Price';
 import { Badge } from '../atoms/Badge';
 import styles from './PlanCard.module.css';
-export function PlanCard({ plan, period }: { plan: Plan; period: BillingPeriod }) {
+export function PlanCard({ plan, period, user, checkingSession }: { plan: Plan; period: BillingPeriod; user: User | null; checkingSession: boolean }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const priceId = __PADDLE_PRICES__[`${plan.id}_${period}`.toUpperCase()];
@@ -15,9 +16,11 @@ export function PlanCard({ plan, period }: { plan: Plan; period: BillingPeriod }
         setLoading(true);
         setError('');
         try {
-            const paddle = await loadPaddle(() => {});
-            if (!paddle) throw new Error('Paddle unavailable');
-            paddle.Checkout.open({ items: [{ priceId, quantity: 1 }] });
+            const result = await openCheckout({ plan: plan.id, period }, user?.email);
+            if (result === 'signin') {
+                setError('Please sign in above to continue to checkout.');
+                document.getElementById('sign-in-area')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         } catch {
             setError('Checkout could not be opened. Please try again.');
         } finally {
@@ -36,9 +39,9 @@ export function PlanCard({ plan, period }: { plan: Plan; period: BillingPeriod }
             <Badge tone="neutral">{plan.cap}</Badge>
         </div>
         <Text variant="muted">{plan.summary}</Text>
-        <button className={styles.purchase} type="button" disabled={!available || loading} onClick={purchase}>
+        {user ? <button className={styles.purchase} type="button" disabled={!available || loading} onClick={purchase}>
             {loading ? 'Opening checkout…' : available ? `Choose ${plan.name}` : 'Coming soon'}
-        </button>
+        </button> : <div className={styles.signInPrompt}>{checkingSession ? 'Checking sign-in…' : 'Sign-in to checkout'}</div>}
         {error && <div role="alert"><Text variant="muted">{error}</Text></div>}
     </article>;
 }

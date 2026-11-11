@@ -16,7 +16,7 @@ if (paddleToken && !paddleToken.startsWith(paddleEnvironment === 'sandbox' ? 'te
     throw new Error('PADDLE_CLIENT_TOKEN must be a public client-side token matching PADDLE_ENVIRONMENT.');
 }
 
-module.exports = {
+module.exports = (mode) => ({
     entry: { app: './src/index.tsx' },
     output: {
         filename: '[name].[contenthash:8].js',
@@ -26,12 +26,15 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin({
+            __GOOGLE_CLIENT_ID__: JSON.stringify(process.env.GOOGLE_CLIENT_ID || '586854344993-7smlttnkmpc3isf6auvo95nkiegi7n9s.apps.googleusercontent.com'),
+            __AUTH_API_BASE_URL__: JSON.stringify((process.env.AUTH_API_BASE_URL || (mode === 'development' ? 'http://localhost:8000' : 'https://api.letstag.app')).replace(/\/$/, '')),
             __PADDLE_CLIENT_TOKEN__: JSON.stringify(paddleToken),
             __PADDLE_ENVIRONMENT__: JSON.stringify(paddleEnvironment),
             __PADDLE_PRICES__: JSON.stringify(Object.fromEntries(['FREE_MONTHLY', 'FREE_ANNUAL', 'LITE_MONTHLY', 'LITE_ANNUAL', 'PLUS_MONTHLY', 'PLUS_ANNUAL', 'MAX_MONTHLY', 'MAX_ANNUAL'].map(key => [key, process.env[`PADDLE_PRICE_${key}`] || '']))),
         }),
         ...[
             ['index.html', "Let's Tag — Exercise API pricing", '/', false],
+            ['account/index.html', "Account — Let's Tag", '/account', true],
             ['checkout/index.html', "Payment details — Let's Tag", '/checkout', true],
             ['404.html', "Page not found — Let's Tag", '/404', true],
         ].map(([filename, title, canonicalPath, noindex]) => new HtmlWebpackPlugin({
@@ -64,4 +67,4 @@ module.exports = {
         { test: /\.(woff2?|png|svg|webp|jpg|gif)$/, type: 'asset/resource' },
     ] },
     stats: 'errors-warnings',
-};
+});

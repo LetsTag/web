@@ -1,0 +1,6 @@
+.profile { color: #233c36; font-family: system-ui, sans-serif; padding: 48px 0 90px; }
+.profile h1 { font-size: 36px; }
+.card { display: flex; align-items: center; gap: 20px; padding: 24px; background: white; border: 1px solid #e1e5db; border-radius: 16px; max-width: 560px; }
+.card img { width: 72px; height: 72px; border-radius: 50%; }
+.card h2 { margin: 0 0 8px; font-size: 21px; }
+.card p { margin: 6px 0; }

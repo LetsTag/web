@@ -26,6 +26,6 @@ for (const source of walk('src/img').filter(filename => imagePattern.test(filena
         checked++;
     }
 }
-const allowedHtml = ['index.html', 'checkout/index.html', '404.html', 'pmail_22c30242162cf766f0b95cf7fe1e790e.html'].sort();
+const allowedHtml = ['index.html', 'account/index.html', 'checkout/index.html', '404.html', 'pmail_22c30242162cf766f0b95cf7fe1e790e.html'].sort();
 assert.deepEqual(walk('build').filter(name => name.endsWith('.html')).map(name => path.relative('build', name)).sort(), allowedHtml, 'Unexpected page in production output');
-console.log(`Verified ${checked} image URLs byte-for-byte; only main, checkout, 404, and email verification HTML are emitted.`);
+console.log(`Verified ${checked} image URLs byte-for-byte; only main, account, checkout, 404, and email verification HTML are emitted.`);

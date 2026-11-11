@@ -126,3 +126,28 @@ test('checkout surfaces SDK initialization failures', async ({ page }) => {
     await page.goto('/checkout/');
     await expect(page.getByRole('status')).toContainText('couldn’t load secure checkout');
 });
+
+test('plan actions follow the session and pass the verified email to checkout', async ({ page }) => {
+    let signedIn = false;
+    await page.route('**/auth/me', route => signedIn
+        ? route.fulfill({ json: { name: 'Test User', email: 'test@example.com', picture: null } })
+        : route.fulfill({ status: 401, json: {} }));
+    await page.route('**/auth/signout', route => { signedIn = false; return route.fulfill({ status: 204 }); });
+    await page.route('**/v1/checkout', route => route.fulfill({ json: { transaction_id: 'txn_test' } }));
+    await page.route('https://cdn.paddle.com/paddle/v2/paddle.js', route => route.fulfill({
+        contentType: 'application/javascript',
+        body: `window.PaddleBillingV1 = { Environment: { set() {} }, Initialize() { this.Initialized = true; }, Checkout: { open(options) { window.checkoutOptions = options; } } };`,
+    }));
+    await page.goto('/');
+    await expect(page.getByText('Sign-in to checkout')).toHaveCount(4);
+    await expect(page.getByRole('button', { name: 'Choose Lite' })).toHaveCount(0);
+    signedIn = true;
+    await page.evaluate(() => { localStorage.setItem('session_token', 'test'); window.dispatchEvent(new Event('signed-in')); });
+    await expect(page.getByRole('button', { name: 'Choose Lite' })).toBeVisible();
+    await page.getByRole('button', { name: 'Choose Lite' }).click();
+    await expect.poll(() => page.evaluate(() => (window as any).checkoutOptions)).toMatchObject({ transactionId: 'txn_test', customer: { email: 'test@example.com' } });
+    await page.reload();
+    await page.getByRole('button', { name: /Test User/ }).click();
+    await page.getByRole('menuitem', { name: 'Sign out' }).click();
+    await expect(page.getByText('Sign-in to checkout')).toHaveCount(4);
+});

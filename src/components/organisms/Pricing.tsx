@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { pendingCheckout, openCheckout } from '../../lib/checkout';
+import { getUser, type User } from '../../lib/auth';
 import { features, plans, type BillingPeriod } from '../../data/pricing';
 import { Text } from '../atoms/Text';
 import { BillingToggle } from '../molecules/BillingToggle';
@@ -6,7 +8,36 @@ import { PlanCard } from '../molecules/PlanCard';
 import { FeatureRow } from '../molecules/FeatureRow';
 import styles from './Pricing.module.css';
 export function Pricing() {
-    const [period, setPeriod] = useState<BillingPeriod>('monthly');
+    const [period, setPeriod] = useState<BillingPeriod>(() => pendingCheckout()?.period === 'annual' ? 'annual' : 'monthly');
+    const [checkoutError, setCheckoutError] = useState('');
+    const [user, setUser] = useState<User | null>(null);
+    const [checkingSession, setCheckingSession] = useState(true);
+    useEffect(() => {
+        let active = true;
+        let generation = 0;
+        const refresh = () => {
+            const current = ++generation;
+            getUser().then(value => { if (active && current === generation) setUser(value); })
+                .catch(() => { if (active && current === generation) setUser(null); })
+                .finally(() => { if (active && current === generation) setCheckingSession(false); });
+        };
+        refresh();
+        window.addEventListener('signed-in', refresh);
+        window.addEventListener('signed-out', refresh);
+        window.addEventListener('session-expired', refresh);
+        window.addEventListener('storage', refresh);
+        return () => { active = false; window.removeEventListener('signed-in', refresh); window.removeEventListener('signed-out', refresh); window.removeEventListener('session-expired', refresh); window.removeEventListener('storage', refresh); };
+    }, []);
+    useEffect(() => {
+        const resume = async () => {
+            const selection = pendingCheckout();
+            if (!selection) return;
+            setPeriod(selection.period);
+            try { const user = await getUser(); await openCheckout(selection, user?.email); } catch { setCheckoutError('Checkout could not be opened. Please choose your plan again.'); }
+        };
+        window.addEventListener('signed-in', resume);
+        return () => window.removeEventListener('signed-in', resume);
+    }, []);
     return <>
         <section className={styles.intro} aria-labelledby="pricing-title">
             <Text variant="eyebrow" align="center">The exercise API, at your pace</Text>
@@ -14,8 +45,9 @@ export function Pricing() {
             <div className={styles.description}><Text align="center">From your first prototype to your next million users.<br />Choose the exercise data your app needs, with room to grow.</Text></div>
             <div className={styles.toggle}><BillingToggle value={period} onChange={setPeriod} /></div>
         </section>
+        {checkoutError && <p role="alert">{checkoutError}</p>}
         <section className={styles.cards} aria-label="Pricing plans">
-            {plans.map(plan => <PlanCard plan={plan} period={period} key={plan.id} />)}
+            {plans.map(plan => <PlanCard plan={plan} period={period} user={user} checkingSession={checkingSession} key={plan.id} />)}
         </section>
         <section className={styles.comparison} aria-labelledby="comparison-title">
             <div className={styles.comparisonHeading}><div className={styles.headingText}>

@@ -1,7 +1,7 @@
 const { merge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const common = require('./webpack.com');
+const common = require('./webpack.com')('production');
 module.exports = merge(common, {
     mode: 'production',
     // Preserved media is downloaded on demand; budget only page scripts and styles.
