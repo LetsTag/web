@@ -15,3 +15,11 @@
 .notes { display: flex; flex-direction: column; gap: 6px; }
 @media (max-width: 1000px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .cards { grid-template-columns: 1fr; } .intro { padding: 42px 0 30px; gap: 18px; } .comparison { padding-top: 48px; } }
+.cards { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 850px; margin: 0 auto; }
+.creditPrice { font: 700 32px/1.2 Inter, ui-sans-serif, system-ui, sans-serif; color: #233c36; }
+.explain { padding: 76px 0; color: #233c36; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+.explain h2 { font-size: 30px; letter-spacing: -.04em; }
+.explainGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.explainGrid > div { border-top: 2px solid #7b9b72; padding-top: 18px; }
+.explainGrid p { color: #66746e; line-height: 1.6; }
+@media (max-width: 560px) { .cards, .explainGrid { grid-template-columns: 1fr; } }

@@ -25,23 +25,20 @@ The development server runs at http://localhost:3000. `yarn svr` remains an alia
 
 These are build-time settings; rebuild when changing them. The provided development token is configured locally in sandbox mode. Set the live token and production environment in the deployment environment before building a live release. Never overwrite an existing `.env.local` just to run the setup example again.
 
-The official `@paddle/paddle-js` loader loads `https://cdn.paddle.com/paddle/v2/paddle.js` on checkout only and initializes overlay mode. The app preserves the complete URL and lets Paddle process payment and payment-method-update tokens automatically; it does not call `Checkout.open()` or create a transaction. Set `https://letstag.app/checkout` as the default payment link in the matching Paddle environment. Production requires the domain to be approved by Paddle. See [Paddle's default payment link guide](https://developer.paddle.com/build/transactions/default-payment-link/).
-
-A public Paddle client token configures the SDK. The workout backend discovers allowed price IDs from its configured Paddle product IDs; Paddle.js previews localized prices in the browser. The backend and frontend must use the same Paddle environment. Checkout remains unavailable if pricing cannot be loaded.
+The frontend uses Paddle.js to preview the localized one-time Pro credit price and open a backend-created transaction. The Free credit grant is handled entirely by the workout backend. Both environments must match. Paddle checkout displays the credit amount in its price name; keep that name synchronized with the backend credit configuration.
 
 ## Components and styling
 
 Atomic design lives in `src/components`:
 
-- **Atoms:** text, badge, brand, link, price, feature value.
-- **Molecules:** billing toggle, plan card, feature row.
+- **Atoms:** text, badge, brand, link.
 - **Organisms:** pricing, header, footer.
 - **Templates:** site layout.
 - **Pages:** `src/page/main.tsx` and `src/page/checkout.tsx`.
 
 Each component imports its own CSS Module and owns its appearance. Parents arrange components through layout containers; they do not target child components or pass styling classes. The application renders inside a Shadow DOM boundary so outside styles cannot override component internals. Both webpack development styles and extracted production styles are inserted into that boundary. Paddle's own overlay renders outside it.
 
-`src/data/pricing.ts` contains the plan features. Paddle.js supplies localized price previews before tax. Videos remain explicitly marked upcoming. The feature table scrolls horizontally on narrow screens; plan cards stack.
+The pricing page displays Free and Pro credit packs. Paddle.js supplies the localized Pro price preview before tax; credit amounts come from the backend configuration.
 
 ## Validation and production
 

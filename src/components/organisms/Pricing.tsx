@@ -1,86 +1,58 @@
 import { useEffect, useState } from 'react';
-import { pendingCheckout, openCheckout } from '../../lib/checkout';
-import { getCatalog, previewPrices, type Catalog, type LocalizedPrices } from '../../lib/pricing';
+import { getCatalog, previewProPrice, type CreditCatalog } from '../../lib/pricing';
 import { getUser, type User } from '../../lib/auth';
-import { features, plans, type BillingPeriod } from '../../data/pricing';
+import { openCheckout } from '../../lib/checkout';
 import { Text } from '../atoms/Text';
-import { BillingToggle } from '../molecules/BillingToggle';
-import { PlanCard } from '../molecules/PlanCard';
-import { FeatureRow } from '../molecules/FeatureRow';
 import styles from './Pricing.module.css';
+import card from '../molecules/PlanCard.module.css';
 export function Pricing() {
-    const [period, setPeriod] = useState<BillingPeriod>(() => pendingCheckout()?.period === 'annual' ? 'annual' : 'monthly');
-    const [checkoutError, setCheckoutError] = useState('');
-    const [catalog, setCatalog] = useState<Catalog>({});
-    const [prices, setPrices] = useState<LocalizedPrices>({});
-    const [pricingError, setPricingError] = useState('');
+    const [catalog, setCatalog] = useState<CreditCatalog | null>(null);
+    const [price, setPrice] = useState('');
+    const [user, setUser] = useState<User | null>(null);
+    const [checking, setChecking] = useState(true);
+    const [busy, setBusy] = useState('');
+    const [message, setMessage] = useState('');
     useEffect(() => {
         let active = true;
-        (async () => {
-            try { const next = await getCatalog(); const preview = await previewPrices(next); if (active) { setCatalog(next); setPrices(preview); } }
-            catch { if (active) setPricingError('Pricing is temporarily unavailable. Please try again later.'); }
-        })();
+        getCatalog().then(async next => { if (active) setCatalog(next); try { const value = await previewProPrice(next.prices.pro); if (active) setPrice(value); } catch { if (active) setMessage('Pro pricing is temporarily unavailable.'); } }).catch(() => { if (active) setMessage('Pricing is temporarily unavailable.'); });
         return () => { active = false; };
     }, []);
-    const [user, setUser] = useState<User | null>(null);
-    const [checkingSession, setCheckingSession] = useState(true);
     useEffect(() => {
-        let active = true;
-        let generation = 0;
-        const refresh = () => {
-            const current = ++generation;
-            getUser().then(value => { if (active && current === generation) setUser(value); })
-                .catch(() => { if (active && current === generation) setUser(null); })
-                .finally(() => { if (active && current === generation) setCheckingSession(false); });
-        };
-        refresh();
-        window.addEventListener('signed-in', refresh);
-        window.addEventListener('signed-out', refresh);
-        window.addEventListener('session-expired', refresh);
-        window.addEventListener('storage', refresh);
-        return () => { active = false; window.removeEventListener('signed-in', refresh); window.removeEventListener('signed-out', refresh); window.removeEventListener('session-expired', refresh); window.removeEventListener('storage', refresh); };
+        let active = true; let generation = 0;
+        const refresh = () => { const current = ++generation; getUser().then(value => { if (active && current === generation) setUser(value); }).catch(() => { if (active && current === generation) setUser(null); }).finally(() => { if (active && current === generation) setChecking(false); }); };
+        refresh(); for (const event of ['signed-in', 'signed-out', 'session-expired', 'storage']) window.addEventListener(event, refresh);
+        return () => { active = false; for (const event of ['signed-in', 'signed-out', 'session-expired', 'storage']) window.removeEventListener(event, refresh); };
     }, []);
     useEffect(() => {
-        const resume = async () => {
-            const selection = pendingCheckout();
-            if (!selection) return;
-            setPeriod(selection.period);
-            try { const user = await getUser(); await openCheckout(selection, user?.email); } catch { setCheckoutError('Checkout could not be opened. Please choose your plan again.'); }
+        const continuePurchase = async () => {
+            if (sessionStorage.getItem('start_pro_checkout') !== '1') return;
+            sessionStorage.removeItem('start_pro_checkout');
+            setBusy('pro');
+            try { const account = await getUser(); if (account) await openCheckout(account.email); }
+            catch { setMessage('Could not open checkout. Please try again.'); }
+            finally { setBusy(''); }
         };
-        window.addEventListener('signed-in', resume);
-        return () => window.removeEventListener('signed-in', resume);
+        window.addEventListener('signed-in', continuePurchase);
+        return () => window.removeEventListener('signed-in', continuePurchase);
     }, []);
-    return <>
-        <section className={styles.intro} aria-labelledby="pricing-title">
-            <Text variant="eyebrow" align="center">The exercise API, at your pace</Text>
-            <Text as="h1" variant="hero" align="center" id="pricing-title">Big ideas.<br />Straightforward pricing.</Text>
-            <div className={styles.description}><Text align="center">From your first prototype to your next million users.<br />Choose the exercise data your app needs, with room to grow.</Text></div>
-            <div className={styles.toggle}><BillingToggle value={period} onChange={setPeriod} /></div>
-        </section>
-        {(checkoutError || pricingError) && <p role="alert">{checkoutError || pricingError}</p>}
-        <section className={styles.cards} aria-label="Pricing plans">
-            {plans.map(plan => <PlanCard plan={plan} period={period} user={user} checkingSession={checkingSession} catalog={catalog} prices={prices} key={plan.id} />)}
-        </section>
-        <section className={styles.comparison} aria-labelledby="comparison-title">
-            <div className={styles.comparisonHeading}><div className={styles.headingText}>
-                <Text as="h2" variant="heading" id="comparison-title">Every detail, side by side.</Text>
-                <Text variant="muted">Know exactly what’s included in your plan.</Text>
-            </div><Text variant="muted">Localized prices before tax</Text></div>
-            <div className={styles.tableScroll} role="region" aria-label="Plan feature comparison; scroll horizontally on smaller screens" tabIndex={0}>
-                <table className={styles.table}>
-                    <caption className={styles.caption}>Compare all Free, Lite, Plus, and Max features</caption>
-                    <thead><tr><th scope="col" className={styles.featureHeading}>Features</th>{plans.map(plan => <th scope="col" className={`${styles.columnHeading} ${plan.id === 'plus' ? styles.featured : ''}`} key={plan.id}>{plan.name}</th>)}</tr></thead>
-                    <tbody>{features.map(feature => {
-                        const interval = feature.name === 'Monthly price' ? 'monthly' : feature.name === 'Annual price' ? 'annual' : null;
-                        const localized = interval ? { ...feature, values: plans.map(plan => prices[`${plan.id}_${interval}`] ? `${prices[`${plan.id}_${interval}`]} / ${interval === 'monthly' ? 'mo' : 'year'}` : 'Unavailable') as [string, string, string, string] } : feature;
-                        return <FeatureRow feature={localized} key={feature.name} />;
-                    })}</tbody>
-                </table>
-            </div>
-            <div className={styles.notes}>
-                <Text variant="muted">Annual plans are billed once a year. Monthly call limits apply to both billing periods.</Text>
-                <Text variant="muted">Free and Lite stop at their monthly limit. Plus and Max can continue with the overage rates shown above. Videos are upcoming.</Text>
-            </div>
-        </section>
-    </>;
+    async function choose(plan: 'free' | 'pro') {
+        setMessage('');
+        if (!user) {
+            if (plan === 'pro') sessionStorage.setItem('start_pro_checkout', '1');
+            else sessionStorage.removeItem('start_pro_checkout');
+            setMessage('Sign in with Google above to continue.');
+            document.getElementById('sign-in-area')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
+        if (plan === 'free') return;
+        if (user.has_purchased_credits) { window.location.assign('/account/'); return; }
+        setBusy('pro');
+        try { if (await openCheckout(user.email) === 'signin') setMessage('Please sign in to continue.'); }
+        catch { setMessage('Could not open checkout. Please try again.'); }
+        finally { setBusy(''); }
+    }
+    return <><section className={styles.intro}><Text variant="eyebrow" align="center">Exercise data, on your terms</Text><Text as="h1" variant="hero" align="center">Build at your pace.<br />Pay for what you use.</Text><div className={styles.description}><Text align="center">One credit for each API object returned. Pull ten objects, use ten credits. Unused credits stay in your account, so you can grow without watching a monthly clock.</Text></div></section>
+        {message && <p role="status">{message}</p>}
+        <section className={styles.cards} aria-label="Credit plans">{(['free', 'pro'] as const).map(plan => <article key={plan} className={`${card.card} ${plan === 'pro' ? card.featured : ''}`}><div className={card.title}><Text as="h2" variant="subheading">{plan === 'free' ? 'Free' : 'Pro'}</Text></div><div className={card.audience}><Text variant="muted">{plan === 'free' ? 'Explore the API at your own pace.' : 'Build more with a larger credit pack.'}</Text></div><div className={card.cost}><strong className={styles.creditPrice}>{plan === 'free' ? 'Free' : price || 'Price unavailable'}</strong><Text variant="muted">{plan === 'free' ? 'One-time allocation' : 'One-time purchase · before tax'}</Text></div><div className={card.allowance}><span className={card.calls}>{catalog ? (plan === 'free' ? catalog.free_credits : catalog.pro_credits).toLocaleString() : '—'} credits</span></div><Text variant="muted">{plan === 'free' ? 'Try real data with no payment required.' : 'Credits stay available until you use them.'}</Text><button className={card.purchase} disabled={checking || !!busy || (plan === 'free' && !!user) || (plan === 'pro' && !user?.has_purchased_credits && (!catalog || !price))} onClick={() => choose(plan)}>{busy === plan ? 'Please wait…' : plan === 'free' ? (user ? user.has_purchased_credits ? 'Unavailable' : 'Active' : 'Start for free') : user?.has_purchased_credits ? 'Manage credits' : 'Buy credits'}</button></article>)}</section>
+        <section className={styles.explain}><h2>Simple, fair, and ready to scale.</h2><div className={styles.explainGrid}><div><strong>1 object = 1 credit</strong><p>Every returned API object counts. Ask for ten exercises and spend ten credits.</p></div><div><strong>Keep what you don’t use</strong><p>Credits don’t reset each month. Your balance is there when your next idea is ready.</p></div><div><strong>Grow on your schedule</strong><p>Start free, then add 25,000 credits whenever you need more room to build.</p></div></div></section></>;
 }

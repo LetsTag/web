@@ -1,0 +1,90 @@
+import { test, expect, type Page } from '@playwright/test';
+async function mockPricing(page: Page) {
+    await page.route('**/v1/pricing/catalog', route => route.fulfill({ json: { prices: { pro: 'pri_01m76g7tc61yt2sgqev2ptehn9' }, free_credits: 250, pro_credits: 25000 } }));
+    await page.route('https://cdn.paddle.com/paddle/v2/paddle.js', route => route.fulfill({ contentType: 'application/javascript', body: `window.PaddleBillingV1={Environment:{set(){}},Initialize(){this.Initialized=true},PricePreview({items}){return Promise.resolve({data:{details:{lineItems:items.map(item=>({price:{id:item.priceId},formattedTotals:{subtotal:'£19.99',total:'£19.99'}}))}}})},Checkout:{open(options){window.checkoutOptions=options}}};` }));
+}
+test('pricing displays two credit packs and localized Paddle price', async ({ page }) => {
+    await mockPricing(page); await page.goto('/');
+    await expect(page.getByRole('article')).toHaveCount(2);
+    await expect(page.getByRole('article').first()).toContainText('250 credits');
+    await expect(page.getByRole('article').last()).toContainText('25,000 credits');
+    await expect(page.getByRole('article').last()).toContainText('£19.99');
+    await expect(page.getByRole('button', { name:'Start for free' })).toBeVisible();
+    await expect(page.getByRole('button', { name:'Buy credits' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Annually' })).toHaveCount(0);
+});
+test('free account is active and can buy a Pro credit pack', async ({ page }) => {
+    await mockPricing(page);
+    await page.addInitScript(() => localStorage.setItem('session_token','test'));
+    await page.route('**/auth/me', route => route.fulfill({ json: { name:'Test', email:'test@example.com', picture:null, has_purchased_credits:false } }));
+    await page.route('**/v1/checkout', route => route.fulfill({ json: { transaction_id:'txn_test' } }));
+    await page.goto('/');
+    await expect(page.getByRole('button', { name:'Active', exact:true })).toBeDisabled();
+    await page.getByRole('button', { name:'Buy credits' }).click();
+    await expect.poll(() => page.evaluate(() => (window as any).checkoutOptions)).toMatchObject({ transactionId:'txn_test', customer:{email:'test@example.com'} });
+});
+test('Pro account can manage credits and top up manually', async ({ page }) => {
+    await mockPricing(page);
+    await page.addInitScript(() => localStorage.setItem('session_token','test'));
+    await page.route('**/auth/me', route => route.fulfill({ json: { name:'Test', email:'test@example.com', picture:null, has_purchased_credits:true } }));
+    await page.route('**/v1/account/credits', route => route.fulfill({ json: { balance:1000 } }));
+    await page.route('**/v1/account/api-key', route => route.fulfill({ json: { api_key:'wk_test_key', created_at:'2026-01-01T00:00:00Z' } }));
+    let monthlyPosts = 0;
+    await page.route('**/v1/account/monthly-refill', route => { if (route.request().method() === 'POST') monthlyPosts++; return route.fulfill({ json: route.request().method() === 'POST' ? { status:'pending', transaction_id:'txn_setup' } : { status:'disabled', price_id:'pri_01m76a98c4x6nn65bg744ebfkg' } }); });
+    await page.goto('/');
+    await expect(page.getByRole('button', { name:'Unavailable', exact:true })).toBeDisabled();
+    await page.getByRole('button', { name:'Manage credits' }).click();
+    await expect(page.getByRole('button', { name:'Refill', exact:true })).toBeVisible();
+    await expect(page.getByText('Get 25,000 credits each month', { exact:false })).toBeVisible();
+    await page.getByRole('switch', { name:'Enable monthly refill' }).click();
+    expect(monthlyPosts).toBe(0);
+    expect(await page.evaluate(() => (window as any).checkoutOptions)).toBeUndefined();
+    await page.getByRole('button', { name:'Refill', exact:true }).click();
+    await expect.poll(() => page.evaluate(() => (window as any).checkoutOptions)).toMatchObject({ transactionId:'txn_setup' });
+});
+test('monthly refill can be canceled', async ({ page }) => {
+    await mockPricing(page);
+    await page.addInitScript(() => localStorage.setItem('session_token','test'));
+    await page.route('**/auth/me', route => route.fulfill({ json: { name:'Test', email:'test@example.com', picture:null, has_purchased_credits:true } }));
+    await page.route('**/v1/account/credits', route => route.fulfill({ json: { balance:1000 } }));
+    await page.route('**/v1/account/monthly-refill', route => route.fulfill({ json: { status:'active', price_id:'pri_01m76a98c4x6nn65bg744ebfkg' } }));
+    await page.route('**/v1/account/monthly-refill/cancel', route => route.fulfill({ json: { status:'canceled' } }));
+    await page.goto('/account/');
+    const toggle = page.getByRole('switch', { name:'Enable monthly refill' });
+    await expect(toggle).toBeChecked();
+    page.once('dialog', dialog => dialog.accept());
+    await toggle.click();
+    await expect(toggle).not.toBeChecked();
+    await expect(page.getByText('One-time refill selected.')).toBeVisible();
+});
+test('refill uses the one-time price when the switch is off', async ({ page }) => {
+    await mockPricing(page);
+    await page.addInitScript(() => localStorage.setItem('session_token','test'));
+    await page.route('**/auth/me', route => route.fulfill({ json: { name:'Test', email:'test@example.com', picture:null, has_purchased_credits:false } }));
+    await page.route('**/v1/account/monthly-refill', route => route.fulfill({ json: { status:'disabled', price_id:'pri_01m76a98c4x6nn65bg744ebfkg' } }));
+    let priceId = '';
+    await page.route('**/v1/checkout', route => { priceId = route.request().postDataJSON().price_id; return route.fulfill({ json: { transaction_id:'txn_single' } }); });
+    await page.goto('/account/');
+    await expect(page.getByRole('switch', { name:'Enable monthly refill' })).not.toBeChecked();
+    await page.getByRole('button', { name:'Refill', exact:true }).click();
+    await expect.poll(() => priceId).toBe('pri_01m76g7tc61yt2sgqev2ptehn9');
+    await expect.poll(() => page.evaluate(() => (window as any).checkoutOptions)).toMatchObject({ transactionId:'txn_single' });
+});
+test('one-time refill remains available when monthly status is unavailable', async ({ page }) => {
+    await mockPricing(page);
+    await page.addInitScript(() => localStorage.setItem('session_token','test'));
+    await page.route('**/auth/me', route => route.fulfill({ json: { name:'Test', email:'test@example.com', picture:null, has_purchased_credits:true } }));
+    await page.route('**/v1/account/monthly-refill', route => route.fulfill({ status:503, json: { detail:'Unavailable' } }));
+    await page.route('**/v1/checkout', route => route.fulfill({ json: { transaction_id:'txn_single' } }));
+    await page.goto('/account/');
+    await expect(page.getByText('Monthly refill status is unavailable.')).toBeVisible();
+    const refill = page.getByRole('button', { name:'Refill', exact:true });
+    await expect(refill).toBeEnabled();
+    await refill.click();
+    await expect.poll(() => page.evaluate(() => (window as any).checkoutOptions)).toMatchObject({ transactionId:'txn_single' });
+});
+for (const width of [320, 768, 1440]) test(`credit cards fit at ${width}px`, async ({ page }) => {
+    await mockPricing(page); await page.setViewportSize({ width, height:900 }); await page.goto('/');
+    await expect(page.getByRole('article')).toHaveCount(2);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
