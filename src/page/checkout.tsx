@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Text } from '../components/atoms/Text';
-import { Link } from '../components/atoms/Link';
-import { SiteLayout } from '../components/templates/SiteLayout';
+import { Text } from '../shared/atoms/Text';
+import { Link } from '../shared/atoms/Link';
+import { SiteLayout } from '../shared/templates/SiteLayout';
 import { loadPaddle } from '../lib/paddle';
 
 type Status = 'loading' | 'ready' | 'open' | 'closed' | 'completed' | 'error';

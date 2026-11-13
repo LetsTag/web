@@ -29,7 +29,7 @@ The frontend uses Paddle.js to preview the localized one-time Pro credit price a
 
 ## Components and styling
 
-Atomic design lives in `src/components`:
+Atomic design lives in `src/shared`:
 
 - **Atoms:** text, badge, brand, link.
 - **Organisms:** pricing, header, footer.

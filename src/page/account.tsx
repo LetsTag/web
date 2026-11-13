@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { SiteLayout } from '../components/templates/SiteLayout';
+import { SiteLayout } from '../shared/templates/SiteLayout';
 import { clearSession, getUser, sessionRequest, type User } from '../lib/auth';
 import { openCheckout } from '../lib/checkout';
 import { getCatalog, previewProPrice } from '../lib/pricing';

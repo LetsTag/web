@@ -1,9 +1,9 @@
 import AccountPage from './page/account';
 import MainPage from './page/main';
 import CheckoutPage from './page/checkout';
-import { SiteLayout } from './components/templates/SiteLayout';
-import { Text } from './components/atoms/Text';
-import { Link } from './components/atoms/Link';
+import { SiteLayout } from './shared/templates/SiteLayout';
+import { Text } from './shared/atoms/Text';
+import { Link } from './shared/atoms/Link';
 
 export function App() {
     const path = window.location.pathname.replace(/\/+$/, '') || '/';
