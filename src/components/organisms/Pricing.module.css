@@ -23,3 +23,32 @@
 .explainGrid > div { border-top: 2px solid #7b9b72; padding-top: 18px; }
 .explainGrid p { color: #66746e; line-height: 1.6; }
 @media (max-width: 560px) { .cards, .explainGrid { grid-template-columns: 1fr; } }
+
+.featureComparison { padding: 10px 0 90px; color: #233c36; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+.featureComparisonIntro { max-width: 680px; margin-bottom: 28px; }
+.comparisonEyebrow { margin: 0 0 12px; color: #66805e; font-size: 12px; font-weight: 700; letter-spacing: .12em; }
+.featureComparisonIntro h2 { margin: 0; font-size: clamp(28px, 4vw, 38px); letter-spacing: -.04em; }
+.featureComparisonIntro > p:last-child { margin: 12px 0 0; color: #66746e; line-height: 1.6; }
+.featureTableWrap { border: 1px solid #d5e0d0; border-radius: 16px; overflow: hidden; background: #fff; }
+.featureTable { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.featureTable thead th { padding: 20px 24px; background: #f1f6ec; color: #233c36; text-align: left; font-size: 14px; }
+.featureTable thead th:first-child { width: 56%; }
+.featureTable thead th:last-child { background: #e1edda; }
+.featureTable tbody th, .featureTable tbody td { vertical-align: top; padding: 23px 24px; border-top: 1px solid #e3e9df; text-align: left; }
+.featureTable tbody th { font-weight: 400; }
+.featureTable tbody th p { max-width: 590px; margin: 8px 0 0; color: #66746e; font-size: 14px; line-height: 1.55; }
+.featureTitle { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 15px; font-weight: 700; }
+.comingSoon { padding: 4px 8px; border-radius: 999px; background: #eef2e9; color: #67805d; font-size: 10px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; }
+.featureTable tbody td { color: #66746e; font-size: 14px; line-height: 1.5; }
+.featureTable tbody td:last-child { background: #f6faf3; color: #245c42; font-weight: 600; }
+.featureTable tbody td small { display: block; margin-top: 4px; color: #718074; font-size: 12px; font-weight: 400; }
+@media (max-width: 640px) {
+    .featureComparison { padding-bottom: 60px; }
+    .featureTable, .featureTable tbody, .featureTable tr { display: block; }
+    .featureTable thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    .featureTable tbody tr { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid #e3e9df; }
+    .featureTable tbody tr:first-child { border-top: 0; }
+    .featureTable tbody th { display: block; grid-column: 1 / -1; padding: 20px 18px 14px; border: 0; }
+    .featureTable tbody td { display: block; padding: 12px 18px 18px; border: 0; }
+    .featureTable tbody td::before { content: attr(data-label); display: block; margin-bottom: 5px; color: #718074; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+}

@@ -13,6 +13,24 @@ test('pricing displays two credit packs and localized Paddle price', async ({ pa
     await expect(page.getByRole('button', { name:'Buy credits' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Annually' })).toHaveCount(0);
 });
+test('feature comparison displays Free and Pro values and localized refill price', async ({ page }) => {
+    await mockPricing(page); await page.goto('/');
+    const comparison = page.getByRole('table', { name: 'Compare Free and Pro features' });
+    await expect(comparison.getByRole('row')).toHaveCount(17);
+    const credits = comparison.getByRole('row', { name: /API Credits/ });
+    await expect(credits).toContainText('250');
+    await expect(credits).toContainText('25,000');
+    await expect(credits).toContainText('Per £19.99 refill');
+    await expect(comparison.getByRole('row', { name: /Female Exercises/ })).toContainText('Coming soon');
+    const bodyShapes = comparison.getByRole('row', { name: /Body Shapes \(Data\)/ });
+    await expect(bodyShapes).toContainText('Watermarked images');
+    await expect(bodyShapes).toContainText('Clean (High-Res) images');
+    const bodyFat = comparison.getByRole('row', { name: /Body Fat % Engine/ });
+    await expect(bodyFat).toContainText('Coming soon');
+    await expect(bodyFat).toContainText('Standard formula');
+    await expect(bodyFat).toContainText('All scientific formulas');
+    await expect(comparison.getByRole('row', { name: /Cinematic Videos/ })).toContainText('Coming soon');
+});
 test('free account is active and can buy a Pro credit pack', async ({ page }) => {
     await mockPricing(page);
     await page.addInitScript(() => localStorage.setItem('session_token','test'));
