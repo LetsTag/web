@@ -5,13 +5,25 @@ async function mockPricing(page: Page) {
 }
 test('pricing displays two credit packs and localized Paddle price', async ({ page }) => {
     await mockPricing(page); await page.goto('/');
-    await expect(page.getByRole('article')).toHaveCount(2);
-    await expect(page.getByRole('article').first()).toContainText('250 credits');
-    await expect(page.getByRole('article').last()).toContainText('25,000 credits');
-    await expect(page.getByRole('article').last()).toContainText('£19.99');
+    const plans = page.getByRole('region', { name: 'Credit plans' }).getByRole('article');
+    await expect(plans).toHaveCount(2);
+    await expect(plans.first()).toContainText('250 credits');
+    await expect(plans.last()).toContainText('25,000 credits');
+    await expect(plans.last()).toContainText('£19.99');
     await expect(page.getByRole('button', { name:'Start for free' })).toBeVisible();
     await expect(page.getByRole('button', { name:'Buy credits' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Annually' })).toHaveCount(0);
+});
+test('landing actions and language selector work', async ({ page }) => {
+    await mockPricing(page); await page.goto('/');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Build fitness apps faster');
+    await expect(page.getByRole('link', { name: /Read the Docs/ })).toHaveAttribute('href', /\/docs$/);
+    await page.getByRole('button', { name: 'ES', exact: true }).click();
+    await expect(page.getByText('Sentadilla frontal con mancuernas')).toBeVisible();
+    await page.getByRole('button', { name: 'DE', exact: true }).click();
+    await expect(page.getByText('Kurzhantel-Frontkniebeuge')).toBeVisible();
+    await page.getByRole('link', { name: /Start for free/ }).first().click();
+    await expect(page.getByText('Sign in with Google above to get your 250 free credits.')).toBeVisible();
 });
 test('feature comparison displays Free and Pro values and localized refill price', async ({ page }) => {
     await mockPricing(page); await page.goto('/');
@@ -103,6 +115,6 @@ test('one-time refill remains available when monthly status is unavailable', asy
 });
 for (const width of [320, 768, 1440]) test(`credit cards fit at ${width}px`, async ({ page }) => {
     await mockPricing(page); await page.setViewportSize({ width, height:900 }); await page.goto('/');
-    await expect(page.getByRole('article')).toHaveCount(2);
+    await expect(page.getByRole('region', { name: 'Credit plans' }).getByRole('article')).toHaveCount(2);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });

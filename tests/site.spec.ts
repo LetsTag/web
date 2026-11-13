@@ -61,7 +61,7 @@ test('removed pages are absent and the 404 fallback provides a route home', asyn
     await page.goto('/404.html');
     await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible();
     await page.getByRole('link', { name: 'Back to pricing' }).click();
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Pay for what you use.');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Build fitness apps faster');
 });
 
 
