@@ -43,7 +43,7 @@ export function LandingIntro() {
                 <p className={styles.eyebrow}><span /> FITNESS DATA, BUILT FOR DEVELOPERS</p>
                 <h1>Build fitness apps faster with <em>human-perfected</em> AI data.</h1>
                 <p className={styles.lead}>The most visually stunning, biomechanically accurate exercise and body-typing API. Pay only for what you pull.</p>
-                <div className={styles.actions}><StartLink className={styles.primary} /><a className={styles.secondary} href={`${__AUTH_API_BASE_URL__}/docs`}>Read the Docs <span aria-hidden="true">↗</span></a></div>
+                <div className={styles.actions}><StartLink className={styles.primary} /><a className={styles.secondary} href={`${__AUTH_API_BASE_URL__}/v1/docs`}>Read the Docs <span aria-hidden="true">↗</span></a></div>
                 <p className={styles.creditNote}><span>✓</span> 250 evaluation credits to get started</p>
             </div>
             <div className={styles.heroVisual}>

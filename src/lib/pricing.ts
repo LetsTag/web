@@ -2,7 +2,7 @@ import { loadPaddle } from './paddle';
 declare const __AUTH_API_BASE_URL__: string;
 export type CreditCatalog = { prices: { pro: string }; free_credits: number; pro_credits: number };
 export async function getCatalog(): Promise<CreditCatalog> {
-    const response = await fetch(`${__AUTH_API_BASE_URL__}/v1/pricing/catalog`);
+    const response = await fetch(`${__AUTH_API_BASE_URL__}/v1/account/pricing`);
     if (!response.ok) throw new Error('Pricing unavailable');
     const data = await response.json() as CreditCatalog;
     if (!data.prices?.pro || !Number.isInteger(data.free_credits) || !Number.isInteger(data.pro_credits)) throw new Error('Invalid pricing');

@@ -74,7 +74,7 @@ test('checkout surfaces SDK initialization failures', async ({ page }) => {
 test('account displays, copies, and rotates its API key', async ({ page, context }) => {
     await context.grantPermissions(['clipboard-read', 'clipboard-write']);
     await page.addInitScript(() => localStorage.setItem('session_token', 'session-test'));
-    await page.route('**/auth/me', route => route.fulfill({ json: { name: 'Test User', email: 'test@example.com', picture: null } }));
+    await page.route('**/v1/auth/me', route => route.fulfill({ json: { name: 'Test User', email: 'test@example.com', picture: null } }));
     await page.route('**/v1/account/api-key', route => route.fulfill({ json: { api_key: 'wk_full_original_key', created_at: '2026-01-01T00:00:00Z' } }));
     await page.route('**/v1/account/api-key/rotate', route => route.fulfill({ json: { api_key: 'wk_full_rotated_key', created_at: '2026-02-01T00:00:00Z' } }));
     await page.goto('/account/');

@@ -39,7 +39,7 @@ export function SiteHeader({ signIn = true }: { signIn?: boolean }) {
             window.google.accounts.id.initialize({ client_id: __GOOGLE_CLIENT_ID__, callback: async ({ credential }) => {
                 setStatus('Signing in…');
                 try {
-                    const response = await fetch(`${__AUTH_API_BASE_URL__}/auth/google`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ credential }) });
+                    const response = await fetch(`${__AUTH_API_BASE_URL__}/v1/auth/google`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ credential }) });
                     if (!response.ok) throw new Error();
                     const result: { session_token: string; expires_at: string; user: User } = await response.json();
                     localStorage.setItem('session_token', result.session_token); localStorage.setItem('session_expires_at', result.expires_at);
@@ -55,14 +55,14 @@ export function SiteHeader({ signIn = true }: { signIn?: boolean }) {
     async function signOut() {
         setStatus('Signing out…');
         try {
-            const response = await sessionRequest('/auth/signout', 'POST');
+            const response = await sessionRequest('/v1/auth/signout', 'POST');
             if (!response.ok && response.status !== 401) throw new Error();
             clearSession(); window.dispatchEvent(new Event('signed-out')); window.google?.accounts.id.disableAutoSelect(); setUser(null); setMenu(false); setStatus('');
             if (location.pathname.startsWith('/account')) location.assign('/');
         } catch { setStatus('Sign-out failed. Please try again.'); }
     }
     return <header className={styles.header}><Brand />{signIn && <div id="sign-in-area" className={styles.signIn}>
-        {user ? <div key="account" className={styles.account}><button className={styles.accountButton} onClick={() => setMenu(!menu)} aria-expanded={menu} aria-haspopup="menu"><span>{user.name || user.email || 'Account'}</span><span aria-hidden="true">⌄</span></button>{menu && <div className={styles.menu} role="menu"><a role="menuitem" href="/account/">Account</a><button role="menuitem" onClick={signOut}>Sign out</button></div>}</div> : !loading && <div key="google-sign-in" className={styles.googleButton} ref={button} />}
+        {user ? <div key="account" className={styles.account}><button className={styles.accountButton} onClick={() => setMenu(!menu)} aria-expanded={menu} aria-haspopup="menu"><span>{user.name || user.email || 'Account'}</span><span aria-hidden="true">⌄</span></button>{menu && <div className={styles.menu} role="menu"><a role="menuitem" href="/account/">Account</a>{user.is_admin && <a role="menuitem" href="/admin/">Admin console</a>}<button role="menuitem" onClick={signOut}>Sign out</button></div>}</div> : !loading && <div key="google-sign-in" className={styles.googleButton} ref={button} />}
         <span role="status">{status}</span>
     </div>}</header>;
 }

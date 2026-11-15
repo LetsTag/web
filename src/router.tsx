@@ -1,4 +1,7 @@
+import PrivacyPage from './page/privacy';
+import TermsPage from './page/terms';
 import AccountPage from './page/account';
+import AdminPage from './page/admin';
 import MainPage from './page/main';
 import CheckoutPage from './page/checkout';
 import { SiteLayout } from './shared/templates/SiteLayout';
@@ -8,6 +11,9 @@ import { Link } from './shared/atoms/Link';
 export function App() {
     const path = window.location.pathname.replace(/\/+$/, '') || '/';
     if (path === '/' || path === '/index.html') return <MainPage />;
+    if (path === '/privacy' || path === '/privacy/index.html') return <PrivacyPage />;
+    if (path === '/terms' || path === '/terms/index.html') return <TermsPage />;
+    if (path === '/admin' || path === '/admin/index.html') return <AdminPage />;
     if (path === '/account' || path === '/account/index.html') return <AccountPage />;
     if (path === '/checkout' || path === '/checkout/index.html') return <CheckoutPage />;
     return <SiteLayout compact>
