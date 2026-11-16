@@ -127,7 +127,7 @@ export default function AccountPage() {
             const result: { url: string } = await response.json();
             const url = new URL(result.url);
             if (url.protocol !== 'https:' || !url.hostname.endsWith('.paddle.com') || url.username || url.password || (url.port && url.port !== '443')) throw new Error();
-            window.location.assign(url.href);
+            window.open(url.href, '_blank', 'noopener,noreferrer');
         } catch { setPortalError('Unable to open the billing portal. Please try again.'); }
         finally { setOpeningPortal(false); }
     }

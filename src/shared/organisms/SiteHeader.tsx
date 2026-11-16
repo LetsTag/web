@@ -62,7 +62,7 @@ export function SiteHeader({ signIn = true }: { signIn?: boolean }) {
         } catch { setStatus('Sign-out failed. Please try again.'); }
     }
     return <header className={styles.header}><Brand />{signIn && <div id="sign-in-area" className={styles.signIn}>
-        {user ? <div key="account" className={styles.account}><button className={styles.accountButton} onClick={() => setMenu(!menu)} aria-expanded={menu} aria-haspopup="menu"><span>{user.name || user.email || 'Account'}</span><span aria-hidden="true">⌄</span></button>{menu && <div className={styles.menu} role="menu"><a role="menuitem" href="/account/">Account</a>{user.is_admin && <a role="menuitem" href="/admin/">Admin console</a>}<button role="menuitem" onClick={signOut}>Sign out</button></div>}</div> : !loading && <div key="google-sign-in" className={styles.googleButton} ref={button} />}
+        {user ? <div key="account" className={styles.account}><button className={styles.accountButton} onClick={() => setMenu(!menu)} aria-expanded={menu} aria-haspopup="menu"><span>{user.name || user.email || 'Account'}</span><svg className={styles.chevron} viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5 10 12.5 15 7.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></button>{menu && <div className={styles.menu} role="menu"><a role="menuitem" href="/account/">Account</a>{user.is_admin && <a role="menuitem" href="/admin/">Admin console</a>}<button role="menuitem" onClick={signOut}>Sign out</button></div>}</div> : !loading && <div key="google-sign-in" className={styles.googleButton} ref={button} />}
         <span role="status">{status}</span>
     </div>}</header>;
 }
