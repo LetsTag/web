@@ -1,12 +1,13 @@
 import { SiteLayout } from "../shared/templates/SiteLayout";
 export default function TermsPage() { return <SiteLayout><main style={{maxWidth: 800, margin: "48px auto 80px", lineHeight: 1.7, color: "#233c36"}}><h1>API Terms of Service</h1>
 <h2>1. Fees and Credit Consumption</h2>
-<p>Our API operates on a consumption-based credit model where one returned API object equals one credit.</p>
-<ul>
-<li><strong>Query Limits:</strong> Credit consumption is dictated by the <code>limit</code> query parameter in your API request, which defines the maximum number of objects returned in the response payload.</li>
-<li><strong>Defaults:</strong> If no <code>limit</code> is specified, the API returns up to 10 objects by default. Each returned object consumes one credit.</li>
-<li><strong>Depletion:</strong> Once your credit balance reaches zero, the API will return a <code>429 Too Many Requests</code> error until the account is refilled.</li>
-</ul>
+        <p>Our API operates on a consumption-based credit model where one returned top-level entity (e.g., one exercise or one piece of equipment) equals one credit.</p>
+        <ul>
+            <li><strong>Defining a Billable Item:</strong> Credits are strictly calculated based on the top-level items returned in the response's primary array or dictionary. Any nested properties, dictionaries, or arrays <em>within</em> that primary item are included at no additional cost.</li>
+            <li><strong>Query Limits:</strong> Credit consumption is dictated by the <code>limit</code> query parameter in your API request, which defines the maximum number of top-level items returned in the payload.</li>
+            <li><strong>Defaults:</strong> If no <code>limit</code> is specified, the API returns up to 10 items by default. Each returned top-level item consumes one credit.</li>
+            <li><strong>Depletion:</strong> Once your credit balance reaches zero, the API will return a <code>429 Too Many Requests</code> error until the account is refilled.</li>
+        </ul>
 <h2>2. Payment Processing and Merchant of Record</h2>
 <p>All sales, billing, and payment processing for API credits and subscriptions are securely managed by <strong>Paddle</strong>. Paddle acts as our Merchant of Record (MoR). This means that when you purchase credits, Paddle handles the transaction, issues the receipt, and manages any applicable regional taxes (such as VAT or sales tax) on our behalf.</p>
 <h2>3. Intellectual Property and Ownership</h2>

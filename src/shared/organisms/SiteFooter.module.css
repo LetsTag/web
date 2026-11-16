@@ -1,1 +1,9 @@
-.footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; padding: 28px 0; border-top: 1px solid #e1e5db; box-sizing: border-box; }
+.footer { background: #193b35; color: #eef5ed; }
+.inner { box-sizing: border-box; width: min(1248px, 100%); margin: 0 auto; padding: 36px 40px; display: flex; justify-content: space-between; align-items: flex-start; gap: 28px; }
+.inner strong { font-size: 18px; }
+.inner p { color: #c1d4c8; margin: 6px 0 16px; }
+.inner small { color: #aac2b3; }
+.inner nav { display: flex; flex-wrap: wrap; gap: 24px; }
+.inner a { color: #eef5ed; text-decoration: none; font-size: 14px; }
+.inner a:hover, .inner a:focus-visible { color: #fff; text-decoration: underline; }
+@media (max-width: 600px) { .inner { padding: 32px 20px; flex-direction: column; } }

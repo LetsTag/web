@@ -35,3 +35,8 @@
 .switch:checked::after { transform: translateX(18px); }
 .switch:focus-visible { outline: 2px solid #245c42; outline-offset: 3px; }
 .switch:disabled { opacity: .5; cursor: not-allowed; }
+
+.billing p.legalNotice { color: #66746e; font-size: 13px; margin: 18px 0 0; }
+.billing .legalNotice a { color: inherit; text-decoration: underline; }
+.billing .legalNotice a:hover, .billing .legalNotice a:focus-visible { color: #233c36; }
+.creditActions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
