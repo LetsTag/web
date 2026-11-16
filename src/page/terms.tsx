@@ -4,7 +4,7 @@ export default function TermsPage() { return <SiteLayout><main style={{maxWidth:
 <p>Our API operates on a consumption-based credit model where one returned API object equals one credit.</p>
 <ul>
 <li><strong>Query Limits:</strong> Credit consumption is dictated by the <code>limit</code> query parameter in your API request, which defines the maximum number of objects returned in the response payload.</li>
-<li><strong>Defaults:</strong> If no <code>limit</code> is specified, the API defaults to returning 20 objects, which will consume 20 credits. If you set <code>limit=10</code>, your account will be charged exactly 10 credits per successful request.</li>
+<li><strong>Defaults:</strong> If no <code>limit</code> is specified, the API returns up to 10 objects by default. Each returned object consumes one credit.</li>
 <li><strong>Depletion:</strong> Once your credit balance reaches zero, the API will return a <code>429 Too Many Requests</code> error until the account is refilled.</li>
 </ul>
 <h2>2. Payment Processing and Merchant of Record</h2>

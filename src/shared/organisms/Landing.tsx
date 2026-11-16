@@ -27,7 +27,7 @@ function StartLink({ className }: { className: string }) {
     function start(event: MouseEvent<HTMLAnchorElement>) {
         event.preventDefault();
         if (token()) { window.location.assign('/account/'); return; }
-        setNotice('Sign in with Google above to get your 250 free credits.');
+        setNotice('Sign in with Google above to get your 3,000 free credits.');
         const root = event.currentTarget.getRootNode();
         if (root instanceof ShadowRoot || root instanceof Document) root.querySelector('#sign-in-area')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
@@ -44,7 +44,7 @@ export function LandingIntro() {
                 <h1>Build fitness apps faster with <em>human-perfected</em> AI data.</h1>
                 <p className={styles.lead}>The most visually stunning, biomechanically accurate exercise and body-typing API. Pay only for what you pull.</p>
                 <div className={styles.actions}><StartLink className={styles.primary} /><a className={styles.secondary} href={`${__AUTH_API_BASE_URL__}/v1/docs`}>Read the Docs <span aria-hidden="true">↗</span></a></div>
-                <p className={styles.creditNote}><span>✓</span> 250 evaluation credits to get started</p>
+                <p className={styles.creditNote}><span>✓</span> 3,000 evaluation credits to get started</p>
             </div>
             <div className={styles.heroVisual}>
                 <div className={styles.codeWindow}><div className={styles.codeTop}><span className={styles.codeDots}><i /><i /><i /></span><span>exercise.json</span><span className={styles.codeBadge}>EXAMPLE</span></div><div className={styles.codeRequest}><span>GET</span> /v1/exercises/DUMBBELL_FRONT_SQUAT</div><pre>{exerciseExample}</pre><div className={styles.codeFoot}>Illustrative response</div></div>
@@ -65,5 +65,5 @@ export function LandingIntro() {
 }
 
 export function LandingOutro() {
-    return <section className={styles.outro}><div><p className={styles.eyebrow}>REAL PEOPLE. REAL SUPPORT.</p><h2>Built by engineers,<br /><em>supported by engineers.</em></h2><p>Skip the generic help desk. Get direct access to the team that built the API and trained the models.</p></div><div><StartLink className={styles.outroButton} /><span>250 free credits. Ready when you are.</span></div></section>;
+    return <section className={styles.outro}><div><p className={styles.eyebrow}>REAL PEOPLE. REAL SUPPORT.</p><h2>Built by engineers,<br /><em>supported by engineers.</em></h2><p>Skip the generic help desk. Get direct access to the team that built the API and trained the models.</p></div><div><StartLink className={styles.outroButton} /><span>3,000 free credits. Ready when you are.</span></div></section>;
 }

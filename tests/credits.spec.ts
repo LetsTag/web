@@ -1,14 +1,14 @@
 import { test, expect, type Page } from '@playwright/test';
 async function mockPricing(page: Page) {
-    await page.route('**/v1/account/pricing', route => route.fulfill({ json: { prices: { pro: 'pri_01m76g7tc61yt2sgqev2ptehn9' }, free_credits: 250, pro_credits: 25000 } }));
+    await page.route('**/v1/account/pricing', route => route.fulfill({ json: { prices: { pro: 'pri_01m76g7tc61yt2sgqev2ptehn9' }, free_credits: 3000, pro_credits: 300000 } }));
     await page.route('https://cdn.paddle.com/paddle/v2/paddle.js', route => route.fulfill({ contentType: 'application/javascript', body: `window.PaddleBillingV1={Environment:{set(){}},Initialize(){this.Initialized=true},PricePreview({items}){return Promise.resolve({data:{details:{lineItems:items.map(item=>({price:{id:item.priceId},formattedTotals:{subtotal:'£19.99',total:'£19.99'}}))}}})},Checkout:{open(options){window.checkoutOptions=options}}};` }));
 }
 test('pricing displays two credit packs and localized Paddle price', async ({ page }) => {
     await mockPricing(page); await page.goto('/');
     const plans = page.getByRole('region', { name: 'Credit plans' }).getByRole('article');
     await expect(plans).toHaveCount(2);
-    await expect(plans.first()).toContainText('250 credits');
-    await expect(plans.last()).toContainText('25,000 credits');
+    await expect(plans.first()).toContainText('3,000 credits');
+    await expect(plans.last()).toContainText('300,000 credits');
     await expect(plans.last()).toContainText('£19.99');
     await expect(page.getByRole('button', { name:'Start for free' })).toBeVisible();
     await expect(page.getByRole('button', { name:'Buy credits' })).toBeVisible();
@@ -23,15 +23,15 @@ test('landing actions and language selector work', async ({ page }) => {
     await page.getByRole('button', { name: 'DE', exact: true }).click();
     await expect(page.getByText('Kurzhantel-Frontkniebeuge')).toBeVisible();
     await page.getByRole('link', { name: /Start for free/ }).first().click();
-    await expect(page.getByText('Sign in with Google above to get your 250 free credits.')).toBeVisible();
+    await expect(page.getByText('Sign in with Google above to get your 3,000 free credits.')).toBeVisible();
 });
 test('feature comparison displays Free and Pro values and localized refill price', async ({ page }) => {
     await mockPricing(page); await page.goto('/');
     const comparison = page.getByRole('table', { name: 'Compare Free and Pro features' });
     await expect(comparison.getByRole('row')).toHaveCount(17);
     const credits = comparison.getByRole('row', { name: /API Credits/ });
-    await expect(credits).toContainText('250');
-    await expect(credits).toContainText('25,000');
+    await expect(credits).toContainText('3,000');
+    await expect(credits).toContainText('300,000');
     await expect(credits).toContainText('Per £19.99 refill');
     await expect(comparison.getByRole('row', { name: /Female Exercises/ })).toContainText('Coming soon');
     const bodyShapes = comparison.getByRole('row', { name: /Body Shapes \(Data\)/ });
@@ -65,7 +65,7 @@ test('Pro account can manage credits and top up manually', async ({ page }) => {
     await expect(page.getByRole('button', { name:'Unavailable', exact:true })).toBeDisabled();
     await page.getByRole('button', { name:'Manage credits' }).click();
     await expect(page.getByRole('button', { name:'Refill', exact:true })).toBeVisible();
-    await expect(page.getByText('Get 25,000 credits each month', { exact:false })).toBeVisible();
+    await expect(page.getByText('Get 300,000 credits each month', { exact:false })).toBeVisible();
     await page.getByRole('switch', { name:'Enable monthly refill' }).click();
     expect(monthlyPosts).toBe(0);
     expect(await page.evaluate(() => (window as any).checkoutOptions)).toBeUndefined();

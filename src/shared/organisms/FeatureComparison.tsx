@@ -11,7 +11,7 @@ type Feature = {
 };
 
 const features: Feature[] = [
-    { name: 'API Credits', description: 'Pay only for what you pull. Unused credits stay in your account forever, so you can scale at your own pace.', free: '250', freeDetail: 'One-time', pro: '25,000', proDetail: 'Per refill' },
+    { name: 'API Credits', description: 'Pay only for what you pull. Unused credits stay in your account forever, so you can scale at your own pace.', free: '3,000', freeDetail: 'One-time', pro: '300,000', proDetail: 'Per refill' },
     { name: 'Live Database Updates', description: 'Our library evolves weekly with new variations and data. Connect once and your app stays fresh automatically.', free: 'Static snapshot', pro: 'Live & continuous' },
     { name: 'Male Exercises & Equipment', description: 'Meticulously engineered and human-perfected over a year to guarantee flawless form and studio-quality realism.', free: 'Names & Descriptions +', freeDetail: 'Watermarked images', pro: 'Names & Descriptions +', proDetail: 'Clean (High-Res) images' },
     { name: 'Female Exercises', comingSoon: true, description: 'Expand your demographic reach. Includes complete names, detailed execution descriptions, and high-res female visuals.', free: '—', pro: 'Names & Descriptions +', proDetail: 'Clean (High-Res) images' },
