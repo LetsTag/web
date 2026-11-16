@@ -40,3 +40,6 @@
 .billing .legalNotice a { color: inherit; text-decoration: underline; }
 .billing .legalNotice a:hover, .billing .legalNotice a:focus-visible { color: #233c36; }
 .creditActions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+
+.billing p.subscriptionStatus { color: #245c42; font-weight: 700; margin-bottom: 8px; }
+.refill + p { margin-top: 18px; }

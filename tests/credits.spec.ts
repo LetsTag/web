@@ -64,28 +64,29 @@ test('Pro account can manage credits and top up manually', async ({ page }) => {
     await page.goto('/');
     await expect(page.getByRole('button', { name:'Unavailable', exact:true })).toBeDisabled();
     await page.getByRole('button', { name:'Manage credits' }).click();
-    await expect(page.getByRole('button', { name:'Refill', exact:true })).toBeVisible();
-    await expect(page.getByText('Get 300,000 credits each month', { exact:false })).toBeVisible();
+    await expect(page.getByRole('button', { name:'Refill Credits', exact:true })).toBeVisible();
+    await expect(page.getByText('Credits remain in your account until used.', { exact:false })).toBeVisible();
     await page.getByRole('switch', { name:'Enable monthly refill' }).click();
     expect(monthlyPosts).toBe(0);
     expect(await page.evaluate(() => (window as any).checkoutOptions)).toBeUndefined();
-    await page.getByRole('button', { name:'Refill', exact:true }).click();
+    await page.getByRole('button', { name:'Refill Credits', exact:true }).click();
     await expect.poll(() => page.evaluate(() => (window as any).checkoutOptions)).toMatchObject({ transactionId:'txn_setup' });
 });
-test('monthly refill can be canceled', async ({ page }) => {
+test('active monthly refill offers a one-time purchase and resets after cancellation', async ({ page }) => {
     await mockPricing(page);
     await page.addInitScript(() => localStorage.setItem('session_token','test'));
     await page.route('**/v1/auth/me', route => route.fulfill({ json: { name:'Test', email:'test@example.com', picture:null, has_purchased_credits:true } }));
-    await page.route('**/v1/account/credits', route => route.fulfill({ json: { balance:1000 } }));
-    await page.route('**/v1/account/monthly-refill', route => route.fulfill({ json: { status:'active', price_id:'pri_01m76a98c4x6nn65bg744ebfkg' } }));
-    await page.route('**/v1/account/monthly-refill/cancel', route => route.fulfill({ json: { status:'canceled' } }));
+    let status = 'active';
+    await page.route('**/v1/account/monthly-refill', route => route.fulfill({ json: { status, price_id:'pri_01m76a98c4x6nn65bg744ebfkg' } }));
+    await page.route('**/v1/account/checkout', route => route.fulfill({ json: { transaction_id:'txn_single' } }));
     await page.goto('/account/');
-    const toggle = page.getByRole('switch', { name:'Enable monthly refill' });
-    await expect(toggle).toBeChecked();
-    page.once('dialog', dialog => dialog.accept());
-    await toggle.click();
-    await expect(toggle).not.toBeChecked();
-    await expect(page.getByText('One-time refill selected.')).toBeVisible();
+    await expect(page.getByText('Active Monthly Refill')).toBeVisible();
+    await expect(page.getByRole('switch', { name:'Enable monthly refill' })).toHaveCount(0);
+    await page.getByRole('button', { name:'One-Time Refill' }).click();
+    await expect.poll(() => page.evaluate(() => (window as any).checkoutOptions)).toMatchObject({ transactionId:'txn_single' });
+    status = 'canceled';
+    await expect(page.getByRole('switch', { name:'Enable monthly refill' })).toBeVisible({timeout:8000});
+    await expect(page.getByRole('switch', { name:'Enable monthly refill' })).not.toBeChecked();
 });
 test('refill uses the one-time price when the switch is off', async ({ page }) => {
     await mockPricing(page);
@@ -96,7 +97,7 @@ test('refill uses the one-time price when the switch is off', async ({ page }) =
     await page.route('**/v1/account/checkout', route => { priceId = route.request().postDataJSON().price_id; return route.fulfill({ json: { transaction_id:'txn_single' } }); });
     await page.goto('/account/');
     await expect(page.getByRole('switch', { name:'Enable monthly refill' })).not.toBeChecked();
-    await page.getByRole('button', { name:'Refill', exact:true }).click();
+    await page.getByRole('button', { name:'Refill Credits', exact:true }).click();
     await expect.poll(() => priceId).toBe('pri_01m76g7tc61yt2sgqev2ptehn9');
     await expect.poll(() => page.evaluate(() => (window as any).checkoutOptions)).toMatchObject({ transactionId:'txn_single' });
 });
@@ -107,8 +108,8 @@ test('one-time refill remains available when monthly status is unavailable', asy
     await page.route('**/v1/account/monthly-refill', route => route.fulfill({ status:503, json: { detail:'Unavailable' } }));
     await page.route('**/v1/account/checkout', route => route.fulfill({ json: { transaction_id:'txn_single' } }));
     await page.goto('/account/');
-    await expect(page.getByText('Monthly refill status is unavailable.')).toBeVisible();
-    const refill = page.getByRole('button', { name:'Refill', exact:true });
+    await expect(page.getByRole('switch', { name:'Enable monthly refill' })).toBeDisabled();
+    const refill = page.getByRole('button', { name:'Refill Credits', exact:true });
     await expect(refill).toBeEnabled();
     await refill.click();
     await expect.poll(() => page.evaluate(() => (window as any).checkoutOptions)).toMatchObject({ transactionId:'txn_single' });

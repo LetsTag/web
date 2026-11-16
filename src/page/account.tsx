@@ -24,10 +24,10 @@ export default function AccountPage() {
     const [openingTopUp, setOpeningTopUp] = useState(false);
     const [topUpError, setTopUpError] = useState('');
     const [monthlyStatus, setMonthlyStatus] = useState('loading');
+    const [monthlyCancelAt, setMonthlyCancelAt] = useState<string | null>(null);
     const [selectMonthly, setSelectMonthly] = useState(false);
     const [monthlyPrice, setMonthlyPrice] = useState('');
     const [monthlyError, setMonthlyError] = useState('');
-    const [monthlyBusy, setMonthlyBusy] = useState(false);
     useEffect(() => { getUser().then(value => { setUser(value); setMessage(value ? '' : 'Please sign in to view your account.'); }).catch(() => setMessage('Unable to load your account. Please try again.')); }, []);
     useEffect(() => {
         if (!user) return;
@@ -54,15 +54,17 @@ export default function AccountPage() {
         if (!user) return;
         let active = true;
         let priceLoaded = false;
-        let selectionInitialized = false;
+        let previousStatus = ''; 
         async function refresh() {
             try {
                 const response = await sessionRequest('/v1/account/monthly-refill');
                 if (!response.ok) throw new Error();
-                const result: { status: string; price_id: string } = await response.json();
+                const result: { status: string; price_id: string; cancel_at: string | null } = await response.json();
                 if (active) {
                     setMonthlyStatus(result.status);
-                    if (!selectionInitialized) { setSelectMonthly(['active', 'inactive', 'pending'].includes(result.status)); selectionInitialized = true; }
+                    setMonthlyCancelAt(result.cancel_at || null);
+                    if (['active', 'trialing', 'paused', 'past_due'].includes(result.status) || (['active', 'trialing', 'paused', 'past_due'].includes(previousStatus) && ['disabled', 'canceled'].includes(result.status))) setSelectMonthly(false);
+                    previousStatus = result.status;
                 }
                 if (result.price_id && !priceLoaded) {
                     priceLoaded = true;
@@ -78,19 +80,7 @@ export default function AccountPage() {
         refresh(); const timer = window.setInterval(refresh, 5000);
         return () => { active = false; window.clearInterval(timer); };
     }, [user]);
-    async function toggleMonthly() {
-        if (!selectMonthly) { setSelectMonthly(true); setMonthlyError(''); return; }
-        if (monthlyStatus !== 'active' && monthlyStatus !== 'inactive') { setSelectMonthly(false); setMonthlyError(''); return; }
-        if (!window.confirm('Cancel monthly refill immediately? You keep credits already purchased.')) return;
-        setMonthlyBusy(true); setMonthlyError('');
-        try {
-            const response = await sessionRequest('/v1/account/monthly-refill/cancel', 'POST');
-            if (!response.ok) { const error: { detail?: string } = await response.json(); throw new Error(error.detail || 'Could not cancel monthly refill.'); }
-            const result: { status: string } = await response.json();
-            setMonthlyStatus(result.status); setSelectMonthly(false);
-        } catch (error) { setMonthlyError(error instanceof Error ? error.message : 'Could not cancel monthly refill.'); }
-        finally { setMonthlyBusy(false); }
-    }
+    function toggleMonthly() { setSelectMonthly(value => !value); setMonthlyError(''); }
     async function copyKey() {
         if (!apiKey) return;
         try { await navigator.clipboard.writeText(apiKey.api_key); setKeyNotice('API key copied.'); }
@@ -111,7 +101,7 @@ export default function AccountPage() {
     async function topUp() {
         setOpeningTopUp(true); setTopUpError('');
         try {
-            if (!selectMonthly) {
+            if (!selectMonthly || ['active', 'trialing', 'paused', 'past_due'].includes(monthlyStatus)) {
                 const result = await openCheckout(user?.email);
                 if (result !== 'opened') setTopUpError('Please sign in again to buy credits.');
             } else {
@@ -141,5 +131,5 @@ export default function AccountPage() {
         } catch { setPortalError('Unable to open the billing portal. Please try again.'); }
         finally { setOpeningPortal(false); }
     }
-    return <SiteLayout><section className={styles.profile}><h1>Account</h1>{message && <p role="status">{message}</p>}{user && <><div className={styles.card}>{user.picture && <img src={user.picture} alt="" referrerPolicy="no-referrer" />}<div><h2>{user.name || 'Your account'}</h2>{user.email && <p>{user.email}</p>}<p>Signed in with Google</p></div></div><section className={styles.billing}><h2>Credits</h2><p>{balance === null ? 'Credit balance unavailable' : `${balance.toLocaleString()} credits available`}</p><div className={styles.refill}><p>Credits remain in your account until used. Cancel anytime.</p><label className={styles.monthlyToggle}><input className={styles.switch} type="checkbox" role="switch" checked={selectMonthly} disabled={monthlyBusy || monthlyStatus === 'loading' || monthlyStatus === 'creating' || monthlyStatus === 'unavailable'} onChange={toggleMonthly} /> Enable monthly refill</label>{monthlyError && <p role="alert">{monthlyError}</p>}</div>{(selectMonthly ? monthlyPrice : topUpPrice) && <p>{selectMonthly ? 'Monthly refill' : 'One-time refill'}: {packCredits.toLocaleString()} credits · {selectMonthly ? monthlyPrice : topUpPrice}{selectMonthly ? ' per month' : ''} before tax.</p>}{topUpError && <p role="alert">{topUpError}</p>}<div className={styles.creditActions}><button className={styles.portalButton} disabled={openingTopUp || monthlyBusy || (selectMonthly ? !monthlyPrice || ['loading', 'unavailable', 'creating', 'active', 'inactive'].includes(monthlyStatus) : !topUpPrice)} onClick={topUp}>{openingTopUp ? 'Opening checkout…' : 'Refill Credits'}</button> <button className={styles.portalButton} type="button" disabled={openingPortal} onClick={openPortal}>{openingPortal ? 'Opening billing portal…' : 'Manage billing'} <span aria-hidden="true">↗</span></button></div><p className={styles.legalNotice}>By clicking Refill, you agree to our <a href="/terms/">Terms of Service</a> and <a href="/privacy/">Privacy Policy</a>.</p></section><CreditHistory />{portalError && <p role="alert">{portalError}</p>}<section className={styles.billing} aria-labelledby="api-key-title"><h2 id="api-key-title">API key</h2><p>Your key is used to access the API. All your credits are available through this key.</p>{keyLoading ? <p role="status">Loading API key…</p> : <><div className={styles.keyBox}><code>{apiKey?.api_key || 'No key available'}</code><button className={styles.copyButton} type="button" onClick={copyKey} disabled={!apiKey} aria-label="Copy API key" title="Copy API key"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="8" y="8" width="11" height="11" rx="2" /><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" /></svg></button></div>{apiKey && <div className={styles.keyDate}>Created {displayDate(apiKey.created_at)}</div>}<button className={styles.rotateButton} type="button" disabled={rotatingKey} onClick={rotateKey}><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M20 7v5h-5" /><path d="M4 17v-5h5" /><path d="M5.5 9a7 7 0 0 1 11.6-2.6L20 12M4 12l2.9 5.6A7 7 0 0 0 18.5 15" /></svg>{rotatingKey ? 'Regenerating…' : 'Regenerate Key'}</button>{keyError && <p role="alert">{keyError}</p>}{keyNotice && <p role="status">{keyNotice}</p>}</>}</section></>}</section></SiteLayout>;
+    return <SiteLayout><section className={styles.profile}><h1>Account</h1>{message && <p role="status">{message}</p>}{user && <><div className={styles.card}>{user.picture && <img src={user.picture} alt="" referrerPolicy="no-referrer" />}<div><h2>{user.name || 'Your account'}</h2>{user.email && <p>{user.email}</p>}<p>Signed in with Google</p></div></div><section className={styles.billing}><h2>Credits</h2><p>{balance === null ? 'Credit balance unavailable' : `${balance.toLocaleString()} credits available`}</p><div className={styles.refill}>{['active', 'trialing', 'paused', 'past_due'].includes(monthlyStatus) ? <><p className={styles.subscriptionStatus}>{['active', 'trialing'].includes(monthlyStatus) ? `✓ Active Monthly Refill${monthlyCancelAt && !Number.isNaN(new Date(monthlyCancelAt).getTime()) ? ` (ends on ${new Date(monthlyCancelAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })})` : ''}` : `Monthly refill: ${monthlyStatus.replace('_', ' ')}`}</p><p>Running low before your next billing cycle? You can buy a one-time refill below.</p></> : <><p>Credits remain in your account until used. Cancel anytime.</p><label className={styles.monthlyToggle}><input className={styles.switch} type="checkbox" role="switch" checked={selectMonthly} disabled={['loading', 'creating', 'unavailable'].includes(monthlyStatus)} onChange={toggleMonthly} /> Enable monthly refill</label>{monthlyError && <p role="alert">{monthlyError}</p>}</>}</div>{!['active', 'trialing', 'paused', 'past_due'].includes(monthlyStatus) && (selectMonthly ? monthlyPrice : topUpPrice) && <p>{selectMonthly ? 'Monthly refill' : 'One-time refill'}: {packCredits.toLocaleString()} credits · {selectMonthly ? monthlyPrice : topUpPrice}{selectMonthly ? ' per month' : ''} before tax.</p>}{topUpError && <p role="alert">{topUpError}</p>}<div className={styles.creditActions}><button className={styles.portalButton} disabled={openingTopUp || (selectMonthly ? !monthlyPrice || ['loading', 'unavailable', 'creating'].includes(monthlyStatus) : !topUpPrice)} onClick={topUp}>{openingTopUp ? 'Opening checkout…' : ['active', 'trialing', 'paused', 'past_due'].includes(monthlyStatus) ? 'One-Time Refill' : 'Refill Credits'}</button> {user.has_purchased_credits && <button className={styles.portalButton} type="button" disabled={openingPortal} onClick={openPortal}>{openingPortal ? 'Opening billing portal…' : 'Manage billing'} <span aria-hidden="true">↗</span></button>}</div><p className={styles.legalNotice}>By clicking Refill, you agree to our <a href="/terms/">Terms of Service</a> and <a href="/privacy/">Privacy Policy</a>.</p></section><CreditHistory />{portalError && <p role="alert">{portalError}</p>}<section className={styles.billing} aria-labelledby="api-key-title"><h2 id="api-key-title">API key</h2><p>Your key is used to access the API. All your credits are available through this key.</p>{keyLoading ? <p role="status">Loading API key…</p> : <><div className={styles.keyBox}><code>{apiKey?.api_key || 'No key available'}</code><button className={styles.copyButton} type="button" onClick={copyKey} disabled={!apiKey} aria-label="Copy API key" title="Copy API key"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="8" y="8" width="11" height="11" rx="2" /><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" /></svg></button></div>{apiKey && <div className={styles.keyDate}>Created {displayDate(apiKey.created_at)}</div>}<button className={styles.rotateButton} type="button" disabled={rotatingKey} onClick={rotateKey}><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M20 7v5h-5" /><path d="M4 17v-5h5" /><path d="M5.5 9a7 7 0 0 1 11.6-2.6L20 12M4 12l2.9 5.6A7 7 0 0 0 18.5 15" /></svg>{rotatingKey ? 'Regenerating…' : 'Regenerate Key'}</button>{keyError && <p role="alert">{keyError}</p>}{keyNotice && <p role="status">{keyNotice}</p>}</>}</section></>}</section></SiteLayout>;
 }
