@@ -9,6 +9,7 @@ declare global {
     interface Window { google?: { accounts: { id: {
         initialize: (options: { client_id: string; callback: (response: { credential: string }) => void }) => void;
         renderButton: (element: HTMLElement, options: { theme: string; size: string; shape: string; text: string; width: number }) => void;
+        prompt: (callback?: (notification: { isNotDisplayed: () => boolean; isSkippedMoment: () => boolean }) => void) => void;
         disableAutoSelect: () => void;
     } } }; }
 }
@@ -28,6 +29,18 @@ export function SiteHeader({ signIn = true }: { signIn?: boolean }) {
         const expired = () => { setUser(null); setStatus('Please sign in to continue to checkout.'); };
         window.addEventListener('session-expired', expired);
         return () => window.removeEventListener('session-expired', expired);
+    }, []);
+    useEffect(() => {
+        const showSignIn = () => {
+            if (!window.google || !button.current) { setStatus('Use the Google sign-in button above to continue.'); return; }
+            try {
+                window.google.accounts.id.prompt(moment => {
+                    if (moment.isNotDisplayed() || moment.isSkippedMoment()) setStatus('Use the Google sign-in button above to continue.');
+                });
+            } catch { setStatus('Use the Google sign-in button above to continue.'); }
+        };
+        window.addEventListener('pricing-sign-in', showSignIn);
+        return () => window.removeEventListener('pricing-sign-in', showSignIn);
     }, []);
     useEffect(() => {
         if (!signIn || loading || user) return;

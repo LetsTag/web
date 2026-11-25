@@ -45,7 +45,7 @@ test('checkout handles a failed Paddle script without a blank page', async ({ pa
     await page.route('https://cdn.paddle.com/paddle/v2/paddle.js', route => route.abort());
     await page.goto('/checkout/');
     await expect(page.getByRole('status')).toContainText('couldn’t load secure checkout');
-    await expect(page.getByRole('link', { name: 'Back to pricing' })).toHaveAttribute('href', '/');
+    await expect(page.getByRole('link', { name: 'Back to pricing' })).toHaveAttribute('href', '/pricing/');
 });
 
 test('checkout with no payment token stays ready without opening its own overlay', async ({ page }) => {
@@ -61,7 +61,7 @@ test('removed pages are absent and the 404 fallback provides a route home', asyn
     await page.goto('/404.html');
     await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible();
     await page.getByRole('link', { name: 'Back to pricing' }).click();
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Build fitness apps faster');
+    await expect(page.getByRole('heading', { name: /Build at your pace/ })).toBeVisible();
 });
 
 

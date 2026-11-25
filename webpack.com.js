@@ -33,6 +33,8 @@ module.exports = (mode) => ({
         }),
         ...[
             ['index.html', "Let's Tag — Exercise API pricing", '/', false],
+            ['pricing/index.html', "Pricing — Let's Tag", '/pricing', false],
+            ['updates/index.html', "Product Updates — Let's Tag", '/updates', false],
             ['privacy/index.html', "Privacy Policy — Let's Tag", '/privacy', false],
             ['terms/index.html', "Terms of Service — Let's Tag", '/terms', false],
             ['admin/index.html', 'Admin — Let\'s Tag', '/admin', true],

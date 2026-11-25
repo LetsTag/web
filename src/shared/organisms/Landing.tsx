@@ -1,9 +1,10 @@
-import { useState, type MouseEvent } from 'react';
-import { token } from '../../lib/auth';
+import { useState } from 'react';
+import { formatUpdateDate, releasedUpdates } from '../../lib/productUpdates';
 import styles from './Landing.module.css';
 
 declare const __AUTH_API_BASE_URL__: string;
 const image = '/img/marketing/front-squat.webp';
+const latestUpdate = releasedUpdates[0];
 const exerciseExample = `{
   "name": "Dumbbell Front Squat",
   "equipment": "Dumbbells",
@@ -23,15 +24,7 @@ const engineExample = `// Example request
 }`;
 
 function StartLink({ className }: { className: string }) {
-    const [notice, setNotice] = useState('');
-    function start(event: MouseEvent<HTMLAnchorElement>) {
-        event.preventDefault();
-        if (token()) { window.location.assign('/account/'); return; }
-        setNotice('Sign in with Google above to get your 3,000 free credits.');
-        const root = event.currentTarget.getRootNode();
-        if (root instanceof ShadowRoot || root instanceof Document) root.querySelector('#sign-in-area')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-    return <div><a className={className} href="/account/" onClick={start}>Start for free <span aria-hidden="true">↗</span></a>{notice && <p className={styles.signInNotice} role="status">{notice}</p>}</div>;
+    return <div><a className={className} href="/pricing/">Start for free <span aria-hidden="true">↗</span></a></div>;
 }
 
 export function LandingIntro() {
@@ -51,7 +44,12 @@ export function LandingIntro() {
                 <div className={styles.heroImage}><div className={styles.imageGlow} /><img src={image} alt="An anatomical illustration of a dumbbell front squat" /><span className={styles.imageTag}>DUMBBELL FRONT SQUAT <b>↗</b></span></div>
             </div>
         </section>
-        <div className={styles.momentum}><span className={styles.pulse} /><strong>Latest Update <span>(Nov 12)</span></strong><span className={styles.momentumDivider} /><p>Added Body Shape Engine endpoints and primary somatotype arrays to 150 exercises.</p></div>
+        <a className={styles.momentum} href="/updates/">
+            <span className={styles.pulse} aria-hidden="true" />
+            <strong>Latest Update <time dateTime={latestUpdate.date}>({formatUpdateDate(latestUpdate.date, true)})</time></strong>
+            <span className={styles.momentumSummary}>{latestUpdate.title}</span>
+            <span className={styles.momentumArrow} aria-hidden="true">↗</span>
+        </a>
         <section className={styles.showcase} aria-labelledby="showcase-title">
             <div className={styles.sectionHeading}><div><p className={styles.eyebrow}>MORE THAN A DATABASE</p><h2 id="showcase-title">The details make<br /><em>the difference.</em></h2></div><p>Visuals that move people. Data that gives you room to build something better.</p></div>
             <div className={styles.featureGrid}>
@@ -65,5 +63,35 @@ export function LandingIntro() {
 }
 
 export function LandingOutro() {
-    return <section className={styles.outro}><div><p className={styles.eyebrow}>REAL PEOPLE. REAL SUPPORT.</p><h2>Built by engineers,<br /><em>supported by engineers.</em></h2><p>Skip the generic help desk. Get direct access to the team that built the API and trained the models.</p></div><div><StartLink className={styles.outroButton} /><span>3,000 free credits. Ready when you are.</span></div></section>;
+    return <section className={styles.outro} aria-labelledby="support-title">
+        <div className={styles.outroIntro}>
+            <p className={styles.eyebrow}>REAL PEOPLE. REAL SUPPORT.</p>
+            <h2 id="support-title">Built by engineers,<br /><em>supported by engineers.</em></h2>
+            <p>Get direct access to the team that built the API. Explore how the same air bike appears in our equipment library and in an exercise illustration.</p>
+        </div>
+        <div className={styles.equipmentGrid}>
+            <article className={styles.featureCard}>
+                <div className={styles.equipmentVisual}>
+                    <img src="/img/marketing/air-bike-equipment.webp" alt="Air bike with pedals, moving handlebars, and a fan wheel" width="1536" height="1536" loading="lazy" />
+                </div>
+                <div className={styles.cardCopy}>
+                    <h3>Air bike equipment</h3>
+                    <p>Show users the gear they’ll need with standalone equipment images for workout previews and equipment pickers.</p>
+                </div>
+            </article>
+            <article className={styles.featureCard}>
+                <div className={styles.equipmentVisual}>
+                    <img src="/img/marketing/air-bike-exercise.webp" alt="A person pedaling an air bike, with engaged muscles highlighted" width="1086" height="1448" loading="lazy" />
+                </div>
+                <div className={styles.cardCopy}>
+                    <h3>Air bike exercise</h3>
+                    <p>Show the same machine in use, with an anatomical illustration that makes it easier to understand the movement and see which muscles are engaged.</p>
+                </div>
+            </article>
+        </div>
+        <div className={styles.outroAction}>
+            <StartLink className={styles.outroButton} />
+            <span>3,000 free credits. Ready when you are.</span>
+        </div>
+    </section>;
 }

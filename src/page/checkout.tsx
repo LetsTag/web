@@ -36,6 +36,6 @@ export default function CheckoutPage() {
     return <SiteLayout compact>
         <Text as="h1" variant="heading">Payment details</Text>
         <div role="status" aria-live="polite"><Text variant="muted">{messages[status]}</Text></div>
-        <Link href="/">Back to pricing</Link>
+        <Link href="/pricing/">Back to pricing</Link>
     </SiteLayout>;
 }

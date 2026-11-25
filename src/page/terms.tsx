@@ -1,5 +1,8 @@
 import { SiteLayout } from "../shared/templates/SiteLayout";
 export default function TermsPage() { return <SiteLayout><main style={{maxWidth: 800, margin: "48px auto 80px", lineHeight: 1.7, color: "#233c36"}}><h1>API Terms of Service</h1>
+<h2>Introduction</h2>
+<p>These API Terms of Service ("Terms") govern your access to and use of the LetsTag API and its associated endpoints (collectively, the "API" or "Service"). The API is owned and operated by Martspec LLC ("Martspec," "we," "us," or "our").</p>
+<p>By creating an account, purchasing credits, or integrating the API into your application, you agree to be bound by these Terms. If you are accepting these Terms on behalf of a company or other legal entity, you represent that you have the authority to bind that entity to these Terms.</p>
 <h2>1. Fees and Credit Consumption</h2>
         <p>Our API operates on a consumption-based credit model where one returned top-level entity (e.g., one exercise or one piece of equipment) equals one credit.</p>
         <ul>

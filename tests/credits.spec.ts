@@ -4,7 +4,7 @@ async function mockPricing(page: Page) {
     await page.route('https://cdn.paddle.com/paddle/v2/paddle.js', route => route.fulfill({ contentType: 'application/javascript', body: `window.PaddleBillingV1={Environment:{set(){}},Initialize(){this.Initialized=true},PricePreview({items}){return Promise.resolve({data:{details:{lineItems:items.map(item=>({price:{id:item.priceId},formattedTotals:{subtotal:'£19.99',total:'£19.99'}}))}}})},Checkout:{open(options){window.checkoutOptions=options}}};` }));
 }
 test('pricing displays two credit packs and localized Paddle price', async ({ page }) => {
-    await mockPricing(page); await page.goto('/');
+    await mockPricing(page); await page.goto('/pricing/');
     const plans = page.getByRole('region', { name: 'Credit plans' }).getByRole('article');
     await expect(plans).toHaveCount(2);
     await expect(plans.first()).toContainText('3,000 credits');
@@ -14,6 +14,18 @@ test('pricing displays two credit packs and localized Paddle price', async ({ pa
     await expect(page.getByRole('button', { name:'Buy credits' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Annually' })).toHaveCount(0);
 });
+for (const label of ['Start for free', 'Buy credits']) {
+    test(`${label} prompts Google sign-in and opens the account`, async ({ page }) => {
+        await mockPricing(page);
+        await page.route('https://accounts.google.com/gsi/client', route => route.fulfill({ contentType: 'application/javascript', body: `window.google={accounts:{id:{initialize(options){window.googleCallback=options.callback},renderButton(){},prompt(){window.googleCallback({credential:'test-credential'})},disableAutoSelect(){}}}};` }));
+        await page.route('**/v1/auth/google', route => route.fulfill({ json: { session_token:'test', expires_at:'2030-01-01', user:{name:'Test',email:'test@example.com',picture:null,has_purchased_credits:false} } }));
+        await page.route('**/v1/auth/me', route => route.fulfill({ json: {name:'Test',email:'test@example.com',picture:null,has_purchased_credits:false} }));
+        await page.goto('/pricing/');
+        await page.waitForFunction(() => Boolean((window as any).googleCallback));
+        await page.getByRole('button', { name:label }).click();
+        await expect(page).toHaveURL(/\/account\/$/);
+    });
+}
 test('landing actions and language selector work', async ({ page }) => {
     await mockPricing(page); await page.goto('/');
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Build fitness apps faster');
@@ -22,11 +34,13 @@ test('landing actions and language selector work', async ({ page }) => {
     await expect(page.getByText('Sentadilla frontal con mancuernas')).toBeVisible();
     await page.getByRole('button', { name: 'DE', exact: true }).click();
     await expect(page.getByText('Kurzhantel-Frontkniebeuge')).toBeVisible();
-    await page.getByRole('link', { name: /Start for free/ }).first().click();
-    await expect(page.getByText('Sign in with Google above to get your 3,000 free credits.')).toBeVisible();
+    const links = page.getByRole('link', { name: /Start for free/ });
+    await expect(links).toHaveCount(2);
+    await expect(links.first()).toHaveAttribute('href', '/pricing/');
+    await expect(links.last()).toHaveAttribute('href', '/pricing/');
 });
 test('feature comparison displays Free and Pro values and localized refill price', async ({ page }) => {
-    await mockPricing(page); await page.goto('/');
+    await mockPricing(page); await page.goto('/pricing/');
     const comparison = page.getByRole('table', { name: 'Compare Free and Pro features' });
     await expect(comparison.getByRole('row')).toHaveCount(17);
     const credits = comparison.getByRole('row', { name: /API Credits/ });
@@ -43,15 +57,14 @@ test('feature comparison displays Free and Pro values and localized refill price
     await expect(bodyFat).toContainText('All scientific formulas');
     await expect(comparison.getByRole('row', { name: /Cinematic Videos/ })).toContainText('Coming soon');
 });
-test('free account is active and can buy a Pro credit pack', async ({ page }) => {
+test('signed-in account is directed to account from pricing', async ({ page }) => {
     await mockPricing(page);
     await page.addInitScript(() => localStorage.setItem('session_token','test'));
     await page.route('**/v1/auth/me', route => route.fulfill({ json: { name:'Test', email:'test@example.com', picture:null, has_purchased_credits:false } }));
     await page.route('**/v1/account/checkout', route => route.fulfill({ json: { transaction_id:'txn_test' } }));
-    await page.goto('/');
-    await expect(page.getByRole('button', { name:'Active', exact:true })).toBeDisabled();
+    await page.goto('/pricing/');
     await page.getByRole('button', { name:'Buy credits' }).click();
-    await expect.poll(() => page.evaluate(() => (window as any).checkoutOptions)).toMatchObject({ transactionId:'txn_test', customer:{email:'test@example.com'} });
+    await expect(page).toHaveURL(/\/account\/$/);
 });
 test('Pro account can manage credits and top up manually', async ({ page }) => {
     await mockPricing(page);
@@ -61,9 +74,8 @@ test('Pro account can manage credits and top up manually', async ({ page }) => {
     await page.route('**/v1/account/api-key', route => route.fulfill({ json: { api_key:'wk_test_key', created_at:'2026-01-01T00:00:00Z' } }));
     let monthlyPosts = 0;
     await page.route('**/v1/account/monthly-refill', route => { if (route.request().method() === 'POST') monthlyPosts++; return route.fulfill({ json: route.request().method() === 'POST' ? { status:'pending', transaction_id:'txn_setup' } : { status:'disabled', price_id:'pri_01m76a98c4x6nn65bg744ebfkg' } }); });
-    await page.goto('/');
-    await expect(page.getByRole('button', { name:'Unavailable', exact:true })).toBeDisabled();
-    await page.getByRole('button', { name:'Manage credits' }).click();
+    await page.goto('/pricing/');
+    await page.getByRole('button', { name:'Buy credits' }).click();
     await expect(page.getByRole('button', { name:'Refill Credits', exact:true })).toBeVisible();
     await expect(page.getByText('Credits remain in your account until used.', { exact:false })).toBeVisible();
     await page.getByRole('switch', { name:'Enable monthly refill' }).click();
@@ -117,7 +129,7 @@ test('one-time refill remains available when monthly status is unavailable', asy
 test('billing portal uses the current Paddle endpoint', async ({ page }) => {
     await mockPricing(page);
     await page.addInitScript(() => localStorage.setItem('session_token', 'test'));
-    await page.route('**/v1/auth/me', route => route.fulfill({ json: { name:'Test', email:'test@example.com', picture:null, has_purchased_credits:false } }));
+    await page.route('**/v1/auth/me', route => route.fulfill({ json: { name:'Test', email:'test@example.com', picture:null, has_purchased_credits:true } }));
     let portalRequests = 0;
     await page.route('**/v1/paddle/customer-portal', route => { portalRequests++; return route.fulfill({ status:404, json: { detail:'No billing account' } }); });
     await page.goto('/account/');
@@ -137,7 +149,7 @@ test('account shows credit usage history', async ({ page }) => {
     await expect(history).toContainText('-10');
 });
 for (const width of [320, 768, 1440]) test(`credit cards fit at ${width}px`, async ({ page }) => {
-    await mockPricing(page); await page.setViewportSize({ width, height:900 }); await page.goto('/');
+    await mockPricing(page); await page.setViewportSize({ width, height:900 }); await page.goto('/pricing/');
     await expect(page.getByRole('region', { name: 'Credit plans' }).getByRole('article')).toHaveCount(2);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });

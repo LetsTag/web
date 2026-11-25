@@ -4,11 +4,12 @@ Exercise API pricing at `/` and a Paddle payment-link landing page at `/checkout
 
 ## Development
 
-Use Node.js 22.15 or newer (the old Node 16 toolchain is no longer supported).
+Use Node.js 22.15 or newer and enable Corepack to use the Yarn version pinned by this project.
 
 ```sh
 nvm use
-yarn install --frozen-lockfile
+corepack enable
+yarn install --immutable
 cp .env.example .env.local
 # Set your public Paddle client-side token and environment in .env.local.
 yarn start
