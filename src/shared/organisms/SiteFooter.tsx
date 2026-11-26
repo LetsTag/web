@@ -10,6 +10,7 @@ export function SiteFooter() {
             <nav aria-label="Footer">
                 <a href="/pricing/">Pricing</a>
                 <a href="/terms/">Terms of Service</a>
+                <a href="/refunds/">Refund Policy</a>
                 <a href="/privacy/">Privacy Policy</a>
             </nav>
         </div>

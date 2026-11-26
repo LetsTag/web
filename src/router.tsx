@@ -6,6 +6,7 @@ import MainPage from './page/main';
 import CheckoutPage from './page/checkout';
 import PricingPage from './page/pricing';
 import UpdatesPage from './page/updates';
+import RefundsPage from './page/refunds';
 import { SiteLayout } from './shared/templates/SiteLayout';
 import { Text } from './shared/atoms/Text';
 import { Link } from './shared/atoms/Link';
@@ -16,6 +17,7 @@ export function App() {
     if (path === '/pricing' || path === '/pricing/index.html') return <PricingPage />;
     if (path === '/updates' || path === '/updates/index.html') return <UpdatesPage />;
     if (path === '/privacy' || path === '/privacy/index.html') return <PrivacyPage />;
+    if (path === '/refunds' || path === '/refunds/index.html') return <RefundsPage />;
     if (path === '/terms' || path === '/terms/index.html') return <TermsPage />;
     if (path === '/admin' || path === '/admin/index.html') return <AdminPage />;
     if (path === '/account' || path === '/account/index.html') return <AccountPage />;

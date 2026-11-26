@@ -1,5 +1,31 @@
 import { test, expect } from '@playwright/test';
 
+test('the homepage stays in place while Google renders its sign-in button on reload', async ({ page }) => {
+    await page.route('https://accounts.google.com/gsi/client', route => route.fulfill({
+        contentType: 'application/javascript',
+        body: `window.google = { accounts: { id: {
+            initialize() {},
+            renderButton(host) {
+                const widget = document.createElement('div');
+                widget.dataset.testid = 'google-widget';
+                host.appendChild(widget);
+            }
+        } } };`,
+    }));
+    await page.goto('/');
+    await page.getByTestId('google-widget').waitFor({ state: 'attached' });
+    await page.reload();
+    const widget = page.getByTestId('google-widget');
+    await widget.waitFor({ state: 'attached' });
+    const heading = page.getByRole('heading', { level: 1 });
+    const before = await heading.boundingBox();
+    // Google briefly lays out a taller placeholder before settling to 32px.
+    for (const height of [64, 32]) {
+        await widget.evaluate((element, px) => { element.style.height = px + 'px'; }, height);
+        expect(await heading.boundingBox()).toEqual(before);
+    }
+});
+
 test('external CSS cannot restyle atomic components', async ({ page }) => {
     await page.goto('/');
     const heading = page.getByRole('heading', { level: 1 });

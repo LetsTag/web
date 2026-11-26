@@ -1,4 +1,4 @@
-import { formatUpdateDate, releasedUpdates, upcomingUpdate } from '../lib/productUpdates';
+import { formatUpdateDate, releasedUpdates } from '../lib/productUpdates';
 import { SiteLayout } from '../shared/templates/SiteLayout';
 import styles from './updates.module.css';
 
@@ -9,15 +9,6 @@ export default function UpdatesPage() {
                 <h1>Product <em>updates.</em></h1>
                 <p>Follow what’s new in the LetsTag API, from exercises and equipment to the data that helps your app do more.</p>
             </header>
-
-            <section className={styles.roadmap} aria-labelledby="coming-up">
-                <div className={styles.roadmapHeader}>
-                    <h2 id="coming-up">Coming up</h2>
-                    <span>Planned for <time dateTime={upcomingUpdate.date}>{formatUpdateDate(upcomingUpdate.date)}</time></span>
-                </div>
-                <h3>{upcomingUpdate.title}</h3>
-                <p>{upcomingUpdate.description}</p>
-            </section>
 
             <section className={styles.releases} aria-labelledby="released-updates">
                 <h2 id="released-updates">What’s shipped</h2>

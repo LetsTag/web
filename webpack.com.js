@@ -37,6 +37,7 @@ module.exports = (mode) => ({
             ['updates/index.html', "Product Updates — Let's Tag", '/updates', false],
             ['privacy/index.html', "Privacy Policy — Let's Tag", '/privacy', false],
             ['terms/index.html', "Terms of Service — Let's Tag", '/terms', false],
+            ['refunds/index.html', "Refund Policy — Let's Tag", '/refunds', false],
             ['admin/index.html', 'Admin — Let\'s Tag', '/admin', true],
             ['account/index.html', "Account — Let's Tag", '/account', true],
             ['checkout/index.html', "Payment details — Let's Tag", '/checkout', true],

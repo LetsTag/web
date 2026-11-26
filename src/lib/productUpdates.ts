@@ -5,11 +5,28 @@ type ProductUpdate = {
     image?: { src: string; alt: string; anatomy?: boolean };
 };
 
-export const upcomingUpdate: ProductUpdate = {
-    date: '2026-12-12',
-    title: 'Laying the foundation for the Body Shape Engine',
-    description: 'The next milestone builds out the base for the Body Shape Engine endpoints. It sets the stage for apps to turn measurements into body shape insights through the API.',
-};
+export const roadmap: ProductUpdate[] = [
+    {
+        date: '2027-03-15',
+        title: 'Female exercise illustrations',
+        description: 'Expand the exercise library with female illustrations, names, and movement descriptions.',
+    },
+    {
+        date: '2027-06-15',
+        title: 'Exercise videos',
+        description: 'Explore video guidance for exercises in the catalog.',
+    },
+    {
+        date: '2027-10-15',
+        title: 'Body composition estimates',
+        description: 'Evaluate published formulas for estimating body fat and lean or muscle mass from measurements.',
+    },
+    {
+        date: '2028-05-15',
+        title: 'Body shape and somatotype research',
+        description: 'Explore whether body measurements could be used to suggest a body shape or somatotype illustration.',
+    },
+];
 
 export const releasedUpdates: readonly [ProductUpdate, ...ProductUpdate[]] = [
     {
@@ -31,8 +48,8 @@ export const releasedUpdates: readonly [ProductUpdate, ...ProductUpdate[]] = [
     },
     {
         date: '2026-09-28',
-        title: 'Body Shape Engine endpoints and richer exercise data',
-        description: 'We introduced Body Shape Engine endpoints and added primary somatotype arrays to 150 exercises, giving developers more data to work with when building personalized fitness experiences.',
+        title: 'More detail for 150 exercises',
+        description: 'We expanded the reference metadata on 150 exercise records.',
     },
     {
         date: '2026-09-17',

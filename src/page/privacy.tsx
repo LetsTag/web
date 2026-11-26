@@ -2,7 +2,7 @@ import { SiteLayout } from '../shared/templates/SiteLayout';
 
 export default function PrivacyPage() {
     return <SiteLayout><main style={{maxWidth: 800, margin: '48px auto 80px', lineHeight: 1.7, color: '#233c36'}}>
-        <h1>letstag.app Privacy Policy</h1>
+        <h1>Privacy Policy</h1>
         <h2>1. Introduction</h2><p>letstag.app is a developer API service operated by Martspec. While our consumer mobile applications strictly operate under a zero-data-collection policy, running a secure, consumption-based API requires us to collect basic account and billing information. This policy explains exactly what data we collect to operate the letstag.app platform, why we need it, and how we protect it.</p>
         <h2>2. Data We Collect</h2><p>We only collect the minimum amount of information necessary to manage your developer account, process payments, and secure our infrastructure.</p><ul>
             <li><strong>Account Information:</strong> When you create an account, we collect your name and email address.</li>
